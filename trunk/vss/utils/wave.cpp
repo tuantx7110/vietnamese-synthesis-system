@@ -34,6 +34,7 @@ int Wave::readFromFile(char *path) {
 	fread(data, bytesPerSample, numberSamples, file);
 
 	fclose(file);
+	return 0;
 }
 
 int Wave::writeToFile(char *path) {
@@ -62,4 +63,5 @@ int Wave::writeToFile(char *path) {
 	fwrite(data, bytesPerSample, numberSamples, file);
 
 	fclose(file);
+	return 0;
 }

@@ -11,7 +11,7 @@
 #include <cstdio>
 
 class Wave {
-private:
+public:
 	char chunkId[4];
 	int chunkSize;
 	char format[4];
@@ -28,7 +28,6 @@ private:
 	short bytesPerSample;
 	int numberSamples;
 	short *data;
-public:
 	int readFromFile(char *path);
 	int writeToFile(char *path);
 };
