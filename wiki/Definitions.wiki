@@ -1,14 +1,15 @@
 = Các khái niệm cơ bản về ngôn ngữ và xử lý tín hiệu =
 
 
-= Introduction =
+== Introduction ==
 
 Mọi người khi nghiên cứu và làm về một vấn đề nào đó mà có những khái niệm mới thì viết lên đây để người khác đỡ mất công tìm hiểu lại
 
 
-= Details =
-
-*Phoneme*: _Âm vị_ là đơn vị tối thiểu của hệ thống ngữ âm của một ngôn ngữ dùng để cấu tạo và phân biệt vỏ âm thanh của các đơn vị có nghĩa của ngôn ngữ. Là phân đoạn nhỏ nhất của âm thanh dùng để cấu tạo nên sự phân biệt giữa các cách phát âm.
+== Details ==
+<br/>
+=== 1. Phoneme - _Âm vị_ === 
+Là đơn vị tối thiểu của hệ thống ngữ âm của một ngôn ngữ dùng để cấu tạo và phân biệt vỏ âm thanh của các đơn vị có nghĩa của ngôn ngữ. Là phân đoạn nhỏ nhất của âm thanh dùng để cấu tạo nên sự phân biệt giữa các cách phát âm.
 
 Ví dụ, /d/ và /t/ là hai âm vị của tiếng Việt.
 
@@ -16,9 +17,10 @@ http://ngonngu.net/index.php?p=64
 
 http://vi.wikipedia.org/wiki/Âm_vị
 
+<br/>
 
-
-*Syllable*: _Âm tiết_ Chuỗi lời nói mà con người phát ra gồm nhiều khúc đoạn dài ngắn khác nhau. Đơn vị phát âm ngắn nhất là âm tiết.
+=== 2. Syllable - _Âm tiết_ ===
+Chuỗi lời nói mà con người phát ra gồm nhiều khúc đoạn dài ngắn khác nhau. Đơn vị phát âm ngắn nhất là âm tiết.
 
 Ví dụ, từ Latinh được kết hợp từ hai âm tiết: la và tinh. 
 
