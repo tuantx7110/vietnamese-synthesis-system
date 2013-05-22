@@ -1,5 +1,6 @@
 = Các khái niệm cơ bản về ngôn ngữ và xử lý tín hiệu =
 
+
 = Introduction =
 
 Mọi người khi nghiên cứu và làm về một vấn đề nào đó mà có những khái niệm mới thì viết lên đây để người khác đỡ mất công tìm hiểu lại
@@ -14,6 +15,8 @@ Ví dụ, /d/ và /t/ là hai âm vị của tiếng Việt.
 http://ngonngu.net/index.php?p=64
 
 http://vi.wikipedia.org/wiki/Âm_vị
+
+
 
 *Syllable*: _Âm tiết_ Chuỗi lời nói mà con người phát ra gồm nhiều khúc đoạn dài ngắn khác nhau. Đơn vị phát âm ngắn nhất là âm tiết.
 
