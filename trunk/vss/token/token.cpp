@@ -8,7 +8,6 @@
 #include <sstream>
 
 void Token::token(string in, string out){
-	//string path = "vietnamese-synthesis-system\\vss\\data";
 	WordSegmenter ws;
 	ws.loadConfigure("config.ini");
 	ws.splitSentence(in, out);
