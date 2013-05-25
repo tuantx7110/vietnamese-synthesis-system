@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void testToken(){
+void testToken() {
 	Token T;
 	T.token("file1.vn", "file1.tok");
 }
