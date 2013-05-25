@@ -7,8 +7,10 @@
 
 using namespace std;
 
+const string WordSegmenter::token_path = "token_data/";
+const string WordSegmenter::data_path = "data/";
+
 void WordSegmenter::splitSentence(string in, string out){
-	data_path = "vietnamese-synthesis-system\\vss\\data\\";
 	ifstream ifs((data_path + in).c_str());
 	ofstream ofs((data_path + out).c_str());
 	vector<string> words;
@@ -56,7 +58,6 @@ string Trim(string str){
 }
 
 void WordSegmenter::loadConfigure(string dir){
-	token_path = "vietnamese-synthesis-system\\vss\\token_data\\";
 	ifstream ifs;
 	ifs.open((token_path + dir).c_str());
 
