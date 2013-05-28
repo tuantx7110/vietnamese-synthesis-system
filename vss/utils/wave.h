@@ -8,28 +8,26 @@
 #ifndef WAVE_H_
 #define WAVE_H_
 
-#include <cstdio>
-
 class Wave {
 public:
-	char chunkId[4];
-	int chunkSize;
-	char format[4];
-	char subchunk1Id[4];
-	int subchunk1Size;
-	short audioFormat;
-	short numberChannels;
-	int sampleRate;
-	int byteRate;
-	short blockAlign;
-	short bitsPerSample;
-	char subchunk2Id[4];
-	int subchunk2Size;
-	short bytesPerSample;
-	int numberSamples;
-	short *data;
-	int readFromFile(char *path);
-	int writeToFile(char *path);
+    char chunk_id[4];
+    int chunk_size;
+    char format[4];
+    char subchunk1_id[4];
+    int subchunk1_size;
+    short audio_format;
+    short number_channels;
+    int sample_rate;
+    int byte_rate;
+    short block_align;
+    short bits_per_sample;
+    char subchunk2_id[4];
+    int subchunk2_size;
+    short bytes_per_sample;
+    int number_samples;
+    short *data;
+    int read_wave_file(char *path);
+    int write_wave_file(char *path);
 };
 
 
