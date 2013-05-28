@@ -5,6 +5,7 @@
  *      Author: quangpham
  */
 
+#include <cstdio>
 #include "wave.h"
 
 int Wave::read_wave_file(char *path) {
