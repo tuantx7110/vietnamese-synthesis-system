@@ -1,0 +1,2093 @@
+
+<root>
+    <file id_file="0" file_name="PTP00003_000.wav">
+        <sentence id_sen="0">
+            <phrase id_phrase="0" length="8">
+                <syllable id_syl="0" name="SILP" start_index="0" end_index="2850" numOfPhone="0" energy="6944.88">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="0" finalPhnm="NUL" leftPhnmType="NUL">NULL</leftSyl>
+                    <rightSyl tone="8" initialPhnm="m" rightPhnmType="CSN">một</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+                <syllable id_syl="1" name="một" start_index="2851" end_index="5919" numOfPhone="3" energy="48339.66">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="0" finalPhnm="NUL" leftPhnmType="NUL">SILP</leftSyl>
+                    <rightSyl tone="3" initialPhnm="G" rightPhnmType="CFV">gã</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="2" name="gã" start_index="5920" end_index="8624" numOfPhone="2" energy="67866.47">
+                    <initial type="CFV">G</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">một</leftSyl>
+                    <rightSyl tone="2" initialPhnm="d" rightPhnmType="CSV">đàn</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="3" name="đàn" start_index="8625" end_index="12217" numOfPhone="3" energy="50874.17">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="3" finalPhnm="a" leftPhnmType="VM">gã</leftSyl>
+                    <rightSyl tone="1" initialPhnm="o" rightPhnmType="VB">ông</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="4" name="ông" start_index="12218" end_index="18239" numOfPhone="2" energy="43985.1">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="2" finalPhnm="n" leftPhnmType="CSN">đàn</leftSyl>
+                    <rightSyl tone="8" initialPhnm="m" rightPhnmType="CSN">mặt</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="5" name="mặt" start_index="18240" end_index="21599" numOfPhone="3" energy="46804.77">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="1" finalPhnm="NG" leftPhnmType="CSN">ông</leftSyl>
+                    <rightSyl tone="3" initialPhnm="m" rightPhnmType="CSN">mũi</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="6" name="mũi" start_index="21600" end_index="25359" numOfPhone="3" energy="44742.29">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">u</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">mặt</leftSyl>
+                    <rightSyl tone="5" initialPhnm="t" rightPhnmType="CSU">tối</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="7" name="tối" start_index="25360" end_index="29133" numOfPhone="3" energy="40281.76">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="3" finalPhnm="j" leftPhnmType="SV">mũi</leftSyl>
+                    <rightSyl tone="1" initialPhnm="t" rightPhnmType="CSU">tăm</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="8" name="tăm" start_index="29134" end_index="33998" numOfPhone="3" energy="42908.41">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="CSN">m</final>
+                    <leftSyl tone="5" finalPhnm="j" leftPhnmType="SV">tối</leftSyl>
+                    <rightSyl tone="0" initialPhnm="t" rightPhnmType="CSU">SIL</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="9" name="SIL" start_index="33999" end_index="40909" numOfPhone="0" energy="11177.99">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="m" leftPhnmType="CSN">tăm</leftSyl>
+                    <rightSyl tone="6" initialPhnm="l" rightPhnmType="CFL">loại</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="1" length="12">
+                <syllable id_syl="0" name="loại" start_index="40910" end_index="43153" numOfPhone="4" energy="66850.06">
+                    <initial type="CFL">l</initial>
+                    <middle type="SV">w</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="0" finalPhnm="m" leftPhnmType="CSN">SIL</leftSyl>
+                    <rightSyl tone="2" initialPhnm="NG" rightPhnmType="CSN">người</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="1" name="người" start_index="43154" end_index="48855" numOfPhone="3" energy="52870.84">
+                    <initial type="CSN">NG</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="6" finalPhnm="j" leftPhnmType="SV">loại</leftSyl>
+                    <rightSyl tone="1" initialPhnm="NJ" rightPhnmType="CSN">nhan</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="2" name="nhan" start_index="48856" end_index="51359" numOfPhone="3" energy="26912.59">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="2" finalPhnm="j" leftPhnmType="SV">người</leftSyl>
+                    <rightSyl tone="4" initialPhnm="NJ" rightPhnmType="CSN">nhản</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="3" name="nhản" start_index="51360" end_index="55679" numOfPhone="3" energy="54037.38">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="1" finalPhnm="n" leftPhnmType="CSN">nhan</leftSyl>
+                    <rightSyl tone="3" initialPhnm="v" rightPhnmType="CFV">vẫn</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="4" name="vẫn" start_index="55680" end_index="57599" numOfPhone="3" energy="24910.66">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="4" finalPhnm="n" leftPhnmType="CSN">nhản</leftSyl>
+                    <rightSyl tone="6" initialPhnm="l" rightPhnmType="CFL">lượn</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="5" name="lượn" start_index="57600" end_index="60838" numOfPhone="3" energy="32552.35">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="3" finalPhnm="n" leftPhnmType="CSN">vẫn</leftSyl>
+                    <rightSyl tone="2" initialPhnm="l" rightPhnmType="CFL">lờ</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="6" name="lờ" start_index="60839" end_index="65069" numOfPhone="2" energy="46360.31">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="n" leftPhnmType="CSN">lượn</leftSyl>
+                    <rightSyl tone="4" initialPhnm="7" rightPhnmType="VM">ở</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="7" name="ở" start_index="65070" end_index="67973" numOfPhone="1" energy="30721.28">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="7" leftPhnmType="VM">lờ</leftSyl>
+                    <rightSyl tone="7" initialPhnm="k" rightPhnmType="CSU">các</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="8" name="các" start_index="67974" end_index="70719" numOfPhone="3" energy="25762.97">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="4" finalPhnm="7" leftPhnmType="VM">ở</leftSyl>
+                    <rightSyl tone="5" initialPhnm="c" rightPhnmType="CSU">chốn</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="9" name="chốn" start_index="70720" end_index="74719" numOfPhone="3" energy="33538.15">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="7" finalPhnm="k" leftPhnmType="CSU">các</leftSyl>
+                    <rightSyl tone="1" initialPhnm="d" rightPhnmType="CSV">đô</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="10" name="đô" start_index="74720" end_index="77234" numOfPhone="2" energy="43192.29">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">chốn</leftSyl>
+                    <rightSyl tone="6" initialPhnm="h" rightPhnmType="CFU">hội</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="11" name="hội" start_index="77235" end_index="82368" numOfPhone="3" energy="47627.04">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="1" finalPhnm="o" leftPhnmType="VB">đô</leftSyl>
+                    <rightSyl tone="0" initialPhnm="h" rightPhnmType="CFU">SIL</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="12" name="SIL" start_index="82369" end_index="89759" numOfPhone="0" energy="11293.54">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="j" leftPhnmType="SV">hội</leftSyl>
+                    <rightSyl tone="5" initialPhnm="G" rightPhnmType="CFV">ghé</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="2" length="5">
+                <syllable id_syl="0" name="ghé" start_index="89760" end_index="92790" numOfPhone="2" energy="38890.0">
+                    <initial type="CFV">G</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">E</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="0" finalPhnm="j" leftPhnmType="SV">SIL</leftSyl>
+                    <rightSyl tone="2" initialPhnm="v" rightPhnmType="CFV">vào</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="1" name="vào" start_index="92791" end_index="94743" numOfPhone="3" energy="31183.4">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="5" finalPhnm="E" leftPhnmType="VF">ghé</leftSyl>
+                    <rightSyl tone="2" initialPhnm="NJ" rightPhnmType="CSN">nhà</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="2" name="nhà" start_index="94744" end_index="97599" numOfPhone="2" energy="46331.84">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="w" leftPhnmType="SV">vào</leftSyl>
+                    <rightSyl tone="3" initialPhnm="l" rightPhnmType="CFL">lão</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="3" name="lão" start_index="97600" end_index="101119" numOfPhone="3" energy="53633.46">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="2" finalPhnm="a" leftPhnmType="VM">nhà</leftSyl>
+                    <rightSyl tone="5" initialPhnm="th" rightPhnmType="CSU">thiến</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="4" name="thiến" start_index="101120" end_index="107359" numOfPhone="3" energy="25754.94">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">ie</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="3" finalPhnm="w" leftPhnmType="SV">lão</leftSyl>
+                    <rightSyl tone="0" initialPhnm="th" rightPhnmType="CSU">SILS</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="5" name="SILS" start_index="107360" end_index="118643" numOfPhone="0" energy="14119.19">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">thiến</leftSyl>
+                    <rightSyl tone="3" initialPhnm="G" rightPhnmType="CFV">gã</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+        <sentence id_sen="1">
+            <phrase id_phrase="0" length="6">
+                <syllable id_syl="0" name="gã" start_index="118644" end_index="120292" numOfPhone="2" energy="78314.27">
+                    <initial type="CFV">G</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="0" finalPhnm="n" leftPhnmType="CSN">SILS</leftSyl>
+                    <rightSyl tone="2" initialPhnm="d" rightPhnmType="CSV">đàn</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="1" name="đàn" start_index="120293" end_index="122940" numOfPhone="3" energy="55502.65">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="3" finalPhnm="a" leftPhnmType="VM">gã</leftSyl>
+                    <rightSyl tone="1" initialPhnm="o" rightPhnmType="VB">ông</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="2" name="ông" start_index="122941" end_index="126399" numOfPhone="2" energy="52606.87">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="2" finalPhnm="n" leftPhnmType="CSN">đàn</leftSyl>
+                    <rightSyl tone="5" initialPhnm="d" rightPhnmType="CSV">đứng</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="3" name="đứng" start_index="126400" end_index="129255" numOfPhone="3" energy="29269.84">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="1" finalPhnm="NG" leftPhnmType="CSN">ông</leftSyl>
+                    <rightSyl tone="4" initialPhnm="7" rightPhnmType="VM">ở</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="4" name="ở" start_index="129256" end_index="131779" numOfPhone="1" energy="34142.69">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="NG" leftPhnmType="CSN">đứng</leftSyl>
+                    <rightSyl tone="4" initialPhnm="k" rightPhnmType="CSU">cửa</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="5" name="cửa" start_index="131780" end_index="136610" numOfPhone="2" energy="42835.18">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="4" finalPhnm="7" leftPhnmType="VM">ở</leftSyl>
+                    <rightSyl tone="0" initialPhnm="k" rightPhnmType="CSU">SIL</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="6" name="SIL" start_index="136611" end_index="140898" numOfPhone="0" energy="8912.27">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="4" finalPhnm="M7" leftPhnmType="VM">cửa</leftSyl>
+                    <rightSyl tone="1" initialPhnm="th" rightPhnmType="CSU">thân</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="1" length="12">
+                <syllable id_syl="0" name="thân" start_index="140899" end_index="143039" numOfPhone="3" energy="23304.78">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="0" finalPhnm="M7" leftPhnmType="VM">SIL</leftSyl>
+                    <rightSyl tone="4" initialPhnm="th" rightPhnmType="CSU">thể</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="1" name="thể" start_index="143040" end_index="146769" numOfPhone="2" energy="37431.65">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">e</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="n" leftPhnmType="CSN">thân</leftSyl>
+                    <rightSyl tone="6" initialPhnm="v" rightPhnmType="CFV">vạm</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="2" name="vạm" start_index="146770" end_index="150353" numOfPhone="3" energy="81524.97">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">m</final>
+                    <leftSyl tone="4" finalPhnm="e" leftPhnmType="VF">thể</leftSyl>
+                    <rightSyl tone="3" initialPhnm="v" rightPhnmType="CFV">vỡ</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="3" name="vỡ" start_index="150354" end_index="153938" numOfPhone="2" energy="42078.88">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="m" leftPhnmType="CSN">vạm</leftSyl>
+                    <rightSyl tone="4" initialPhnm="k" rightPhnmType="CSU">của</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="4" name="của" start_index="153939" end_index="156534" numOfPhone="2" energy="32301.65">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">uo</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="3" finalPhnm="7" leftPhnmType="VM">vỡ</leftSyl>
+                    <rightSyl tone="4" initialPhnm="k" rightPhnmType="CSU">kẻ</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="5" name="kẻ" start_index="156535" end_index="159753" numOfPhone="2" energy="32652.47">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">E</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="4" finalPhnm="uo" leftPhnmType="VB">của</leftSyl>
+                    <rightSyl tone="8" initialPhnm="d" rightPhnmType="CSV">được</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="6" name="được" start_index="159754" end_index="163679" numOfPhone="3" energy="31120.41">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="4" finalPhnm="E" leftPhnmType="VF">kẻ</leftSyl>
+                    <rightSyl tone="1" initialPhnm="n" rightPhnmType="CSN">nuôi</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="7" name="nuôi" start_index="163680" end_index="166622" numOfPhone="3" energy="40193.55">
+                    <initial type="CSN">n</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">uo</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="8" finalPhnm="k" leftPhnmType="CSU">được</leftSyl>
+                    <rightSyl tone="5" initialPhnm="ss" rightPhnmType="CFU">sống</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="8" name="sống" start_index="166623" end_index="172159" numOfPhone="3" energy="41324.34">
+                    <initial type="CFU">ss</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="1" finalPhnm="j" leftPhnmType="SV">nuôi</leftSyl>
+                    <rightSyl tone="2" initialPhnm="b" rightPhnmType="CSV">bằng</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="9" name="bằng" start_index="172160" end_index="176027" numOfPhone="3" energy="60514.31">
+                    <initial type="CSV">b</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="5" finalPhnm="NG" leftPhnmType="CSN">sống</leftSyl>
+                    <rightSyl tone="7" initialPhnm="c" rightPhnmType="CSU">chất</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="10" name="chất" start_index="176028" end_index="178719" numOfPhone="3" energy="36983.58">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">bằng</leftSyl>
+                    <rightSyl tone="8" initialPhnm="b" rightPhnmType="CSV">bột</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="11" name="bột" start_index="178720" end_index="182935" numOfPhone="3" energy="47096.16">
+                    <initial type="CSV">b</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="7" finalPhnm="t" leftPhnmType="CSU">chất</leftSyl>
+                    <rightSyl tone="0" initialPhnm="b" rightPhnmType="CSV">SIL</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="12" name="SIL" start_index="182936" end_index="187734" numOfPhone="0" energy="9228.29">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">bột</leftSyl>
+                    <rightSyl tone="5" initialPhnm="l" rightPhnmType="CFL">lấn</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="2" length="9">
+                <syllable id_syl="0" name="lấn" start_index="187735" end_index="191359" numOfPhone="3" energy="35265.03">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="0" finalPhnm="t" leftPhnmType="CSU">SIL</leftSyl>
+                    <rightSyl tone="7" initialPhnm="a" rightPhnmType="VM">át</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="1" name="át" start_index="191360" end_index="194559" numOfPhone="2" energy="37846.39">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">lấn</leftSyl>
+                    <rightSyl tone="3" initialPhnm="z" rightPhnmType="CFV">dữ</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="2" name="dữ" start_index="194560" end_index="198048" numOfPhone="2" energy="23075.06">
+                    <initial type="CFV">z</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="7" finalPhnm="t" leftPhnmType="CSU">át</leftSyl>
+                    <rightSyl tone="6" initialPhnm="z" rightPhnmType="CFV">dội</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="3" name="dội" start_index="198049" end_index="201119" numOfPhone="3" energy="44092.67">
+                    <initial type="CFV">z</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="3" finalPhnm="M" leftPhnmType="VM">dữ</leftSyl>
+                    <rightSyl tone="4" initialPhnm="7" rightPhnmType="VM">ở</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="4" name="ở" start_index="201120" end_index="203417" numOfPhone="1" energy="27282.18">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="j" leftPhnmType="SV">dội</leftSyl>
+                    <rightSyl tone="1" initialPhnm="X" rightPhnmType="CFU">khuôn</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="5" name="khuôn" start_index="203418" end_index="206893" numOfPhone="3" energy="34241.92">
+                    <initial type="CFU">X</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">uo</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="4" finalPhnm="7" leftPhnmType="VM">ở</leftSyl>
+                    <rightSyl tone="8" initialPhnm="m" rightPhnmType="CSN">mặt</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="6" name="mặt" start_index="206894" end_index="211039" numOfPhone="3" energy="46364.59">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="1" finalPhnm="n" leftPhnmType="CSN">khuôn</leftSyl>
+                    <rightSyl tone="2" initialPhnm="NJ" rightPhnmType="CSN">nhờ</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="7" name="nhờ" start_index="211040" end_index="214323" numOfPhone="2" energy="35932.58">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">mặt</leftSyl>
+                    <rightSyl tone="2" initialPhnm="NJ" rightPhnmType="CSN">nhờ</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="8" name="nhờ" start_index="214324" end_index="219999" numOfPhone="2" energy="39259.57">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="7" leftPhnmType="VM">nhờ</leftSyl>
+                    <rightSyl tone="0" initialPhnm="NJ" rightPhnmType="CSN">SIL</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="9" name="SIL" start_index="220000" end_index="224302" numOfPhone="0" energy="9014.13">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="7" leftPhnmType="VM">nhờ</leftSyl>
+                    <rightSyl tone="1" initialPhnm="X" rightPhnmType="CFU">không</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="3" length="3">
+                <syllable id_syl="0" name="không" start_index="224303" end_index="228373" numOfPhone="3" energy="43725.08">
+                    <initial type="CFU">X</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="0" finalPhnm="7" leftPhnmType="VM">SIL</leftSyl>
+                    <rightSyl tone="1" initialPhnm="zr" rightPhnmType="CFV">ra</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="1" name="ra" start_index="228374" end_index="233439" numOfPhone="2" energy="52740.18">
+                    <initial type="CFV">zr</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="NG" leftPhnmType="CSN">không</leftSyl>
+                    <rightSyl tone="6" initialPhnm="th" rightPhnmType="CSU">thiện</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="2" name="thiện" start_index="233440" end_index="238239" numOfPhone="3" energy="35815.33">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">ie</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="1" finalPhnm="a" leftPhnmType="VM">ra</leftSyl>
+                    <rightSyl tone="0" initialPhnm="th" rightPhnmType="CSU">SIL</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="3" name="SIL" start_index="238240" end_index="239519" numOfPhone="0" energy="4923.44">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="n" leftPhnmType="CSN">thiện</leftSyl>
+                    <rightSyl tone="7" initialPhnm="a" rightPhnmType="VM">ác</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="4" length="1">
+                <syllable id_syl="0" name="ác" start_index="239520" end_index="243199" numOfPhone="2" energy="31806.93">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="0" finalPhnm="n" leftPhnmType="CSN">SIL</leftSyl>
+                    <rightSyl tone="0" initialPhnm="a" rightPhnmType="VM">SILS</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="1" name="SILS" start_index="243200" end_index="251039" numOfPhone="0" energy="11920.24">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="7" finalPhnm="k" leftPhnmType="CSU">ác</leftSyl>
+                    <rightSyl tone="1" initialPhnm="X" rightPhnmType="CFU">khuôn</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+        <sentence id_sen="2">
+            <phrase id_phrase="0" length="7">
+                <syllable id_syl="0" name="khuôn" start_index="251040" end_index="253919" numOfPhone="3" energy="59403.63">
+                    <initial type="CFU">X</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">uo</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="0" finalPhnm="k" leftPhnmType="CSU">SILS</leftSyl>
+                    <rightSyl tone="8" initialPhnm="m" rightPhnmType="CSN">mặt</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="1" name="mặt" start_index="253920" end_index="257278" numOfPhone="3" energy="60735.39">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="1" finalPhnm="n" leftPhnmType="CSN">khuôn</leftSyl>
+                    <rightSyl tone="1" initialPhnm="tr" rightPhnmType="CSU">trên</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="2" name="trên" start_index="257279" end_index="261589" numOfPhone="3" energy="44063.82">
+                    <initial type="CSU">tr</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">e</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">mặt</leftSyl>
+                    <rightSyl tone="5" initialPhnm="k" rightPhnmType="CSU">cái</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="3" name="cái" start_index="261590" end_index="263359" numOfPhone="3" energy="21278.33">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="1" finalPhnm="n" leftPhnmType="CSN">trên</leftSyl>
+                    <rightSyl tone="2" initialPhnm="d" rightPhnmType="CSV">đầu</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="4" name="đầu" start_index="263360" end_index="266698" numOfPhone="3" energy="43783.72">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="5" finalPhnm="j" leftPhnmType="SV">cái</leftSyl>
+                    <rightSyl tone="4" initialPhnm="NJ" rightPhnmType="CSN">nhỏ</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="5" name="nhỏ" start_index="266699" end_index="270976" numOfPhone="2" energy="38228.32">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="w" leftPhnmType="SV">đầu</leftSyl>
+                    <rightSyl tone="5" initialPhnm="t" rightPhnmType="CSU">tí</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="6" name="tí" start_index="270977" end_index="277084" numOfPhone="2" energy="30011.93">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="4" finalPhnm="O" leftPhnmType="VB">nhỏ</leftSyl>
+                    <rightSyl tone="0" initialPhnm="t" rightPhnmType="CSU">SILP</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="7" name="SILP" start_index="277085" end_index="278399" numOfPhone="0" energy="4965.42">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="i" leftPhnmType="VF">tí</leftSyl>
+                    <rightSyl tone="0" initialPhnm="NUL" rightPhnmType="NUL">NULL</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+    </file>
+    <file id_file="1" file_name="PTP100013_000.wav">
+        <sentence id_sen="3">
+            <phrase id_phrase="0" length="7">
+                <syllable id_syl="0" name="SILP" start_index="0" end_index="3148" numOfPhone="0" energy="7367.89">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="0" finalPhnm="NUL" leftPhnmType="NUL">NULL</leftSyl>
+                    <rightSyl tone="1" initialPhnm="k" rightPhnmType="CSU">công</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+                <syllable id_syl="1" name="công" start_index="3149" end_index="5789" numOfPhone="3" energy="60476.11">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="0" finalPhnm="NUL" leftPhnmType="NUL">SILP</leftSyl>
+                    <rightSyl tone="1" initialPhnm="X" rightPhnmType="CFU">khai</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="2" name="khai" start_index="5790" end_index="8612" numOfPhone="3" energy="120690.09">
+                    <initial type="CFU">X</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="1" finalPhnm="NG" leftPhnmType="CSN">công</leftSyl>
+                    <rightSyl tone="8" initialPhnm="h" rightPhnmType="CFU">họp</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="3" name="họp" start_index="8613" end_index="12479" numOfPhone="3" energy="77072.57">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="CSU">p</final>
+                    <leftSyl tone="1" finalPhnm="j" leftPhnmType="SV">khai</leftSyl>
+                    <rightSyl tone="6" initialPhnm="c" rightPhnmType="CSU">chợ</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="4" name="chợ" start_index="12480" end_index="16159" numOfPhone="2" energy="96059.38">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="8" finalPhnm="p" leftPhnmType="CSU">họp</leftSyl>
+                    <rightSyl tone="5" initialPhnm="b" rightPhnmType="CSV">bán</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="5" name="bán" start_index="16160" end_index="20694" numOfPhone="3" energy="61864.96">
+                    <initial type="CSV">b</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="6" finalPhnm="7" leftPhnmType="VM">chợ</leftSyl>
+                    <rightSyl tone="1" initialPhnm="f" rightPhnmType="CFU">phao</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="6" name="phao" start_index="20695" end_index="24085" numOfPhone="3" energy="54973.25">
+                    <initial type="CFU">f</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">bán</leftSyl>
+                    <rightSyl tone="1" initialPhnm="th" rightPhnmType="CSU">thi</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="7" name="thi" start_index="24086" end_index="29439" numOfPhone="2" energy="45839.03">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="w" leftPhnmType="SV">phao</leftSyl>
+                    <rightSyl tone="0" initialPhnm="th" rightPhnmType="CSU">SILS</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="8" name="SILS" start_index="29440" end_index="38549" numOfPhone="0" energy="12913.02">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="i" leftPhnmType="VF">thi</leftSyl>
+                    <rightSyl tone="1" initialPhnm="c" rightPhnmType="CSU">chưa</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+        <sentence id_sen="4">
+            <phrase id_phrase="0" length="12">
+                <syllable id_syl="0" name="chưa" start_index="38550" end_index="40889" numOfPhone="2" energy="69644.55">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="0" finalPhnm="i" leftPhnmType="VF">SILS</leftSyl>
+                    <rightSyl tone="1" initialPhnm="b" rightPhnmType="CSV">bao</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="1" name="bao" start_index="40890" end_index="42638" numOfPhone="3" energy="122390.3">
+                    <initial type="CSV">b</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="1" finalPhnm="M7" leftPhnmType="VM">chưa</leftSyl>
+                    <rightSyl tone="2" initialPhnm="z" rightPhnmType="CFV">giờ</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="2" name="giờ" start_index="42639" end_index="45741" numOfPhone="2" energy="65801.72">
+                    <initial type="CFV">z</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="w" leftPhnmType="SV">bao</leftSyl>
+                    <rightSyl tone="1" initialPhnm="X" rightPhnmType="CFU">khu</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="3" name="khu" start_index="45742" end_index="47458" numOfPhone="2" energy="33894.3">
+                    <initial type="CFU">X</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">u</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="7" leftPhnmType="VM">giờ</leftSyl>
+                    <rightSyl tone="8" initialPhnm="v" rightPhnmType="CFV">vực</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="4" name="vực" start_index="47459" end_index="50879" numOfPhone="3" energy="43722.27">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="1" finalPhnm="u" leftPhnmType="VB">khu</leftSyl>
+                    <rightSyl tone="2" initialPhnm="n" rightPhnmType="CSN">này</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="5" name="này" start_index="50880" end_index="54879" numOfPhone="3" energy="64946.09">
+                    <initial type="CSN">n</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="8" finalPhnm="k" leftPhnmType="CSU">vực</leftSyl>
+                    <rightSyl tone="6" initialPhnm="l" rightPhnmType="CFL">lại</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="6" name="lại" start_index="54880" end_index="57599" numOfPhone="3" energy="57237.22">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="2" finalPhnm="j" leftPhnmType="SV">này</leftSyl>
+                    <rightSyl tone="7" initialPhnm="t" rightPhnmType="CSU">tấp</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="7" name="tấp" start_index="57600" end_index="60998" numOfPhone="3" energy="48474.27">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSU">p</final>
+                    <leftSyl tone="6" finalPhnm="j" leftPhnmType="SV">lại</leftSyl>
+                    <rightSyl tone="8" initialPhnm="n" rightPhnmType="CSN">nập</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="8" name="nập" start_index="60999" end_index="64318" numOfPhone="3" energy="48387.81">
+                    <initial type="CSN">n</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSU">p</final>
+                    <leftSyl tone="7" finalPhnm="p" leftPhnmType="CSU">tấp</leftSyl>
+                    <rightSyl tone="5" initialPhnm="d" rightPhnmType="CSV">đến</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="9" name="đến" start_index="64319" end_index="66559" numOfPhone="3" energy="45881.44">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">e</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="8" finalPhnm="p" leftPhnmType="CSU">nập</leftSyl>
+                    <rightSyl tone="1" initialPhnm="NJ" rightPhnmType="CSN">như</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="10" name="như" start_index="66560" end_index="69152" numOfPhone="2" energy="32615.58">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">đến</leftSyl>
+                    <rightSyl tone="6" initialPhnm="v" rightPhnmType="CFV">vậy</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="11" name="vậy" start_index="69153" end_index="73119" numOfPhone="3" energy="58675.22">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="1" finalPhnm="M" leftPhnmType="VM">như</leftSyl>
+                    <rightSyl tone="0" initialPhnm="v" rightPhnmType="CFV">SILS</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="12" name="SILS" start_index="73120" end_index="80145" numOfPhone="0" energy="11530.81">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="j" leftPhnmType="SV">vậy</leftSyl>
+                    <rightSyl tone="3" initialPhnm="NJ" rightPhnmType="CSN">những</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+        <sentence id_sen="5">
+            <phrase id_phrase="0" length="13">
+                <syllable id_syl="0" name="những" start_index="80146" end_index="83443" numOfPhone="3" energy="41811.18">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="0" finalPhnm="j" leftPhnmType="SV">SILS</leftSyl>
+                    <rightSyl tone="4" initialPhnm="k" rightPhnmType="CSU">cửa</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="1" name="cửa" start_index="83444" end_index="85768" numOfPhone="2" energy="84952.58">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="3" finalPhnm="NG" leftPhnmType="CSN">những</leftSyl>
+                    <rightSyl tone="2" initialPhnm="h" rightPhnmType="CFU">hàng</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="2" name="hàng" start_index="85769" end_index="89439" numOfPhone="3" energy="52994.44">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="4" finalPhnm="M7" leftPhnmType="VM">cửa</leftSyl>
+                    <rightSyl tone="5" initialPhnm="b" rightPhnmType="CSV">bán</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="3" name="bán" start_index="89440" end_index="92268" numOfPhone="3" energy="91774.72">
+                    <initial type="CSV">b</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">hàng</leftSyl>
+                    <rightSyl tone="1" initialPhnm="f" rightPhnmType="CFU">phao</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="4" name="phao" start_index="92269" end_index="95262" numOfPhone="3" energy="80528.0">
+                    <initial type="CFU">f</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">bán</leftSyl>
+                    <rightSyl tone="1" initialPhnm="th" rightPhnmType="CSU">thi</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="5" name="thi" start_index="95263" end_index="98382" numOfPhone="2" energy="38683.21">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="w" leftPhnmType="SV">phao</leftSyl>
+                    <rightSyl tone="1" initialPhnm="z" rightPhnmType="CFV">di</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="6" name="di" start_index="98383" end_index="100959" numOfPhone="2" energy="31137.9">
+                    <initial type="CFV">z</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="i" leftPhnmType="VF">thi</leftSyl>
+                    <rightSyl tone="6" initialPhnm="d" rightPhnmType="CSV">động</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="7" name="động" start_index="100960" end_index="105279" numOfPhone="3" energy="79172.28">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="1" finalPhnm="i" leftPhnmType="VF">di</leftSyl>
+                    <rightSyl tone="8" initialPhnm="h" rightPhnmType="CFU">hoạt</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="8" name="hoạt" start_index="105280" end_index="108799" numOfPhone="4" energy="64579.11">
+                    <initial type="CFU">h</initial>
+                    <middle type="SV">w</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="6" finalPhnm="NG" leftPhnmType="CSN">động</leftSyl>
+                    <rightSyl tone="6" initialPhnm="d" rightPhnmType="CSV">động</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="9" name="động" start_index="108800" end_index="111759" numOfPhone="3" energy="53862.06">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">hoạt</leftSyl>
+                    <rightSyl tone="7" initialPhnm="h" rightPhnmType="CFU">hết</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="10" name="hết" start_index="111760" end_index="114719" numOfPhone="3" energy="28683.73">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">e</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="6" finalPhnm="NG" leftPhnmType="CSN">động</leftSyl>
+                    <rightSyl tone="1" initialPhnm="k" rightPhnmType="CSU">công</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="11" name="công" start_index="114720" end_index="117763" numOfPhone="3" energy="48641.18">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="7" finalPhnm="t" leftPhnmType="CSU">hết</leftSyl>
+                    <rightSyl tone="7" initialPhnm="ss" rightPhnmType="CFU">suất</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="12" name="suất" start_index="117764" end_index="121759" numOfPhone="4" energy="81955.97">
+                    <initial type="CFU">ss</initial>
+                    <middle type="SV">w</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="1" finalPhnm="NG" leftPhnmType="CSN">công</leftSyl>
+                    <rightSyl tone="0" initialPhnm="ss" rightPhnmType="CFU">SIL</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="13" name="SIL" start_index="121760" end_index="126439" numOfPhone="0" energy="9848.76">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="7" finalPhnm="t" leftPhnmType="CSU">suất</leftSyl>
+                    <rightSyl tone="5" initialPhnm="v" rightPhnmType="CFV">với</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="1" length="6">
+                <syllable id_syl="0" name="với" start_index="126440" end_index="128222" numOfPhone="3" energy="41121.53">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="0" finalPhnm="t" leftPhnmType="CSU">SIL</leftSyl>
+                    <rightSyl tone="4" initialPhnm="k" rightPhnmType="CSU">cảnh</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="1" name="cảnh" start_index="128223" end_index="132319" numOfPhone="3" energy="70146.67">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VFC">EX</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="5" finalPhnm="j" leftPhnmType="SV">với</leftSyl>
+                    <rightSyl tone="2" initialPhnm="k" rightPhnmType="CSU">cò</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="2" name="cò" start_index="132320" end_index="136821" numOfPhone="2" energy="75306.04">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="4" finalPhnm="NG" leftPhnmType="CSN">cảnh</leftSyl>
+                    <rightSyl tone="2" initialPhnm="k" rightPhnmType="CSU">kè</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="3" name="kè" start_index="136822" end_index="140838" numOfPhone="2" energy="50553.68">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">E</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="O" leftPhnmType="VB">cò</leftSyl>
+                    <rightSyl tone="5" initialPhnm="z" rightPhnmType="CFV">giá</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="4" name="giá" start_index="140839" end_index="144319" numOfPhone="2" energy="60827.75">
+                    <initial type="CFV">z</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="E" leftPhnmType="VF">kè</leftSyl>
+                    <rightSyl tone="4" initialPhnm="k" rightPhnmType="CSU">cả</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="5" name="cả" start_index="144320" end_index="149439" numOfPhone="2" energy="72889.19">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="a" leftPhnmType="VM">giá</leftSyl>
+                    <rightSyl tone="0" initialPhnm="k" rightPhnmType="CSU">SIL</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="6" name="SIL" start_index="149440" end_index="154130" numOfPhone="0" energy="9831.11">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="4" finalPhnm="a" leftPhnmType="VM">cả</leftSyl>
+                    <rightSyl tone="1" initialPhnm="tr" rightPhnmType="CSU">tranh</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="2" length="3">
+                <syllable id_syl="0" name="tranh" start_index="154131" end_index="157382" numOfPhone="3" energy="93497.73">
+                    <initial type="CSU">tr</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VFC">EX</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="0" finalPhnm="a" leftPhnmType="VM">SIL</leftSyl>
+                    <rightSyl tone="2" initialPhnm="z" rightPhnmType="CFV">giành</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="1" name="giành" start_index="157383" end_index="161053" numOfPhone="3" energy="50268.39">
+                    <initial type="CFV">z</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VFC">EX</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="1" finalPhnm="NG" leftPhnmType="CSN">tranh</leftSyl>
+                    <rightSyl tone="7" initialPhnm="X" rightPhnmType="CFU">khách</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="2" name="khách" start_index="161054" end_index="164619" numOfPhone="3" energy="37940.5">
+                    <initial type="CFU">X</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VFC">EX</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">giành</leftSyl>
+                    <rightSyl tone="0" initialPhnm="X" rightPhnmType="CFU">SIL</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="3" name="SIL" start_index="164620" end_index="168906" numOfPhone="0" energy="9214.31">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="7" finalPhnm="k" leftPhnmType="CSU">khách</leftSyl>
+                    <rightSyl tone="5" initialPhnm="z" rightPhnmType="CFV">giống</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="3" length="12">
+                <syllable id_syl="0" name="giống" start_index="168907" end_index="172319" numOfPhone="3" energy="55746.41">
+                    <initial type="CFV">z</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="0" finalPhnm="k" leftPhnmType="CSU">SIL</leftSyl>
+                    <rightSyl tone="1" initialPhnm="i" rightPhnmType="VF">y</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="1" name="y" start_index="172320" end_index="174850" numOfPhone="1" energy="42670.15">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="NG" leftPhnmType="CSN">giống</leftSyl>
+                    <rightSyl tone="1" initialPhnm="NJ" rightPhnmType="CSN">như</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="2" name="như" start_index="174851" end_index="176906" numOfPhone="2" energy="29656.74">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="i" leftPhnmType="VF">y</leftSyl>
+                    <rightSyl tone="8" initialPhnm="m" rightPhnmType="CSN">một</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="3" name="một" start_index="176907" end_index="179999" numOfPhone="3" energy="54545.97">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="1" finalPhnm="M" leftPhnmType="VM">như</leftSyl>
+                    <rightSyl tone="1" initialPhnm="X" rightPhnmType="CFU">khu</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="4" name="khu" start_index="180000" end_index="183427" numOfPhone="2" energy="38641.67">
+                    <initial type="CFU">X</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">u</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">một</leftSyl>
+                    <rightSyl tone="6" initialPhnm="c" rightPhnmType="CSU">chợ</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="5" name="chợ" start_index="183428" end_index="187199" numOfPhone="2" energy="78625.71">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="u" leftPhnmType="VB">khu</leftSyl>
+                    <rightSyl tone="5" initialPhnm="b" rightPhnmType="CSV">bán</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="6" name="bán" start_index="187200" end_index="191359" numOfPhone="3" energy="68301.86">
+                    <initial type="CSV">b</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="6" finalPhnm="7" leftPhnmType="VM">chợ</leftSyl>
+                    <rightSyl tone="3" initialPhnm="NJ" rightPhnmType="CSN">những</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="7" name="những" start_index="191360" end_index="194206" numOfPhone="3" energy="31169.46">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">bán</leftSyl>
+                    <rightSyl tone="5" initialPhnm="m" rightPhnmType="CSN">món</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="8" name="món" start_index="194207" end_index="196924" numOfPhone="3" energy="63897.01">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="3" finalPhnm="NG" leftPhnmType="CSN">những</leftSyl>
+                    <rightSyl tone="2" initialPhnm="h" rightPhnmType="CFU">hàng</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="9" name="hàng" start_index="196925" end_index="200479" numOfPhone="3" energy="45533.14">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">món</leftSyl>
+                    <rightSyl tone="2" initialPhnm="b" rightPhnmType="CSV">bình</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="10" name="bình" start_index="200480" end_index="203883" numOfPhone="3" energy="51207.17">
+                    <initial type="CSV">b</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">hàng</leftSyl>
+                    <rightSyl tone="2" initialPhnm="th" rightPhnmType="CSU">thường</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="11" name="thường" start_index="203884" end_index="208639" numOfPhone="3" energy="45811.62">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">bình</leftSyl>
+                    <rightSyl tone="0" initialPhnm="th" rightPhnmType="CSU">SILS</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="12" name="SILS" start_index="208640" end_index="217925" numOfPhone="0" energy="13042.38">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">thường</leftSyl>
+                    <rightSyl tone="4" initialPhnm="c" rightPhnmType="CSU">chỉ</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+        <sentence id_sen="6">
+            <phrase id_phrase="0" length="8">
+                <syllable id_syl="0" name="chỉ" start_index="217926" end_index="220822" numOfPhone="2" energy="60841.57">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="0" finalPhnm="NG" leftPhnmType="CSN">SILS</leftSyl>
+                    <rightSyl tone="2" initialPhnm="k" rightPhnmType="CSU">cần</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="1" name="cần" start_index="220823" end_index="224879" numOfPhone="3" energy="84709.17">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="4" finalPhnm="i" leftPhnmType="VF">chỉ</leftSyl>
+                    <rightSyl tone="7" initialPhnm="c" rightPhnmType="CSU">chiếc</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="2" name="chiếc" start_index="224880" end_index="226484" numOfPhone="3" energy="59456.52">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">ie</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="2" finalPhnm="n" leftPhnmType="CSN">cần</leftSyl>
+                    <rightSyl tone="1" initialPhnm="s" rightPhnmType="CFU">xe</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="3" name="xe" start_index="226485" end_index="229183" numOfPhone="2" energy="43358.72">
+                    <initial type="CFU">s</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">E</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="7" finalPhnm="k" leftPhnmType="CSU">chiếc</leftSyl>
+                    <rightSyl tone="2" initialPhnm="n" rightPhnmType="CSN">nào</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="4" name="nào" start_index="229184" end_index="232434" numOfPhone="3" energy="60525.63">
+                    <initial type="CSN">n</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="1" finalPhnm="E" leftPhnmType="VF">xe</leftSyl>
+                    <rightSyl tone="4" initialPhnm="z" rightPhnmType="CFV">giảm</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="5" name="giảm" start_index="232435" end_index="236821" numOfPhone="3" energy="67479.96">
+                    <initial type="CFV">z</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">m</final>
+                    <leftSyl tone="2" finalPhnm="w" leftPhnmType="SV">nào</leftSyl>
+                    <rightSyl tone="7" initialPhnm="t" rightPhnmType="CSU">tốc</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="6" name="tốc" start_index="236822" end_index="239039" numOfPhone="3" energy="39938.88">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="4" finalPhnm="m" leftPhnmType="CSN">giảm</leftSyl>
+                    <rightSyl tone="6" initialPhnm="d" rightPhnmType="CSV">độ</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="7" name="độ" start_index="239040" end_index="243999" numOfPhone="2" energy="86039.87">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="7" finalPhnm="k" leftPhnmType="CSU">tốc</leftSyl>
+                    <rightSyl tone="0" initialPhnm="d" rightPhnmType="CSV">SIL</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="8" name="SIL" start_index="244000" end_index="247203" numOfPhone="0" energy="8240.48">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="o" leftPhnmType="VB">độ</leftSyl>
+                    <rightSyl tone="8" initialPhnm="h" rightPhnmType="CFU">hoặc</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="1" length="10">
+                <syllable id_syl="0" name="hoặc" start_index="247204" end_index="249599" numOfPhone="4" energy="71596.41">
+                    <initial type="CFU">h</initial>
+                    <middle type="SV">w</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="0" finalPhnm="o" leftPhnmType="VB">SIL</leftSyl>
+                    <rightSyl tone="5" initialPhnm="th" rightPhnmType="CSU">thấy</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="1" name="thấy" start_index="249600" end_index="253141" numOfPhone="3" energy="45685.39">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="8" finalPhnm="k" leftPhnmType="CSU">hoặc</leftSyl>
+                    <rightSyl tone="1" initialPhnm="k" rightPhnmType="CSU">cô</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="2" name="cô" start_index="253142" end_index="256166" numOfPhone="2" energy="55307.72">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="j" leftPhnmType="SV">thấy</leftSyl>
+                    <rightSyl tone="6" initialPhnm="k" rightPhnmType="CSU">cậu</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="3" name="cậu" start_index="256167" end_index="259199" numOfPhone="3" energy="61519.19">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="1" finalPhnm="o" leftPhnmType="VB">cô</leftSyl>
+                    <rightSyl tone="2" initialPhnm="n" rightPhnmType="CSN">nào</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="4" name="nào" start_index="259200" end_index="262879" numOfPhone="3" energy="60047.14">
+                    <initial type="CSN">n</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="6" finalPhnm="w" leftPhnmType="SV">cậu</leftSyl>
+                    <rightSyl tone="8" initialPhnm="m" rightPhnmType="CSN">mặt</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="5" name="mặt" start_index="262880" end_index="267199" numOfPhone="3" energy="69730.21">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="2" finalPhnm="w" leftPhnmType="SV">nào</leftSyl>
+                    <rightSyl tone="1" initialPhnm="NG" rightPhnmType="CSN">ngơ</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="6" name="ngơ" start_index="267200" end_index="270239" numOfPhone="2" energy="35818.61">
+                    <initial type="CSN">NG</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">mặt</leftSyl>
+                    <rightSyl tone="1" initialPhnm="NG" rightPhnmType="CSN">ngơ</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="7" name="ngơ" start_index="270240" end_index="274393" numOfPhone="2" energy="47088.79">
+                    <initial type="CSN">NG</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="7" leftPhnmType="VM">ngơ</leftSyl>
+                    <rightSyl tone="8" initialPhnm="m" rightPhnmType="CSN">một</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="8" name="một" start_index="274394" end_index="277919" numOfPhone="3" energy="43017.0">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="1" finalPhnm="7" leftPhnmType="VM">ngơ</leftSyl>
+                    <rightSyl tone="7" initialPhnm="c" rightPhnmType="CSU">chút</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="9" name="chút" start_index="277920" end_index="281759" numOfPhone="3" energy="41243.98">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">u</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">một</leftSyl>
+                    <rightSyl tone="0" initialPhnm="c" rightPhnmType="CSU">SIL</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="10" name="SIL" start_index="281760" end_index="286983" numOfPhone="0" energy="10719.6">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="7" finalPhnm="t" leftPhnmType="CSU">chút</leftSyl>
+                    <rightSyl tone="2" initialPhnm="l" rightPhnmType="CFL">là</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="2" length="8">
+                <syllable id_syl="0" name="là" start_index="286984" end_index="289880" numOfPhone="2" energy="57549.91">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="0" finalPhnm="t" leftPhnmType="CSU">SIL</leftSyl>
+                    <rightSyl tone="5" initialPhnm="k" rightPhnmType="CSU">có</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="1" name="có" start_index="289881" end_index="292010" numOfPhone="2" energy="66841.75">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="a" leftPhnmType="VM">là</leftSyl>
+                    <rightSyl tone="5" initialPhnm="d" rightPhnmType="CSV">đám</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="2" name="đám" start_index="292011" end_index="295273" numOfPhone="3" energy="83092.65">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">m</final>
+                    <leftSyl tone="5" finalPhnm="O" leftPhnmType="VB">có</leftSyl>
+                    <rightSyl tone="2" initialPhnm="NG" rightPhnmType="CSN">người</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="3" name="người" start_index="295274" end_index="300410" numOfPhone="3" energy="58295.62">
+                    <initial type="CSN">NG</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="5" finalPhnm="m" leftPhnmType="CSN">đám</leftSyl>
+                    <rightSyl tone="1" initialPhnm="NJ" rightPhnmType="CSN">nhao</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="4" name="nhao" start_index="300411" end_index="304634" numOfPhone="3" energy="47359.19">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="2" finalPhnm="j" leftPhnmType="SV">người</leftSyl>
+                    <rightSyl tone="1" initialPhnm="zr" rightPhnmType="CFV">ra</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="5" name="ra" start_index="304635" end_index="308516" numOfPhone="2" energy="72614.44">
+                    <initial type="CFV">zr</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="w" leftPhnmType="SV">nhao</leftSyl>
+                    <rightSyl tone="2" initialPhnm="m" rightPhnmType="CSN">mời</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="6" name="mời" start_index="308517" end_index="312668" numOfPhone="3" energy="56712.54">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="1" finalPhnm="a" leftPhnmType="VM">ra</leftSyl>
+                    <rightSyl tone="2" initialPhnm="c" rightPhnmType="CSU">chào</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="7" name="chào" start_index="312669" end_index="317593" numOfPhone="3" energy="94949.79">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="2" finalPhnm="j" leftPhnmType="SV">mời</leftSyl>
+                    <rightSyl tone="0" initialPhnm="c" rightPhnmType="CSU">SILS</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="8" name="SILS" start_index="317594" end_index="325919" numOfPhone="0" energy="12346.69">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="w" leftPhnmType="SV">chào</leftSyl>
+                    <rightSyl tone="6" initialPhnm="th" rightPhnmType="CSU">thậm</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+        <sentence id_sen="7">
+            <phrase id_phrase="0" length="2">
+                <syllable id_syl="0" name="thậm" start_index="325920" end_index="329423" numOfPhone="3" energy="36772.44">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSN">m</final>
+                    <leftSyl tone="0" finalPhnm="w" leftPhnmType="SV">SILS</leftSyl>
+                    <rightSyl tone="5" initialPhnm="c" rightPhnmType="CSU">chí</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="1" name="chí" start_index="329424" end_index="334228" numOfPhone="2" energy="121277.37">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="m" leftPhnmType="CSN">thậm</leftSyl>
+                    <rightSyl tone="0" initialPhnm="c" rightPhnmType="CSU">SIL</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="2" name="SIL" start_index="334229" end_index="337779" numOfPhone="0" energy="8693.82">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="i" leftPhnmType="VF">chí</leftSyl>
+                    <rightSyl tone="2" initialPhnm="k" rightPhnmType="CSU">còn</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="1" length="8">
+                <syllable id_syl="0" name="còn" start_index="337780" end_index="340374" numOfPhone="3" energy="98117.6">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="0" finalPhnm="i" leftPhnmType="VF">SIL</leftSyl>
+                    <rightSyl tone="5" initialPhnm="n" rightPhnmType="CSN">níu</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="1" name="níu" start_index="340375" end_index="344473" numOfPhone="3" energy="63059.87">
+                    <initial type="CSN">n</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="2" finalPhnm="n" leftPhnmType="CSN">còn</leftSyl>
+                    <rightSyl tone="5" initialPhnm="k" rightPhnmType="CSU">kéo</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="2" name="kéo" start_index="344474" end_index="349630" numOfPhone="3" energy="63781.25">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">E</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="5" finalPhnm="w" leftPhnmType="SV">níu</leftSyl>
+                    <rightSyl tone="1" initialPhnm="X" rightPhnmType="CFU">không</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="3" name="không" start_index="349631" end_index="353350" numOfPhone="3" energy="46576.56">
+                    <initial type="CFU">X</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="5" finalPhnm="w" leftPhnmType="SV">kéo</leftSyl>
+                    <rightSyl tone="1" initialPhnm="c" rightPhnmType="CSU">cho</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="4" name="cho" start_index="353351" end_index="355299" numOfPhone="2" energy="46662.83">
+                    <initial type="CSU">c</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="NG" leftPhnmType="CSN">không</leftSyl>
+                    <rightSyl tone="1" initialPhnm="s" rightPhnmType="CFU">xe</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="5" name="xe" start_index="355300" end_index="359022" numOfPhone="2" energy="52296.61">
+                    <initial type="CFU">s</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">E</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="O" leftPhnmType="VB">cho</leftSyl>
+                    <rightSyl tone="1" initialPhnm="k" rightPhnmType="CSU">qua</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="6" name="qua" start_index="359023" end_index="361976" numOfPhone="3" energy="60230.96">
+                    <initial type="CSU">k</initial>
+                    <middle type="SV">w</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="E" leftPhnmType="VF">xe</leftSyl>
+                    <rightSyl tone="2" initialPhnm="d" rightPhnmType="CSV">đường</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="7" name="đường" start_index="361977" end_index="367325" numOfPhone="3" energy="52429.37">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="1" finalPhnm="a" leftPhnmType="VM">qua</leftSyl>
+                    <rightSyl tone="0" initialPhnm="d" rightPhnmType="CSV">SILS</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="8" name="SILS" start_index="367326" end_index="376536" numOfPhone="0" energy="12812.51">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">đường</leftSyl>
+                    <rightSyl tone="1" initialPhnm="t" rightPhnmType="CSU">tay</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+        <sentence id_sen="8">
+            <phrase id_phrase="0" length="4">
+                <syllable id_syl="0" name="tay" start_index="376537" end_index="378719" numOfPhone="3" energy="87469.05">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="0" finalPhnm="NG" leftPhnmType="CSN">SILS</leftSyl>
+                    <rightSyl tone="2" initialPhnm="k" rightPhnmType="CSU">cầm</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="1" name="cầm" start_index="378720" end_index="382435" numOfPhone="3" energy="60987.63">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSN">m</final>
+                    <leftSyl tone="1" finalPhnm="j" leftPhnmType="SV">tay</leftSyl>
+                    <rightSyl tone="2" initialPhnm="h" rightPhnmType="CFU">hàng</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="2" name="hàng" start_index="382436" end_index="385650" numOfPhone="3" energy="47365.06">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="2" finalPhnm="m" leftPhnmType="CSN">cầm</leftSyl>
+                    <rightSyl tone="3" initialPhnm="m" rightPhnmType="CSN">mẫu</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="3" name="mẫu" start_index="385651" end_index="390559" numOfPhone="3" energy="79853.65">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">hàng</leftSyl>
+                    <rightSyl tone="0" initialPhnm="m" rightPhnmType="CSN">SIL</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="4" name="SIL" start_index="390560" end_index="394692" numOfPhone="0" energy="10163.92">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="3" finalPhnm="w" leftPhnmType="SV">mẫu</leftSyl>
+                    <rightSyl tone="1" initialPhnm="t" rightPhnmType="CSU">tay</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="1" length="12">
+                <syllable id_syl="0" name="tay" start_index="394693" end_index="396836" numOfPhone="3" energy="51293.28">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="0" finalPhnm="w" leftPhnmType="SV">SIL</leftSyl>
+                    <rightSyl tone="1" initialPhnm="tr" rightPhnmType="CSU">treo</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="1" name="treo" start_index="396837" end_index="400174" numOfPhone="3" energy="70639.29">
+                    <initial type="CSU">tr</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">E</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="1" finalPhnm="j" leftPhnmType="SV">tay</leftSyl>
+                    <rightSyl tone="7" initialPhnm="l" rightPhnmType="CFL">lúc</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="2" name="lúc" start_index="400175" end_index="402879" numOfPhone="3" energy="38172.39">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">u</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="1" finalPhnm="w" leftPhnmType="SV">treo</leftSyl>
+                    <rightSyl tone="4" initialPhnm="l" rightPhnmType="CFL">lỉu</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="3" name="lỉu" start_index="402880" end_index="407839" numOfPhone="3" energy="63121.71">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="7" finalPhnm="k" leftPhnmType="CSU">lúc</leftSyl>
+                    <rightSyl tone="3" initialPhnm="NJ" rightPhnmType="CSN">những</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="4" name="những" start_index="407840" end_index="412440" numOfPhone="3" energy="37481.15">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="4" finalPhnm="w" leftPhnmType="SV">lỉu</leftSyl>
+                    <rightSyl tone="5" initialPhnm="t" rightPhnmType="CSU">túi</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="5" name="túi" start_index="412441" end_index="415987" numOfPhone="3" energy="43944.94">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">u</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="3" finalPhnm="NG" leftPhnmType="CSN">những</leftSyl>
+                    <rightSyl tone="2" initialPhnm="t" rightPhnmType="CSU">tài</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="6" name="tài" start_index="415988" end_index="418559" numOfPhone="3" energy="64747.24">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="5" finalPhnm="j" leftPhnmType="SV">túi</leftSyl>
+                    <rightSyl tone="6" initialPhnm="l" rightPhnmType="CFL">liệu</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="7" name="liệu" start_index="418560" end_index="422719" numOfPhone="3" energy="59198.34">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">ie</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="2" finalPhnm="j" leftPhnmType="SV">tài</leftSyl>
+                    <rightSyl tone="1" initialPhnm="o" rightPhnmType="VB">ôn</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="8" name="ôn" start_index="422720" end_index="426599" numOfPhone="2" energy="50357.72">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="6" finalPhnm="w" leftPhnmType="SV">liệu</leftSyl>
+                    <rightSyl tone="1" initialPhnm="th" rightPhnmType="CSU">thi</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="9" name="thi" start_index="426600" end_index="428959" numOfPhone="2" energy="35934.48">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="n" leftPhnmType="CSN">ôn</leftSyl>
+                    <rightSyl tone="6" initialPhnm="d" rightPhnmType="CSV">đại</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="10" name="đại" start_index="428960" end_index="430879" numOfPhone="3" energy="44811.12">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="1" finalPhnm="i" leftPhnmType="VF">thi</leftSyl>
+                    <rightSyl tone="8" initialPhnm="h" rightPhnmType="CFU">học</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="11" name="học" start_index="430880" end_index="435359" numOfPhone="3" energy="57803.97">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VBC">OX</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="6" finalPhnm="j" leftPhnmType="SV">đại</leftSyl>
+                    <rightSyl tone="0" initialPhnm="h" rightPhnmType="CFU">SIL</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="12" name="SIL" start_index="435360" end_index="439395" numOfPhone="0" energy="10119.41">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="8" finalPhnm="k" leftPhnmType="CSU">học</leftSyl>
+                    <rightSyl tone="8" initialPhnm="d" rightPhnmType="CSV">được</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="2" length="7">
+                <syllable id_syl="0" name="được" start_index="439396" end_index="442399" numOfPhone="3" energy="43347.89">
+                    <initial type="CSV">d</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="CSU">k</final>
+                    <leftSyl tone="0" finalPhnm="k" leftPhnmType="CSU">SIL</leftSyl>
+                    <rightSyl tone="1" initialPhnm="f" rightPhnmType="CFU">phô</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="1" name="phô" start_index="442400" end_index="445268" numOfPhone="2" energy="37357.35">
+                    <initial type="CFU">f</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="8" finalPhnm="k" leftPhnmType="CSU">được</leftSyl>
+                    <rightSyl tone="1" initialPhnm="t" rightPhnmType="CSU">tô</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="2" name="tô" start_index="445269" end_index="447673" numOfPhone="2" energy="37981.06">
+                    <initial type="CSU">t</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="o" leftPhnmType="VB">phô</leftSyl>
+                    <rightSyl tone="7" initialPhnm="k" rightPhnmType="CSU">cóp</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="3" name="cóp" start_index="447674" end_index="450611" numOfPhone="3" energy="45484.1">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="CSU">p</final>
+                    <leftSyl tone="1" finalPhnm="o" leftPhnmType="VB">tô</leftSyl>
+                    <rightSyl tone="1" initialPhnm="p" rightPhnmType="CSU">pi</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="4" name="pi" start_index="450612" end_index="454559" numOfPhone="2" energy="46390.89">
+                    <initial type="CSU">p</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="7" finalPhnm="p" leftPhnmType="CSU">cóp</leftSyl>
+                    <rightSyl tone="3" initialPhnm="k" rightPhnmType="CSU">cỡ</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="5" name="cỡ" start_index="454560" end_index="458079" numOfPhone="2" energy="33923.74">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="i" leftPhnmType="VF">pi</leftSyl>
+                    <rightSyl tone="4" initialPhnm="NJ" rightPhnmType="CSN">nhỏ</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="6" name="nhỏ" start_index="458080" end_index="463519" numOfPhone="2" energy="58031.5">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">O</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="3" finalPhnm="7" leftPhnmType="VM">cỡ</leftSyl>
+                    <rightSyl tone="0" initialPhnm="NJ" rightPhnmType="CSN">SIL</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="7" name="SIL" start_index="463520" end_index="468639" numOfPhone="0" energy="9846.68">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="4" finalPhnm="O" leftPhnmType="VB">nhỏ</leftSyl>
+                    <rightSyl tone="2" initialPhnm="NG" rightPhnmType="CSN">người</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="3" length="5">
+                <syllable id_syl="0" name="người" start_index="468640" end_index="471839" numOfPhone="3" energy="57776.71">
+                    <initial type="CSN">NG</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M7</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="0" finalPhnm="O" leftPhnmType="VB">SIL</leftSyl>
+                    <rightSyl tone="3" initialPhnm="NJ" rightPhnmType="CSN">nhễ</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="1" name="nhễ" start_index="471840" end_index="475199" numOfPhone="2" energy="43555.72">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">e</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="2" finalPhnm="j" leftPhnmType="SV">người</leftSyl>
+                    <rightSyl tone="6" initialPhnm="NJ" rightPhnmType="CSN">nhại</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="2" name="nhại" start_index="475200" end_index="477759" numOfPhone="3" energy="45173.6">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="3" finalPhnm="e" leftPhnmType="VF">nhễ</leftSyl>
+                    <rightSyl tone="2" initialPhnm="m" rightPhnmType="CSN">mồ</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="3" name="mồ" start_index="477760" end_index="481119" numOfPhone="2" energy="67558.01">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="j" leftPhnmType="SV">nhại</leftSyl>
+                    <rightSyl tone="1" initialPhnm="h" rightPhnmType="CFU">hôi</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="4" name="hôi" start_index="481120" end_index="486180" numOfPhone="3" energy="77054.36">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">o</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="2" finalPhnm="o" leftPhnmType="VB">mồ</leftSyl>
+                    <rightSyl tone="0" initialPhnm="h" rightPhnmType="CFU">SIL</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="5" name="SIL" start_index="486181" end_index="490189" numOfPhone="0" energy="9538.19">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="j" leftPhnmType="SV">hôi</leftSyl>
+                    <rightSyl tone="5" initialPhnm="v" rightPhnmType="CFV">với</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="4" length="6">
+                <syllable id_syl="0" name="với" start_index="490190" end_index="493119" numOfPhone="3" energy="54117.19">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">7</nucleus>
+                    <final type="SV">j</final>
+                    <leftSyl tone="0" finalPhnm="j" leftPhnmType="SV">SIL</leftSyl>
+                    <rightSyl tone="4" initialPhnm="v" rightPhnmType="CFV">vẻ</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="1" name="vẻ" start_index="493120" end_index="495276" numOfPhone="2" energy="53281.69">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">E</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="5" finalPhnm="j" leftPhnmType="SV">với</leftSyl>
+                    <rightSyl tone="8" initialPhnm="m" rightPhnmType="CSN">mặt</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="2" name="mặt" start_index="495277" end_index="498239" numOfPhone="3" energy="54268.27">
+                    <initial type="CSN">m</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">aX</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="4" finalPhnm="E" leftPhnmType="VF">vẻ</leftSyl>
+                    <rightSyl tone="7" initialPhnm="zr" rightPhnmType="CFV">rất</rightSyl>
+                    <tone>8</tone>
+                </syllable>
+                <syllable id_syl="3" name="rất" start_index="498240" end_index="502079" numOfPhone="3" energy="29535.36">
+                    <initial type="CFV">zr</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSU">t</final>
+                    <leftSyl tone="8" finalPhnm="t" leftPhnmType="CSU">mặt</leftSyl>
+                    <rightSyl tone="1" initialPhnm="NG" rightPhnmType="CSN">nghiêm</rightSyl>
+                    <tone>7</tone>
+                </syllable>
+                <syllable id_syl="4" name="nghiêm" start_index="502080" end_index="505707" numOfPhone="3" energy="39349.99">
+                    <initial type="CSN">NG</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">ie</nucleus>
+                    <final type="CSN">m</final>
+                    <leftSyl tone="7" finalPhnm="t" leftPhnmType="CSU">rất</leftSyl>
+                    <rightSyl tone="6" initialPhnm="tr" rightPhnmType="CSU">trọng</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="5" name="trọng" start_index="505708" end_index="509645" numOfPhone="3" energy="115246.95">
+                    <initial type="CSU">tr</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VBC">OX</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="1" finalPhnm="m" leftPhnmType="CSN">nghiêm</leftSyl>
+                    <rightSyl tone="0" initialPhnm="tr" rightPhnmType="CSU">SIL</rightSyl>
+                    <tone>6</tone>
+                </syllable>
+                <syllable id_syl="6" name="SIL" start_index="509646" end_index="515038" numOfPhone="0" energy="10067.99">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="6" finalPhnm="NG" leftPhnmType="CSN">trọng</leftSyl>
+                    <rightSyl tone="2" initialPhnm="l" rightPhnmType="CFL">là</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+            <phrase id_phrase="5" length="10">
+                <syllable id_syl="0" name="là" start_index="515039" end_index="516993" numOfPhone="2" energy="59842.05">
+                    <initial type="CFL">l</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="0" finalPhnm="NG" leftPhnmType="CSN">SIL</leftSyl>
+                    <rightSyl tone="2" initialPhnm="h" rightPhnmType="CFU">hình</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="1" name="hình" start_index="516994" end_index="520043" numOfPhone="3" energy="58710.76">
+                    <initial type="CFU">h</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="2" finalPhnm="a" leftPhnmType="VM">là</leftSyl>
+                    <rightSyl tone="4" initialPhnm="EX" rightPhnmType="VFC">ảnh</rightSyl>
+                    <tone>2</tone>
+                </syllable>
+                <syllable id_syl="2" name="ảnh" start_index="520044" end_index="523811" numOfPhone="2" energy="79105.57">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VFC">EX</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="2" finalPhnm="NG" leftPhnmType="CSN">hình</leftSyl>
+                    <rightSyl tone="4" initialPhnm="k" rightPhnmType="CSU">của</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="3" name="của" start_index="523812" end_index="525487" numOfPhone="2" energy="41463.23">
+                    <initial type="CSU">k</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VB">uo</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="4" finalPhnm="NG" leftPhnmType="CSN">ảnh</leftSyl>
+                    <rightSyl tone="3" initialPhnm="NJ" rightPhnmType="CSN">những</rightSyl>
+                    <tone>4</tone>
+                </syllable>
+                <syllable id_syl="4" name="những" start_index="525488" end_index="530559" numOfPhone="3" energy="47740.02">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">M</nucleus>
+                    <final type="CSN">NG</final>
+                    <leftSyl tone="4" finalPhnm="uo" leftPhnmType="VB">của</leftSyl>
+                    <rightSyl tone="1" initialPhnm="NJ" rightPhnmType="CSN">nhân</rightSyl>
+                    <tone>3</tone>
+                </syllable>
+                <syllable id_syl="5" name="nhân" start_index="530560" end_index="534399" numOfPhone="3" energy="41366.12">
+                    <initial type="CSN">NJ</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VMC">7X</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="3" finalPhnm="NG" leftPhnmType="CSN">những</leftSyl>
+                    <rightSyl tone="1" initialPhnm="v" rightPhnmType="CFV">viên</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="6" name="viên" start_index="534400" end_index="538724" numOfPhone="3" energy="54101.25">
+                    <initial type="CFV">v</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">ie</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="1" finalPhnm="n" leftPhnmType="CSN">nhân</leftSyl>
+                    <rightSyl tone="5" initialPhnm="b" rightPhnmType="CSV">bán</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="7" name="bán" start_index="538725" end_index="542719" numOfPhone="3" energy="96488.49">
+                    <initial type="CSV">b</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="CSN">n</final>
+                    <leftSyl tone="1" finalPhnm="n" leftPhnmType="CSN">viên</leftSyl>
+                    <rightSyl tone="1" initialPhnm="f" rightPhnmType="CFU">phao</rightSyl>
+                    <tone>5</tone>
+                </syllable>
+                <syllable id_syl="8" name="phao" start_index="542720" end_index="546389" numOfPhone="3" energy="49595.58">
+                    <initial type="CFU">f</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VM">a</nucleus>
+                    <final type="SV">w</final>
+                    <leftSyl tone="5" finalPhnm="n" leftPhnmType="CSN">bán</leftSyl>
+                    <rightSyl tone="1" initialPhnm="th" rightPhnmType="CSU">thi</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="9" name="thi" start_index="546390" end_index="550879" numOfPhone="2" energy="45996.21">
+                    <initial type="CSU">th</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="VF">i</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="w" leftPhnmType="SV">phao</leftSyl>
+                    <rightSyl tone="0" initialPhnm="th" rightPhnmType="CSU">SILP</rightSyl>
+                    <tone>1</tone>
+                </syllable>
+                <syllable id_syl="10" name="SILP" start_index="550880" end_index="552799" numOfPhone="0" energy="4465.18">
+                    <initial type="NUL">NUL</initial>
+                    <middle type="NUL">NUL</middle>
+                    <nucleus type="NUL">NUL</nucleus>
+                    <final type="NUL">NUL</final>
+                    <leftSyl tone="1" finalPhnm="i" leftPhnmType="VF">thi</leftSyl>
+                    <rightSyl tone="0" initialPhnm="NUL" rightPhnmType="NUL">NULL</rightSyl>
+                    <tone>0</tone>
+                </syllable>
+            </phrase>
+        </sentence>
+    </file>
+</root>
