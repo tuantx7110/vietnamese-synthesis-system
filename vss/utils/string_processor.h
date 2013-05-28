@@ -1,0 +1,23 @@
+/*
+ * File:   string_processor.h
+ * Author: quangpham
+ *
+ * Created on May 28, 2013, 11:57 AM
+ */
+#include <string>
+#include <vector>
+using namespace std;
+
+#ifndef STRING_PROCESSOR_H
+#define	STRING_PROCESSOR_H
+
+string trim_string(string s);
+vector<string> split_string(string s);
+bool start_with_string(string s, string t);
+bool parse_int(string s, int& ret);
+bool parse_double(string s, double &ret);
+int first_index_of(string s, string t);
+int last_index_of(string s, string t);
+
+#endif	/* STRING_PROCESSOR_H */
+
