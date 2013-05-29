@@ -16,6 +16,9 @@ typedef unsigned int Unicode4Bytes;
 
 using namespace std;
 
+#ifndef CHAR_CODEC_H_
+#define CHAR_CODEC_H_
+
 class CharCodec {
 public:
     wchar_t LowerPrecomposedUnicode[93];
@@ -32,3 +35,5 @@ public:
     bool isSeparator(wchar_t input);
     vector<string> processString(string str);
 };
+
+#endif /* CHAR_CODEC_H_ */

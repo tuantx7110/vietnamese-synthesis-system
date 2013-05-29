@@ -9,10 +9,9 @@
 #include <string>
 using namespace std;
 
-#include "../utils/string_utils.h"
-#include "../utils/text_file_utils.h"
-#include "../parser/tokenizer.h"
 #include "../searcher/recorded_database_reader.h"
+#include "../searcher/input_text_reader.h"
+#include "../searcher/unit_searcher.h"
 
 #define debug_vietnamese_synthesis_system 1
 
@@ -29,10 +28,8 @@ public:
 
 private:
     RecordedDatabaseReader recorded_database_reader;
-    Tokenizer tokenizer;
-
-    string raw_input_text;
-    vector<string> tokens;
+    InputTextReader input_text_reader;
+    UnitSearcher unit_searcher;
 };
 
 #endif /* VIETNAMESE_SYNTHESIS_SYSTEM_H_ */
