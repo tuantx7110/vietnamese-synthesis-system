@@ -20,33 +20,25 @@ bool VietnameseSynthesisSystem::init() {
         cerr << "Cannot load recorded database description" << endl;
         return false;
     }
-
-    if (!tokenizer.load_configure()) {
-        cerr << "Cannot load tokenizer" << endl;
+    if (!input_text_reader.init()) {
+        cerr << "Cannot initialize input text reader" << endl;
         return false;
     }
-
-    raw_input_text = "";
+    if (!unit_searcher.init()) {
+        cerr << "Cannot initialize unit searcher" << endl;
+        return false;
+    }
     return true;
 }
 
 bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_wave_file_name) {
-    if (!read_text_file(input_text_file_name, raw_input_text)) {
+    if (!input_text_reader.read_input_text_file(input_text_file_name)) {
         cerr << "Cannot read input text file" << endl;
         return false;
     }
-
-    if (debug_vietnamese_synthesis_system) cout << "Raw input text = " + raw_input_text << endl;
-
-    tokens = tokenizer.segment(raw_input_text);
-
-    if (debug_vietnamese_synthesis_system) {
-        cout << "Segmented text = ";
-        for (int i = 0; i < (int) tokens.size(); ++i) {
-            cout << tokens[i] << " ";
-        }
-        cout << endl;
+    if (!unit_searcher.search_units_in_recorded_database(recorded_database_reader, input_text_reader)) {
+        cerr << "Error searching units in recorded database" << endl;
+        return false;
     }
-
     return true;
 }

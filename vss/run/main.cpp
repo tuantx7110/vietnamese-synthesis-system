@@ -13,9 +13,6 @@ const string kDataPath = "data/";
 const string kInputTextFileName = kDataPath + "input_text.txt";
 const string kOutputWaveFileName = kDataPath + "output_speech.wav";
 
-#include "../test/test_tokenizer.h"
-#include "../test/test_wave.h"
-#include "../test/test_database_reader.h"
 #include "vietnamese_synthesis_system.h"
 
 void run_system() {

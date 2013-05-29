@@ -4,6 +4,9 @@
 #include <set>
 using namespace std;
 
+#ifndef TOKENIZER_H_
+#define TOKENIZER_H_
+
 class Tokenizer {
 public:
     static const string kConfigurePath;
@@ -22,3 +25,5 @@ public:
     string trim(string str);
     vector<string> segment(string input_string);
 };
+
+#endif /* TOKENIZER_H_ */
