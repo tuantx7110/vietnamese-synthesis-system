@@ -5,9 +5,9 @@
  *      Author: quangpham
  */
 
-#ifndef TESTTOKENIZER_H_
-#define TESTTOKENIZER_H_
+#ifndef TEST_TOKENIZER_H_
+#define TEST_TOKENIZER_H_
 
 void test_tokenizer();
 
-#endif /* TESTTOKENIZER_H_ */
+#endif /* TEST_TOKENIZER_H_ */
