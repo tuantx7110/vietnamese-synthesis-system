@@ -1,12 +1,12 @@
 /*
- * wave.h
+ * wave_file_utils.h
  *
  *  Created on: May 16, 2013
  *      Author: quangpham
  */
 
-#ifndef WAVE_H_
-#define WAVE_H_
+#ifndef WAVE_FILE_UTILS_H_
+#define WAVE_FILE_UTILS_H_
 
 class Wave {
 public:
@@ -31,4 +31,4 @@ public:
 };
 
 
-#endif /* WAVE_H_ */
+#endif /* WAVE_FILE_UTILS_H_ */

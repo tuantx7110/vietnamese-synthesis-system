@@ -18,7 +18,7 @@ public:
     char connection_symbol;
     CharCodec codec;
 
+    bool load_configure();
     string trim(string str);
-    void load_configure(string path);
     vector<string> segment(string input_string);
 };

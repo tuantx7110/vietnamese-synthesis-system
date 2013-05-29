@@ -6,7 +6,7 @@
  */
 
 #include <cstdio>
-#include "../utils/wave.h"
+#include "../utils/wave_file_utils.h"
 
 #include <string>
 #include <iostream>
