@@ -10,7 +10,6 @@ const string Tokenizer::kConfigurePath = "parser/configure/config.ini";
 const string Tokenizer::kDictionaryPath = "parser/dictionary/";
 
 Tokenizer::Tokenizer() {
-    load_configure(kConfigurePath);
 }
 
 Tokenizer::~Tokenizer() {
@@ -67,41 +66,61 @@ string Tokenizer::trim(string str) {
     return str;
 }
 
-void Tokenizer::load_configure(string path) {
+bool Tokenizer::load_configure() {
+	cout << "Loading tokenizer configure ..." << endl;
+
+	string path = kConfigurePath;
     ifstream ifs;
     ifs.open(path.c_str());
 
+    if (!ifs.is_open()) {
+        cerr << "File " << path << " not found!" << endl;
+        return false;
+    }
+
     string s;
-    char buff[2000];
-    if (ifs.is_open()) {
-        while (!ifs.eof()) {
-            ifs >> s;
-            if (s.length() > 12 && s.substr(0, 11).compare("<dictionary") == 0) {
-                dicts.push_back(s.substr(15, s.length() - 15));
-            }
-            if (s.length() > 19 && s.substr(0, 19).compare("<seperate_character") == 0) {
-                separator = s.substr(23, s.length() - 23);
-            }
-            if (s.length() > 13 && s.substr(0, 13).compare("<connect_char") == 0) {
-                connection_symbol = s[15];
-            }
+    while (!ifs.eof()) {
+        ifs >> s;
+        if (s.length() > 12 && s.substr(0, 11).compare("<dictionary") == 0) {
+            dicts.push_back(s.substr(15, s.length() - 15));
         }
-    } else {
-        cerr << "loi file " << path << endl;
+        if (s.length() > 19 && s.substr(0, 19).compare("<seperate_character") == 0) {
+            separator = s.substr(23, s.length() - 23);
+        }
+        if (s.length() > 13 && s.substr(0, 13).compare("<connect_char") == 0) {
+            connection_symbol = s[15];
+        }
     }
     ifs.close();
+
+    char buff[2000];
     for (int i = 0; i < (int) dicts.size(); i++) {
         ifs.open((kDictionaryPath + dicts[i]).c_str());
+        if (!ifs.is_open()) {
+            cerr << "File " << kDictionaryPath << dicts[i] << " not found!" << endl;
+            return false;
+        }
+
         while (!ifs.eof()) {
             ifs.getline(buff, 1999);
             s = buff;
             dic.insert(trim(s));
         }
-        cout << dicts[i] << " " << dic.size() << endl;
         ifs.close();
+
+        cout << dicts[i] << " " << dic.size() << endl;
     }
+
     ifs.open((kDictionaryPath + separator).c_str());
+    if (!ifs.is_open()) {
+        cerr << "File " << kDictionaryPath << separator << " not found!" << endl;
+        return false;
+    }
+
     ifs.getline(buff, 1999);
     codec.readSeparator(buff);
     ifs.close();
+
+    cout << "Tokenizer loaded successfully" << endl << endl;
+    return true;
 }

@@ -13,7 +13,7 @@ using namespace std;
 #include "../units/phrase.h"
 #include "../units/syllable.h"
 
-#define debug 0
+#define debug_recorded_database_reader 0
 
 #ifndef RECORDEDDATABASEREADER_H
 #define	RECORDEDDATABASEREADER_H
@@ -26,6 +26,9 @@ public:
     RecordedDatabaseReader();
     virtual ~RecordedDatabaseReader();
 
+    bool load_data();
+    vector<Sentence>& get_all_sentences();
+
 private:
     int current_file_id;
     string current_file_name;
@@ -35,7 +38,6 @@ private:
     vector<Sentence> all_sentences;
 
     void init();
-    void load_data();
     bool read_attribute_value(string s, string& value);
     bool read_content_value(string s, string& value);
     bool read_file_details(vector<string> tokens);

@@ -6,7 +6,7 @@
  */
 
 #include <cstdio>
-#include "wave.h"
+#include "wave_file_utils.h"
 
 int Wave::read_wave_file(char *path) {
     FILE *file = fopen(path, "rb");

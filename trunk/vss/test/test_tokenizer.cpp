@@ -19,7 +19,7 @@ void test_tokenizer() {
     string str;
     while (getline(ifs, str)) {
         vector<string> tokens = tokenizer.segment(str);
-        for (int i = 0; i < tokens.size(); ++i) {
+        for (int i = 0; i < (int)tokens.size(); ++i) {
             ofs << tokens[i] << " ";
         }
         ofs << endl;

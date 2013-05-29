@@ -10,14 +10,13 @@
 using namespace std;
 
 #include "recorded_database_reader.h"
-#include "../utils/string_processor.h"
+#include "../utils/string_utils.h"
 
 const string RecordedDatabaseReader::kRecordedDatabasePath = "searcher/recorded_database/";
-const string RecordedDatabaseReader::kRecordedDatabaseDescriptionPath = kRecordedDatabasePath + "recorded_database_description.xml";
+const string RecordedDatabaseReader::kRecordedDatabaseDescriptionPath = kRecordedDatabasePath + "Text_DB_Creator.xml"; //"recorded_database_description.xml";
 
 RecordedDatabaseReader::RecordedDatabaseReader() {
     init();
-    load_data();
 }
 
 RecordedDatabaseReader::~RecordedDatabaseReader() {
@@ -30,12 +29,16 @@ void RecordedDatabaseReader::init() {
     current_syllable.init();
 }
 
-void RecordedDatabaseReader::load_data() {
+vector<Sentence>& RecordedDatabaseReader::get_all_sentences() {
+	return all_sentences;
+}
+
+bool RecordedDatabaseReader::load_data() {
     ifstream ifs(kRecordedDatabaseDescriptionPath.c_str());
 
     if (!ifs.is_open()) {
         cerr << "Error loading recorded database description file" << endl;
-        return;
+        return false;
     }
 
     cout << "Loading recorded database description file ..." << endl;
@@ -44,7 +47,7 @@ void RecordedDatabaseReader::load_data() {
     vector<string> tokens;
 
     while (getline(ifs, line)) {
-        line = trim_string(line);
+        trim_string(line);
 
         if (line.length() == 0) continue;
         tokens = split_string(line);
@@ -56,7 +59,7 @@ void RecordedDatabaseReader::load_data() {
         if (start_with_string(element, "<file")) {
             if (!read_file_details(tokens)) {
                 cerr << "Cannot read file details" << endl;
-                break;
+                return false;
             }
             continue;
         }
@@ -68,7 +71,7 @@ void RecordedDatabaseReader::load_data() {
             current_sentence.init();
             if (!read_sentence_details(tokens)) {
                 cerr << "Cannot read sentence details" << endl;
-                break;
+                return false;
             }
             continue;
         }
@@ -81,7 +84,7 @@ void RecordedDatabaseReader::load_data() {
             current_phrase.init();
             if (!read_phrase_details(tokens)) {
                 cerr << "Cannot read phrase details" << endl;
-                break;
+                return false;
             }
             continue;
         }
@@ -94,13 +97,13 @@ void RecordedDatabaseReader::load_data() {
             current_syllable.init();
             if (!read_syllable_details(tokens)) {
                 cerr << "Cannot read syllable details" << endl;
-                break;
+                return false;
             }
             continue;
         }
         if (start_with_string(element, "</syllable")) {
             current_phrase.add_syllable(current_syllable);
-            if (debug) cout << endl;
+            if (debug_recorded_database_reader) cout << endl;
             continue;
         }
 
@@ -108,7 +111,7 @@ void RecordedDatabaseReader::load_data() {
                 || start_with_string(element, "<nucleus") || start_with_string(element, "<final")) {
             if (!read_phoneme_details(tokens, element.substr(1))) {
                 cerr << "Cannot read " + element.substr(1) + " phoneme details" << endl;
-                break;
+                return false;
             }
             continue;
         }
@@ -116,7 +119,7 @@ void RecordedDatabaseReader::load_data() {
         if (start_with_string(element, "<leftSyl") || start_with_string(element, "<rightSyl")) {
             if (!read_neighbor_syllable_details(tokens, element == "<leftSyl")) {
                 cerr << "Cannot read neighbor syllable details" << endl;
-                break;
+                return false;
             }
             continue;
         }
@@ -126,20 +129,22 @@ void RecordedDatabaseReader::load_data() {
             int syllable_tone = -1;
             if (!read_content_value(element, value)) {
                 cerr << "Cannot read syllable tone" << endl;
-                break;
+                return false;
             }
             if (!parse_int(value, syllable_tone)) {
                 cerr << "Error parsing syllable tone" << endl;
-                break;
+                return false;
             }
-            if (debug) cout << "     Syllable tone = " << syllable_tone << endl;
+            if (debug_recorded_database_reader) cout << "     Syllable tone = " << syllable_tone << endl;
             current_syllable.set_syllable_tone(syllable_tone);
             continue;
         }
     }
 
-    cout << "Recorded database description loaded. Total sentences = " << all_sentences.size() << endl;
+    cout << "Recorded database description loaded successfully: " << all_sentences.size() << " sentences" << endl << endl;
     ifs.close();
+
+    return true;
 }
 
 bool RecordedDatabaseReader::read_attribute_value(string s, string& value) {
@@ -182,13 +187,13 @@ bool RecordedDatabaseReader::read_file_details(vector<string> tokens) {
                 cerr << "Error parsing file id" << endl;
                 return false;
             }
-            if (debug) cout << current_file_id << endl;
+            if (debug_recorded_database_reader) cout << current_file_id << endl;
         } else if (start_with_string(tokens[i], "file_name")) {
             if (!read_attribute_value(s, current_file_name)) {
                 cerr << "Error reading file name" << endl;
                 return false;
             }
-            if (debug) cout << current_file_name << endl;
+            if (debug_recorded_database_reader) cout << current_file_name << endl;
         }
     }
     return true;
@@ -209,7 +214,7 @@ bool RecordedDatabaseReader::read_sentence_details(vector<string> tokens) {
                 cerr << "Error parsing sentence id" << endl;
                 return false;
             }
-            if (debug) cout << "Sentence ID = " << sentence_id << endl;
+            if (debug_recorded_database_reader) cout << "Sentence ID = " << sentence_id << endl;
             current_sentence.set_sentence_id(sentence_id);
         }
     }
@@ -232,7 +237,7 @@ bool RecordedDatabaseReader::read_phrase_details(vector<string> tokens) {
                 cerr << "Error parsing phrase id" << endl;
                 return false;
             }
-            if (debug) cout << "  Phrase ID = " << phrase_id << endl;
+            if (debug_recorded_database_reader) cout << "  Phrase ID = " << phrase_id << endl;
             current_phrase.set_phrase_id(phrase_id);
         } else if (start_with_string(s, "length")) {
             if (!read_attribute_value(s, value)) {
@@ -243,7 +248,7 @@ bool RecordedDatabaseReader::read_phrase_details(vector<string> tokens) {
                 cerr << "Error parsing phrase length" << endl;
                 return false;
             }
-            if (debug) cout << "  Phrase length = " << phrase_length << endl;
+            if (debug_recorded_database_reader) cout << "  Phrase length = " << phrase_length << endl;
             current_phrase.set_phrase_length(phrase_length);
         }
     }
@@ -269,14 +274,14 @@ bool RecordedDatabaseReader::read_syllable_details(vector<string> tokens) {
                 cerr << "Error parsing syllable id" << endl;
                 return false;
             }
-            if (debug) cout << "     Syllable ID = " << syllable_id << endl;
+            if (debug_recorded_database_reader) cout << "     Syllable ID = " << syllable_id << endl;
             current_syllable.set_syllable_id(syllable_id);
         } else if (start_with_string(s, "name")) {
             if (!read_attribute_value(s, value)) {
                 cerr << "Error reading syllable name" << endl;
                 return false;
             }
-            if (debug) cout << "     Syllable name = " << value << endl;
+            if (debug_recorded_database_reader) cout << "     Syllable name = " << value << endl;
             current_syllable.set_syllable_name(value);
         } else if (start_with_string(s, "start_index")) {
             if (!read_attribute_value(s, value)) {
@@ -287,7 +292,7 @@ bool RecordedDatabaseReader::read_syllable_details(vector<string> tokens) {
                 cerr << "Error parsing start index" << endl;
                 return false;
             }
-            if (debug) cout << "     Start index  = " << start_index << endl;
+            if (debug_recorded_database_reader) cout << "     Start index  = " << start_index << endl;
             current_syllable.set_start_index(start_index);
         } else if (start_with_string(s, "end_index")) {
             if (!read_attribute_value(s, value)) {
@@ -298,7 +303,7 @@ bool RecordedDatabaseReader::read_syllable_details(vector<string> tokens) {
                 cerr << "Error parsing finish index" << endl;
                 return false;
             }
-            if (debug) cout << "     Finish index = " << finish_index << endl;
+            if (debug_recorded_database_reader) cout << "     Finish index = " << finish_index << endl;
             current_syllable.set_finish_index(finish_index);
         } else if (start_with_string(s, "numOfPhone")) {
             if (!read_attribute_value(s, value)) {
@@ -309,7 +314,7 @@ bool RecordedDatabaseReader::read_syllable_details(vector<string> tokens) {
                 cerr << "Error parsing number phonemes" << endl;
                 return false;
             }
-            if (debug) cout << "     Number phonemes = " << number_phonemes << endl;
+            if (debug_recorded_database_reader) cout << "     Number phonemes = " << number_phonemes << endl;
             current_syllable.set_number_phonemes(number_phonemes);
         } else if (start_with_string(s, "energy")) {
             if (!read_attribute_value(s, value)) {
@@ -320,7 +325,7 @@ bool RecordedDatabaseReader::read_syllable_details(vector<string> tokens) {
                 cerr << "Error parsing energy" << endl;
                 return false;
             }
-            if (debug) cout << "     Energy = " << energy << endl;
+            if (debug_recorded_database_reader) cout << "     Energy = " << energy << endl;
             current_syllable.set_energy(energy);
         }
     }
@@ -337,7 +342,7 @@ bool RecordedDatabaseReader::read_phoneme_details(vector<string> tokens, string 
                 cerr << "Error reading " << which_phoneme << " phoneme type" << endl;
                 return false;
             }
-            if (debug) cout << "     " << which_phoneme << " phoneme type = " << value << endl;
+            if (debug_recorded_database_reader) cout << "     " << which_phoneme << " phoneme type = " << value << endl;
             if (which_phoneme == "initial") {
                 current_syllable.set_initial_phoneme_type(value);
             } else if (which_phoneme == "middle") {
@@ -358,7 +363,7 @@ bool RecordedDatabaseReader::read_phoneme_details(vector<string> tokens, string 
         cerr << "Error reading " << which_phoneme << " phoneme content" << endl;
         return false;
     }
-    if (debug) cout << "     " << which_phoneme << " phoneme content = " << phoneme << endl;
+    if (debug_recorded_database_reader) cout << "     " << which_phoneme << " phoneme content = " << phoneme << endl;
     if (which_phoneme == "initial") {
         current_syllable.set_initial_phoneme(phoneme);
     } else if (which_phoneme == "middle") {
@@ -390,10 +395,10 @@ bool RecordedDatabaseReader::read_neighbor_syllable_details(vector<string> token
                 return false;
             }
             if (is_left_neighbor) {
-                if (debug) cout << "     Left neighbor tone = " << neighbor_tone << endl;
+                if (debug_recorded_database_reader) cout << "     Left neighbor tone = " << neighbor_tone << endl;
                 current_syllable.set_left_syllable_tone(neighbor_tone);
             } else {
-                if (debug) cout << "     Right neighbor tone = " << neighbor_tone << endl;
+                if (debug_recorded_database_reader) cout << "     Right neighbor tone = " << neighbor_tone << endl;
                 current_syllable.set_right_syllable_tone(neighbor_tone);
             }
         } else if (start_with_string(s, "finalPhnm") || start_with_string(s, "initialPhnm")) {
@@ -402,10 +407,10 @@ bool RecordedDatabaseReader::read_neighbor_syllable_details(vector<string> token
                 return false;
             }
             if (is_left_neighbor) {
-                if (debug) cout << "     Left neighbor final phoneme = " << value << endl;
+                if (debug_recorded_database_reader) cout << "     Left neighbor final phoneme = " << value << endl;
                 current_syllable.set_left_syllable_final_phoneme(value);
             } else {
-                if (debug) cout << "     Right neighbor initial phoneme = " << value << endl;
+                if (debug_recorded_database_reader) cout << "     Right neighbor initial phoneme = " << value << endl;
                 current_syllable.set_right_syllable_initial_phoneme(value);
             }
         } else if (start_with_string(s, "leftPhnmType") || start_with_string(s, "rightPhnmType")) {
@@ -414,10 +419,10 @@ bool RecordedDatabaseReader::read_neighbor_syllable_details(vector<string> token
                 return false;
             }
             if (is_left_neighbor) {
-                if (debug) cout << "     Left neighbor phoneme type = " << value << endl;
+                if (debug_recorded_database_reader) cout << "     Left neighbor phoneme type = " << value << endl;
                 current_syllable.set_left_syllable_phoneme_type(value);
             } else {
-                if (debug) cout << "     Right neighbor phoneme type = " << value << endl;
+                if (debug_recorded_database_reader) cout << "     Right neighbor phoneme type = " << value << endl;
                 current_syllable.set_right_syllable_phoneme_type(value);
             }
         }
