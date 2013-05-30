@@ -23,14 +23,16 @@ RecordedDatabaseReader::~RecordedDatabaseReader() {
 }
 
 void RecordedDatabaseReader::init() {
+    current_file_id = -1;
+    current_file_name = "";
     all_sentences.clear();
     current_sentence.init();
     current_phrase.init();
     current_syllable.init();
 }
 
-vector<Sentence>& RecordedDatabaseReader::get_all_sentences() {
-	return all_sentences;
+vector<RecordedSentence>& RecordedDatabaseReader::get_all_sentences() {
+    return all_sentences;
 }
 
 bool RecordedDatabaseReader::load_data() {
@@ -76,6 +78,8 @@ bool RecordedDatabaseReader::load_data() {
             continue;
         }
         if (start_with_string(element, "</sentence")) {
+            current_sentence.set_file_id(current_file_id);
+            current_sentence.set_file_name(current_file_name);
             all_sentences.push_back(current_sentence);
             continue;
         }

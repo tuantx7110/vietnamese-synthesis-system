@@ -14,12 +14,14 @@ using namespace std;
 #include "input_text_reader.h"
 #include "../units/searching_sentence.h"
 #include "../units/searching_phrase.h"
-#include "../units/sentence.h"
-#include "../units/phrase.h"
-#include "../units/syllable.h"
+#include "../units/recorded_sentence.h"
+#include "../units/recorded_phrase.h"
+#include "../units/recorded_syllable.h"
 
 #ifndef UNIT_SEARCHER_H_
 #define UNIT_SEARCHER_H_
+
+#define debug_unit_searcher 1
 
 class UnitSearcher {
 public:
@@ -27,7 +29,13 @@ public:
     virtual ~UnitSearcher();
 
     bool init();
-    bool search_units_in_recorded_database(RecordedDatabaseReader& recorded_database_reader, InputTextReader& input_text_reader);
+    void search(vector<SearchingSentence>& all_searching_sentences);
+
+private:
+    RecordedDatabaseReader recorded_database_reader;
+
+    void search_sentence(SearchingSentence& searching_sentence);
+    void search_phrase(SearchingPhrase& searching_phrase);
 };
 
 #endif /* UNIT_SEARCHER_H_ */

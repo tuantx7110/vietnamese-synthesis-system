@@ -16,10 +16,6 @@ VietnameseSynthesisSystem::~VietnameseSynthesisSystem() {
 }
 
 bool VietnameseSynthesisSystem::init() {
-    if (!recorded_database_reader.load_data()) {
-        cerr << "Cannot load recorded database description" << endl;
-        return false;
-    }
     if (!input_text_reader.init()) {
         cerr << "Cannot initialize input text reader" << endl;
         return false;
@@ -36,9 +32,8 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
         cerr << "Cannot read input text file" << endl;
         return false;
     }
-    if (!unit_searcher.search_units_in_recorded_database(recorded_database_reader, input_text_reader)) {
-        cerr << "Error searching units in recorded database" << endl;
-        return false;
-    }
+
+    unit_searcher.search(input_text_reader.get_all_sentences());
+
     return true;
 }

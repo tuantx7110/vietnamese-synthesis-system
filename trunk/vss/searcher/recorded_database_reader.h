@@ -9,9 +9,9 @@
 
 using namespace std;
 
-#include "../units/sentence.h"
-#include "../units/phrase.h"
-#include "../units/syllable.h"
+#include "../units/recorded_sentence.h"
+#include "../units/recorded_phrase.h"
+#include "../units/recorded_syllable.h"
 
 #define debug_recorded_database_reader 0
 
@@ -27,15 +27,15 @@ public:
     virtual ~RecordedDatabaseReader();
 
     bool load_data();
-    vector<Sentence>& get_all_sentences();
+    vector<RecordedSentence>& get_all_sentences();
 
 private:
     int current_file_id;
     string current_file_name;
-    Sentence current_sentence;
-    Phrase current_phrase;
-    Syllable current_syllable;
-    vector<Sentence> all_sentences;
+    RecordedSentence current_sentence;
+    RecordedPhrase current_phrase;
+    RecordedSyllable current_syllable;
+    vector<RecordedSentence> all_sentences;
 
     void init();
     bool read_attribute_value(string s, string& value);

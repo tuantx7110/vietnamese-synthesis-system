@@ -1,21 +1,21 @@
 /*
- * sentence.cpp
+ * recorded_sentence.cpp
  *
  *  Created on: May 28, 2013
  *      Author: quangpham
  */
 
-#include "sentence.h"
+#include "recorded_sentence.h"
 
-Sentence::Sentence() {
+RecordedSentence::RecordedSentence() {
     init();
 }
 
-Sentence::~Sentence() {
+RecordedSentence::~RecordedSentence() {
     phrases.clear();
 }
 
-void Sentence::init() {
+void RecordedSentence::init() {
     file_id = -1;
     file_name = "";
     sentence_id = -1;
@@ -23,7 +23,7 @@ void Sentence::init() {
     phrases.clear();
 }
 
-string Sentence::get_sentence_content() {
+string RecordedSentence::get_sentence_content() {
     if (sentence_content.length() == 0) {
         sentence_content = "";
         for (int i = 0; i < (int) phrases.size(); ++i) {
@@ -34,30 +34,34 @@ string Sentence::get_sentence_content() {
     return sentence_content;
 }
 
-void Sentence::set_sentence_id(int sentence_id) {
+void RecordedSentence::set_sentence_id(int sentence_id) {
     this->sentence_id = sentence_id;
 }
 
-int Sentence::get_sentence_id() const {
+int RecordedSentence::get_sentence_id() const {
     return sentence_id;
 }
 
-void Sentence::set_file_name(string file_name) {
+void RecordedSentence::set_file_name(string file_name) {
     this->file_name = file_name;
 }
 
-string Sentence::get_file_name() const {
+string RecordedSentence::get_file_name() const {
     return file_name;
 }
 
-void Sentence::set_file_id(int file_id) {
+void RecordedSentence::set_file_id(int file_id) {
     this->file_id = file_id;
 }
 
-int Sentence::get_file_id() const {
+int RecordedSentence::get_file_id() const {
     return file_id;
 }
 
-void Sentence::add_phrase(Phrase phrase) {
+void RecordedSentence::add_phrase(RecordedPhrase phrase) {
     phrases.push_back(phrase);
+}
+
+vector<RecordedPhrase>& RecordedSentence::get_all_phrases() {
+    return phrases;
 }

@@ -1,5 +1,5 @@
 /*
- * syllable.h
+ * recorded_syllable.h
  *
  *  Created on: May 28, 2013
  *      Author: quangpham
@@ -8,13 +8,13 @@
 #include <string>
 using namespace std;
 
-#ifndef SYLLABLE_H_
-#define SYLLABLE_H_
+#ifndef RECORDED_SYLLABLE_H_
+#define RECORDED_SYLLABLE_H_
 
-class Syllable {
+class RecordedSyllable {
 public:
-    Syllable();
-    virtual ~Syllable();
+    RecordedSyllable();
+    virtual ~RecordedSyllable();
 
     void init();
     void set_right_syllable_phoneme_type(string right_syllable_phoneme_type);
@@ -84,4 +84,4 @@ private:
     string right_syllable_phoneme_type;
 };
 
-#endif /* SYLLABLE_H_ */
+#endif /* RECORDED_SYLLABLE_H_ */
