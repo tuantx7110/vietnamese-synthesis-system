@@ -24,3 +24,28 @@ string SearchingPhrase::get_phrase_content() const {
     return phrase_content;
 }
 
+void SearchingPhrase::init() {
+    phrase_content = "";
+    phrase_level = 0;
+    sub_phrases.clear();
+}
+
+bool SearchingPhrase::has_sub_phrase() {
+    return sub_phrases.size() > 0;
+}
+
+void SearchingPhrase::add_sub_phrase(SearchingPhrase sub_phrase) {
+    sub_phrases.push_back(sub_phrase);
+}
+
+void SearchingPhrase::set_phrase_level(int phrase_level) {
+    this->phrase_level = phrase_level;
+}
+
+int SearchingPhrase::get_phrase_level() const {
+    return phrase_level;
+}
+
+vector<SearchingPhrase>& SearchingPhrase::get_sub_phrases() {
+    return sub_phrases;
+}
