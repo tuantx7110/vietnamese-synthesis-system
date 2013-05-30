@@ -16,13 +16,11 @@ InputTextReader::~InputTextReader() {
     // TODO Auto-generated destructor stub
 }
 
-vector<SearchingSentence>& InputTextReader::get_all_searching_sentences() {
+vector<SearchingSentence>& InputTextReader::get_all_sentences() {
     return all_searching_sentences;
 }
 
 bool InputTextReader::init() {
-    cout << "Initializing input text reader ..." << endl << endl;
-
     if (!tokenizer.load_configure()) {
         cerr << "Cannot load tokenizer" << endl;
         return false;
@@ -32,7 +30,6 @@ bool InputTextReader::init() {
     tokens.clear();
     all_searching_sentences.clear();
 
-    cout << "Input text reader initialized successfully" << endl << endl;
     return true;
 }
 
@@ -65,8 +62,8 @@ bool InputTextReader::parse_input_text() {
     }
 
     for (int i = 0; i < (int) tokens.size(); ++i) {
-        trim_string(tokens[i]);
         replace_all(tokens[i], '_', ' ');
+        trim_string(tokens[i]);
     }
 
     all_searching_sentences.clear();
@@ -119,6 +116,7 @@ bool InputTextReader::parse_input_text() {
                 }
             }
         }
+        cout << endl;
     }
 
     return true;

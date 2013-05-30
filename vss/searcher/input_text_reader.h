@@ -28,7 +28,7 @@ public:
 
     bool init();
     bool read_input_text_file(string file_name);
-    vector<SearchingSentence>& get_all_searching_sentences();
+    vector<SearchingSentence>& get_all_sentences();
 
 private:
     Tokenizer tokenizer;

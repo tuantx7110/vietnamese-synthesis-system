@@ -1,5 +1,5 @@
 /*
- * phrase.h
+ * recorded_phrase.h
  *
  *  Created on: May 28, 2013
  *      Author: quangpham
@@ -10,16 +10,16 @@
 
 using namespace std;
 
-#include "syllable.h"
+#include "recorded_syllable.h"
 #include "../utils/string_utils.h"
 
-#ifndef PHRASE_H_
-#define PHRASE_H_
+#ifndef RECORDED_PHRASE_H_
+#define RECORDED_PHRASE_H_
 
-class Phrase {
+class RecordedPhrase {
 public:
-    Phrase();
-    virtual ~Phrase();
+    RecordedPhrase();
+    virtual ~RecordedPhrase();
 
     void init();
     void set_phrase_length(int phrase_length);
@@ -28,13 +28,14 @@ public:
     int get_phrase_id() const;
     string get_phrase_content();
 
-    void add_syllable(Syllable syllable);
+    void add_syllable(RecordedSyllable syllable);
+    vector<RecordedSyllable>& get_all_syllables();
 
 private:
     int phrase_id;
     int phrase_length;
     string phrase_content;
-    vector<Syllable> syllables;
+    vector<RecordedSyllable> syllables;
 };
 
-#endif /* PHRASE_H_ */
+#endif /* RECORDED_PHRASE_H_ */

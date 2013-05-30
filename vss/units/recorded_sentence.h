@@ -1,5 +1,5 @@
 /*
- * sentence.h
+ * recorded_sentence.h
  *
  *  Created on: May 28, 2013
  *      Author: quangpham
@@ -10,16 +10,16 @@
 
 using namespace std;
 
-#include "phrase.h"
+#include "recorded_phrase.h"
 #include "../utils/string_utils.h"
 
-#ifndef SENTENCE_H_
-#define SENTENCE_H_
+#ifndef RECORDED_SENTENCE_H_
+#define RECORDED_SENTENCE_H_
 
-class Sentence {
+class RecordedSentence {
 public:
-    Sentence();
-    virtual ~Sentence();
+    RecordedSentence();
+    virtual ~RecordedSentence();
 
     void init();
     string get_sentence_content();
@@ -30,14 +30,15 @@ public:
     void set_file_id(int file_id);
     int get_file_id() const;
 
-    void add_phrase(Phrase phrase);
+    void add_phrase(RecordedPhrase phrase);
+    vector<RecordedPhrase>& get_all_phrases();
 
 private:
     int file_id;
     string file_name;
     int sentence_id;
     string sentence_content;
-    vector<Phrase> phrases;
+    vector<RecordedPhrase> phrases;
 };
 
-#endif /* SENTENCE_H_ */
+#endif /* RECORDED_SENTENCE_H_ */

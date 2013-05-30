@@ -9,7 +9,6 @@
 #include <string>
 using namespace std;
 
-#include "../searcher/recorded_database_reader.h"
 #include "../searcher/input_text_reader.h"
 #include "../searcher/unit_searcher.h"
 
@@ -27,7 +26,6 @@ public:
     bool run(string input_text_file_name, string output_wave_file_name);
 
 private:
-    RecordedDatabaseReader recorded_database_reader;
     InputTextReader input_text_reader;
     UnitSearcher unit_searcher;
 };
