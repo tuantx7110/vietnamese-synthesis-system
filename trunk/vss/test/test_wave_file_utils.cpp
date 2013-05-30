@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void test_wave() {
+void test_wave_file_utils() {
     Wave wave;
     wave.read_wave_file("/Users/quangpham/Desktop/test.wav");
     wave.write_wave_file("/Users/quangpham/Desktop/result.wav");
