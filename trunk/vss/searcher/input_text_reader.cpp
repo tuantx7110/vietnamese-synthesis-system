@@ -21,7 +21,7 @@ vector<SearchingSentence>& InputTextReader::get_all_searching_sentences() {
 }
 
 bool InputTextReader::init() {
-	cout << "Initializing input text reader ..." << endl << endl;
+    cout << "Initializing input text reader ..." << endl << endl;
 
     if (!tokenizer.load_configure()) {
         cerr << "Cannot load tokenizer" << endl;
@@ -65,13 +65,61 @@ bool InputTextReader::parse_input_text() {
     }
 
     for (int i = 0; i < (int) tokens.size(); ++i) {
+        trim_string(tokens[i]);
         replace_all(tokens[i], '_', ' ');
     }
 
     all_searching_sentences.clear();
 
     SearchingSentence searching_sentence;
+    SearchingPhrase searching_phrase;
+    SearchingPhrase sub_phrase;
 
+    for (int i = 0; i < (int) tokens.size(); ++i) {
+        if (is_punctuation(tokens[i])) {
+            all_searching_sentences.push_back(searching_sentence);
+            searching_sentence.init();
+            continue;
+        }
+
+        searching_phrase.init();
+        searching_phrase.set_phrase_content(tokens[i]);
+        searching_phrase.set_phrase_level(1);
+
+        vector<string> words = split_string(tokens[i]);
+        if (words.size() > 1) {
+            for (int i = 0; i < (int) words.size(); ++i) {
+                sub_phrase.init();
+                sub_phrase.set_phrase_content(words[i]);
+                sub_phrase.set_phrase_level(2);
+                searching_phrase.add_sub_phrase(sub_phrase);
+            }
+        }
+
+        searching_sentence.add_searching_phrase(searching_phrase);
+    }
+
+    if (debug_input_text_reader) {
+        cout << endl << "Total sentence = " << all_searching_sentences.size() << endl;
+        for (int i = 0; i < (int) all_searching_sentences.size(); ++i) {
+            searching_sentence = all_searching_sentences[i];
+            cout << "Sentence " << (i + 1) << " = " << searching_sentence.get_sentence_content() << endl;
+
+            vector<SearchingPhrase>& searching_phrases = searching_sentence.get_searching_phrases();
+            for (int j = 0; j < (int) searching_phrases.size(); ++j) {
+                searching_phrase = searching_phrases[j];
+                cout << "  Phrase " << (j + 1) << " = " << searching_phrase.get_phrase_content() << " " << searching_phrase.get_phrase_level() << endl;
+
+                if (searching_phrase.has_sub_phrase()) {
+                    vector<SearchingPhrase>& sub_phrases = searching_phrase.get_sub_phrases();
+                    for (int k = 0; k < (int) sub_phrases.size(); ++k) {
+                        sub_phrase = sub_phrases[k];
+                        cout << "    Sub-phrase " << (k + 1) << " = " << sub_phrase.get_phrase_content() << " " << sub_phrase.get_phrase_level() << endl;
+                    }
+                }
+            }
+        }
+    }
 
     return true;
 }

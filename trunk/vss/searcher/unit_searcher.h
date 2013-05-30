@@ -12,6 +12,11 @@ using namespace std;
 
 #include "recorded_database_reader.h"
 #include "input_text_reader.h"
+#include "../units/searching_sentence.h"
+#include "../units/searching_phrase.h"
+#include "../units/sentence.h"
+#include "../units/phrase.h"
+#include "../units/syllable.h"
 
 #ifndef UNIT_SEARCHER_H_
 #define UNIT_SEARCHER_H_

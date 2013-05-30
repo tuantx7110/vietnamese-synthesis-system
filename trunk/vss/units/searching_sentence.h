@@ -11,6 +11,7 @@
 using namespace std;
 
 #include "searching_phrase.h"
+#include "../utils/string_utils.h"
 
 #ifndef SEARCHING_SENTENCE_H_
 #define SEARCHING_SENTENCE_H_
@@ -22,9 +23,8 @@ public:
 
     void init();
     void add_searching_phrase(SearchingPhrase searching_phrase);
-    vector<SearchingPhrase> get_searching_phrases() const;
-    void set_sentence_content(string sentence_content);
-    string get_sentence_content() const;
+    vector<SearchingPhrase>& get_searching_phrases();
+    string get_sentence_content();
 
 private:
     string sentence_content;

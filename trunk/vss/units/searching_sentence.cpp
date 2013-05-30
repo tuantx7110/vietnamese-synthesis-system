@@ -25,14 +25,17 @@ void SearchingSentence::add_searching_phrase(SearchingPhrase searching_phrase) {
     searching_phrases.push_back(searching_phrase);
 }
 
-vector<SearchingPhrase> SearchingSentence::get_searching_phrases() const {
+vector<SearchingPhrase>& SearchingSentence::get_searching_phrases() {
     return searching_phrases;
 }
 
-void SearchingSentence::set_sentence_content(string sentence_content) {
-    this->sentence_content = sentence_content;
-}
-
-string SearchingSentence::get_sentence_content() const {
+string SearchingSentence::get_sentence_content() {
+    if (sentence_content.length() == 0) {
+        sentence_content = "";
+        for (int i = 0; i < (int) searching_phrases.size(); ++i) {
+            sentence_content = sentence_content + " " + searching_phrases[i].get_phrase_content();
+        }
+        trim_string(sentence_content);
+    }
     return sentence_content;
 }
