@@ -23,11 +23,14 @@ void Sentence::init() {
     phrases.clear();
 }
 
-void Sentence::set_sentence_content(string sentence_content) {
-    this->sentence_content = sentence_content;
-}
-
-string Sentence::get_sentence_content() const {
+string Sentence::get_sentence_content() {
+    if (sentence_content.length() == 0) {
+        sentence_content = "";
+        for (int i = 0; i < (int) phrases.size(); ++i) {
+            sentence_content = sentence_content + " " + phrases[i].get_phrase_content();
+        }
+        trim_string(sentence_content);
+    }
     return sentence_content;
 }
 

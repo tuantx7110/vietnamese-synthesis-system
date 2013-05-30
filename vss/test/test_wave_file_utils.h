@@ -8,7 +8,7 @@
 #ifndef TEST_WAVE_FILE_UTILS_H_
 #define TEST_WAVE_FILE_UTILS_H_
 
-void test_wave();
+void test_wave_file_utils();
 
 
 #endif /* TEST_WAVE_FILE_UTILS_H_ */

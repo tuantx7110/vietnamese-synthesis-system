@@ -19,6 +19,7 @@ bool parse_int(string s, int& ret);
 bool parse_double(string s, double &ret);
 int first_index_of(string s, string t);
 int last_index_of(string s, string t);
+bool is_punctuation(string s);
 
 #endif	/* STRING_UTILS_H */
 

@@ -11,6 +11,7 @@
 using namespace std;
 
 #include "phrase.h"
+#include "../utils/string_utils.h"
 
 #ifndef SENTENCE_H_
 #define SENTENCE_H_
@@ -21,8 +22,7 @@ public:
     virtual ~Sentence();
 
     void init();
-    void set_sentence_content(string sentence_content);
-    string get_sentence_content() const;
+    string get_sentence_content();
     void set_sentence_id(int sentence_id);
     int get_sentence_id() const;
     void set_file_name(string file_name);
