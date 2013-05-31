@@ -11,6 +11,8 @@ using namespace std;
 
 #include "../searcher/input_text_reader.h"
 #include "../searcher/unit_selector.h"
+#include "../utils/wave_file_utils.h"
+#include "../utils/wave_file.h"
 
 #define debug_vietnamese_synthesis_system 1
 

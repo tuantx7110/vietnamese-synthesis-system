@@ -148,22 +148,32 @@ void UnitSelector::find_best_path(SearchingSentence& searching_sentence) {
         }
     }
 
+    if (debug_unit_selector) {
+        cout << endl << "Sentence: " << searching_sentence.get_sentence_content() << endl;
+        cout << "Best score = " << best_score << endl;
+    }
+
     while (i >= 0) {
-        FoundPosition position = phrases[i].get_found_position(chose);
-        RecordedPhrase chose_phrase = recorded_database_reader.get_sentence_at(position.get_sentence_index()).get_phrase_at(position.get_phrase_index());
-        phrases[i].set_chose_candidate(chose);
-        phrases[i].set_chose_file_name(recorded_database_reader.get_sentence_at(position.get_sentence_index()).get_file_name());
-        phrases[i].set_chose_start(chose_phrase.get_syllable_at(position.get_start_syllable_index()).get_start_index());
-        phrases[i].set_chose_finish(chose_phrase.get_syllable_at(position.get_finish_syllable_index()).get_finish_index());
+        if (phrases[i].is_found()) {
+            FoundPosition position = phrases[i].get_found_position(chose);
+            RecordedPhrase chose_phrase = recorded_database_reader.get_sentence_at(position.get_sentence_index()).get_phrase_at(position.get_phrase_index());
+            phrases[i].set_chose_candidate(chose);
+            phrases[i].set_chose_file_name(recorded_database_reader.get_sentence_at(position.get_sentence_index()).get_file_name());
+            phrases[i].set_chose_start(chose_phrase.get_syllable_at(position.get_start_syllable_index()).get_start_index());
+            phrases[i].set_chose_finish(chose_phrase.get_syllable_at(position.get_finish_syllable_index()).get_finish_index());
+        }
         chose = phrases[i].get_trace(chose);
         i = i - 1;
     }
 
     if (debug_unit_selector) {
-        cout << endl << "Sentence: " << searching_sentence.get_sentence_content() << endl;
-        cout << "Best score = " << best_score << endl;
         for (int i = 0; i < (int) phrases.size(); ++i) {
-            cout << "  " << phrases[i].get_chose_file_name() << " " << phrases[i].get_chose_start() << " " << phrases[i].get_chose_finish() << endl;
+            cout << "  " << phrases[i].get_phrase_content() << " ";
+            if (phrases[i].is_found()) {
+                cout << phrases[i].get_chose_file_name() << " " << phrases[i].get_chose_start() << " " << phrases[i].get_chose_finish() << endl;
+            } else {
+                cout << "not found" << endl;
+            }
         }
     }
 }

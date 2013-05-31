@@ -31,6 +31,8 @@ void run_system() {
     cout << endl << "SPEECH SYNTHESIZED SUCCESSFULLY!" << endl;
 }
 
+#include "../test/test_wave_file_utils.h"
+
 int main() {
     run_system();
     return 0;
