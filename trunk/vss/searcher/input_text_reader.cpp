@@ -74,8 +74,9 @@ bool InputTextReader::parse_input_text() {
 
     bool sentence_empty = true;
 
-    for (int i = 0; i < (int) tokens.size(); ++i) {
-        if (is_punctuation(tokens[i])) {
+    int number_tokens = (int) tokens.size();
+    for (int i = 0; i <= number_tokens; ++i) {
+        if ((i == number_tokens) || (is_punctuation(tokens[i]))) {
             if (!sentence_empty) {
                 all_searching_sentences.push_back(searching_sentence);
                 searching_sentence.init();
