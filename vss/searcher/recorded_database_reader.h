@@ -15,8 +15,8 @@ using namespace std;
 
 #define debug_recorded_database_reader 0
 
-#ifndef RECORDEDDATABASEREADER_H
-#define	RECORDEDDATABASEREADER_H
+#ifndef RECORDED_DATABASE_READER_H
+#define	RECORDED_DATABASE_READER_H
 
 class RecordedDatabaseReader {
 public:
@@ -28,6 +28,7 @@ public:
 
     bool load_data();
     vector<RecordedSentence>& get_all_sentences();
+    RecordedSentence& get_sentence_at(int index);
 
 private:
     int current_file_id;
@@ -48,5 +49,5 @@ private:
     bool read_neighbor_syllable_details(vector<string> tokens, bool is_left_neighbor);
 };
 
-#endif	/* RECORDEDDATABASEREADER_H */
+#endif	/* RECORDED_DATABASE_READER_H */
 

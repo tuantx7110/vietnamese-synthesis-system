@@ -32,6 +32,7 @@ public:
 
     void add_phrase(RecordedPhrase phrase);
     vector<RecordedPhrase>& get_all_phrases();
+    RecordedPhrase& get_phrase_at(int index);
 
 private:
     int file_id;

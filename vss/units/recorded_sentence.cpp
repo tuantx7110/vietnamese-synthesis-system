@@ -65,3 +65,7 @@ void RecordedSentence::add_phrase(RecordedPhrase phrase) {
 vector<RecordedPhrase>& RecordedSentence::get_all_phrases() {
     return phrases;
 }
+
+RecordedPhrase& RecordedSentence::get_phrase_at(int index) {
+    return phrases[index];
+}

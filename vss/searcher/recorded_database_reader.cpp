@@ -13,7 +13,7 @@ using namespace std;
 #include "../utils/string_utils.h"
 
 const string RecordedDatabaseReader::kRecordedDatabasePath = "searcher/recorded_database/";
-const string RecordedDatabaseReader::kRecordedDatabaseDescriptionPath = kRecordedDatabasePath + "Text_DB_Creator.xml"; //"recorded_database_description.xml";
+const string RecordedDatabaseReader::kRecordedDatabaseDescriptionPath = kRecordedDatabasePath + "Text_DB_Creator.xml";//"recorded_database_description.xml";
 
 RecordedDatabaseReader::RecordedDatabaseReader() {
     init();
@@ -33,6 +33,10 @@ void RecordedDatabaseReader::init() {
 
 vector<RecordedSentence>& RecordedDatabaseReader::get_all_sentences() {
     return all_sentences;
+}
+
+RecordedSentence& RecordedDatabaseReader::get_sentence_at(int index) {
+    return all_sentences[index];
 }
 
 bool RecordedDatabaseReader::load_data() {
@@ -431,5 +435,20 @@ bool RecordedDatabaseReader::read_neighbor_syllable_details(vector<string> token
             }
         }
     }
+
+    string neighbor_name = "";
+    if (!read_content_value(tokens[(int) tokens.size() - 1], neighbor_name)) {
+        cerr << "Error reading " << (is_left_neighbor ? "left" : "right") << " neighbor syllable name" << endl;
+        return false;
+    }
+
+    if (debug_recorded_database_reader) cout << "     " << (is_left_neighbor ? "Left" : "Right") << " neighbor syllable name = " << neighbor_name << endl;
+
+    if (is_left_neighbor) {
+        current_syllable.set_left_syllable_name(neighbor_name);
+    } else {
+        current_syllable.set_right_syllable_name(neighbor_name);
+    }
+
     return true;
 }

@@ -188,3 +188,19 @@ string RecordedSyllable::get_initial_phoneme_type() const {
     return initial_phoneme_type;
 }
 
+void RecordedSyllable::set_right_syllable_name(string right_syllable_name) {
+    this->right_syllable_name = right_syllable_name;
+}
+
+string RecordedSyllable::get_right_syllable_name() const {
+    return right_syllable_name;
+}
+
+void RecordedSyllable::set_left_syllable_name(string left_syllable_name) {
+    this->left_syllable_name = left_syllable_name;
+}
+
+string RecordedSyllable::get_left_syllable_name() const {
+    return left_syllable_name;
+}
+
