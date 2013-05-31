@@ -10,7 +10,7 @@
 using namespace std;
 
 #include "../searcher/input_text_reader.h"
-#include "../searcher/unit_searcher.h"
+#include "../searcher/unit_selector.h"
 
 #define debug_vietnamese_synthesis_system 1
 
@@ -27,7 +27,7 @@ public:
 
 private:
     InputTextReader input_text_reader;
-    UnitSearcher unit_searcher;
+    UnitSelector unit_selector;
 };
 
 #endif /* VIETNAMESE_SYNTHESIS_SYSTEM_H_ */

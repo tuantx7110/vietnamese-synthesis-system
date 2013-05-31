@@ -10,6 +10,8 @@
 
 using namespace std;
 
+#include "../searcher/found_position.h"
+
 #ifndef SEARCHING_PHRASE_H_
 #define SEARCHING_PHRASE_H_
 
@@ -23,6 +25,7 @@ public:
     bool has_sub_phrase();
     vector<SearchingPhrase>& get_sub_phrases();
     int number_sub_phrases();
+    void add_found_position(FoundPosition position);
 
     void set_phrase_content(string phrase_content);
     string get_phrase_content() const;
@@ -30,12 +33,6 @@ public:
     int get_phrase_level() const;
     void set_found(bool found);
     bool is_found() const;
-    void set_found_at_syllable(int found_at_syllable);
-    int get_found_at_syllable() const;
-    void set_found_at_phrase(int found_at_phrase);
-    int get_found_at_phrase() const;
-    void set_found_at_sentence(int found_at_sentence);
-    int get_found_at_sentence() const;
 
 private:
     string phrase_content;
@@ -43,9 +40,7 @@ private:
     vector<SearchingPhrase> sub_phrases;
 
     bool found;
-    int found_at_sentence;
-    int found_at_phrase;
-    int found_at_syllable;
+    vector<FoundPosition> found_positions;
 };
 
 #endif /* SEARCHING_PHRASE_H_ */

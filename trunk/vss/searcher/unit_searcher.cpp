@@ -16,38 +16,58 @@ UnitSearcher::~UnitSearcher() {
 }
 
 bool UnitSearcher::init() {
-    if (!recorded_database_reader.load_data()) {
-        cerr << "Cannot load recorded database description" << endl;
-        return false;
-    }
     return true;
 }
 
-void UnitSearcher::search(vector<SearchingSentence>& all_searching_sentences) {
+vector<SearchingSentence> UnitSearcher::search(vector<SearchingSentence>& all_searching_sentences, vector<RecordedSentence>& all_recorded_sentences) {
+    vector<SearchingSentence> result;
+
     for (int i = 0; i < (int) all_searching_sentences.size(); ++i) {
-        search_sentence(all_searching_sentences[i]);
+        result.push_back(search_sentence(all_searching_sentences[i].get_searching_phrases(), all_recorded_sentences));
     }
-}
 
-void UnitSearcher::search_sentence(SearchingSentence& searching_sentence) {
-    vector<SearchingPhrase>& all_searching_phrases = searching_sentence.get_searching_phrases();
-
-    for (int i = 0; i < (int) all_searching_phrases.size(); ++i) {
-        search_phrase(all_searching_phrases[i]);
-
-        if (!all_searching_phrases[i].is_found()) {
-            vector<SearchingPhrase>& sub_phrases = all_searching_phrases[i].get_sub_phrases();
-
-            for (int j = 0; j < (int) sub_phrases.size(); ++j) {
-                search_phrase(sub_phrases[j]);
+    if (debug_unit_searcher) {
+        for (int i = 0; i < (int) result.size(); ++i) {
+            vector<SearchingPhrase> phrases = result[i].get_searching_phrases();
+            cout << "Sentence " << (i + 1) << endl;
+            for (int j = 0; j < (int) phrases.size(); ++j) {
+                cout << "  Phrase \"" << phrases[j].get_phrase_content() << "\" [level " << phrases[j].get_phrase_level() << "] is ";
+                if (phrases[j].is_found()) cout << " found" << endl;
+                else cout << "not found" << endl;
             }
         }
     }
+
+    return result;
 }
 
-void UnitSearcher::search_phrase(SearchingPhrase& searching_phrase) {
-    vector<RecordedSentence>& all_recorded_sentences = recorded_database_reader.get_all_sentences();
+SearchingSentence UnitSearcher::search_sentence(vector<SearchingPhrase>& all_searching_phrases, vector<RecordedSentence>& all_recorded_sentences) {
+    SearchingSentence result;
 
+    for (int i = 0; i < (int) all_searching_phrases.size(); ++i) {
+        search_phrase(all_searching_phrases[i], all_recorded_sentences);
+
+        if (all_searching_phrases[i].is_found()) {
+            result.add_searching_phrase(all_searching_phrases[i]);
+            continue;
+        }
+
+        if (!all_searching_phrases[i].has_sub_phrase()) {
+            result.add_searching_phrase(all_searching_phrases[i]);
+            continue;
+        }
+
+        vector<SearchingPhrase>& sub_phrases = all_searching_phrases[i].get_sub_phrases();
+        for (int j = 0; j < (int) sub_phrases.size(); ++j) {
+            search_phrase(sub_phrases[j], all_recorded_sentences);
+            result.add_searching_phrase(sub_phrases[j]);
+        }
+    }
+
+    return result;
+}
+
+void UnitSearcher::search_phrase(SearchingPhrase& searching_phrase, vector<RecordedSentence>& all_recorded_sentences) {
     for (int i = 0; i < (int) all_recorded_sentences.size(); ++i) {
         vector<RecordedPhrase>& recorded_phrases = all_recorded_sentences[i].get_all_phrases();
 
@@ -59,13 +79,11 @@ void UnitSearcher::search_phrase(SearchingPhrase& searching_phrase) {
                 for (int k = 0; k < number_syllables; ++k) {
                     if (searching_phrase.get_phrase_content() == recorded_syllables[k].get_syllable_name()) {
                         searching_phrase.set_found(true);
-                        searching_phrase.set_found_at_sentence(i);
-                        searching_phrase.set_found_at_phrase(j);
-                        searching_phrase.set_found_at_syllable(k);
+                        searching_phrase.add_found_position(FoundPosition(i, j, k, k));
 
                         if (debug_unit_searcher) {
                             cout << "Found phrase \"" << searching_phrase.get_phrase_content() << "\" at " << i << " " << j << " " << k << endl;
-                            cout << recorded_database_reader.get_all_sentences()[i].get_all_phrases()[j].get_phrase_content() << endl << endl;
+                            cout << all_recorded_sentences[i].get_all_phrases()[j].get_phrase_content() << endl << endl;
                         }
                     }
                 }
@@ -84,13 +102,11 @@ void UnitSearcher::search_phrase(SearchingPhrase& searching_phrase) {
 
                     if (found) {
                         searching_phrase.set_found(true);
-                        searching_phrase.set_found_at_sentence(i);
-                        searching_phrase.set_found_at_phrase(j);
-                        searching_phrase.set_found_at_syllable(k);
+                        searching_phrase.add_found_position(FoundPosition(i, j, k, k + number_sub_phrases - 1));
 
                         if (debug_unit_searcher) {
-                            cout << "Found phrase \"" << searching_phrase.get_phrase_content() << "\" at " << i << " " << j << " " << k << endl;
-                            cout << recorded_database_reader.get_all_sentences()[i].get_all_phrases()[j].get_phrase_content() << endl << endl;
+                            cout << "Found phrase \"" << searching_phrase.get_phrase_content() << "\" at " << i << " " << j << " " << k << " " << (k + number_sub_phrases - 1) << endl;
+                            cout << all_recorded_sentences[i].get_all_phrases()[j].get_phrase_content() << endl << endl;
                         }
                     }
                 }

@@ -5,13 +5,12 @@
  *      Author: quangpham
  */
 
+#include <iostream>
 #include <vector>
 #include <string>
 
 using namespace std;
 
-#include "recorded_database_reader.h"
-#include "input_text_reader.h"
 #include "../units/searching_sentence.h"
 #include "../units/searching_phrase.h"
 #include "../units/recorded_sentence.h"
@@ -29,13 +28,11 @@ public:
     virtual ~UnitSearcher();
 
     bool init();
-    void search(vector<SearchingSentence>& all_searching_sentences);
+    vector<SearchingSentence> search(vector<SearchingSentence>& all_searching_sentences, vector<RecordedSentence>& all_recorded_sentences);
 
 private:
-    RecordedDatabaseReader recorded_database_reader;
-
-    void search_sentence(SearchingSentence& searching_sentence);
-    void search_phrase(SearchingPhrase& searching_phrase);
+    SearchingSentence search_sentence(vector<SearchingPhrase>& all_searching_phrases, vector<RecordedSentence>& all_recorded_sentences);
+    void search_phrase(SearchingPhrase& searching_phrase, vector<RecordedSentence>& all_recorded_sentences);
 };
 
 #endif /* UNIT_SEARCHER_H_ */

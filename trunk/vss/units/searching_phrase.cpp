@@ -30,9 +30,7 @@ void SearchingPhrase::init() {
     sub_phrases.clear();
 
     found = false;
-    found_at_sentence = -1;
-    found_at_phrase = -1;
-    found_at_syllable = -1;
+    found_positions.clear();
 }
 
 bool SearchingPhrase::has_sub_phrase() {
@@ -59,30 +57,6 @@ bool SearchingPhrase::is_found() const {
     return found;
 }
 
-void SearchingPhrase::set_found_at_syllable(int found_at_syllable) {
-    this->found_at_syllable = found_at_syllable;
-}
-
-int SearchingPhrase::get_found_at_syllable() const {
-    return found_at_syllable;
-}
-
-void SearchingPhrase::set_found_at_phrase(int found_at_phrase) {
-    this->found_at_phrase = found_at_phrase;
-}
-
-int SearchingPhrase::get_found_at_phrase() const {
-    return found_at_phrase;
-}
-
-void SearchingPhrase::set_found_at_sentence(int found_at_sentence) {
-    this->found_at_sentence = found_at_sentence;
-}
-
-int SearchingPhrase::get_found_at_sentence() const {
-    return found_at_sentence;
-}
-
 vector<SearchingPhrase>& SearchingPhrase::get_sub_phrases() {
     return sub_phrases;
 }
@@ -90,3 +64,8 @@ vector<SearchingPhrase>& SearchingPhrase::get_sub_phrases() {
 int SearchingPhrase::number_sub_phrases() {
     return sub_phrases.size();
 }
+
+void SearchingPhrase::add_found_position(FoundPosition position) {
+	found_positions.push_back(position);
+}
+
