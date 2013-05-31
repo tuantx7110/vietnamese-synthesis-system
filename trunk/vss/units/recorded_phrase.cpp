@@ -56,3 +56,11 @@ void RecordedPhrase::add_syllable(RecordedSyllable syllable) {
 vector<RecordedSyllable>& RecordedPhrase::get_all_syllables() {
     return syllables;
 }
+
+RecordedSyllable& RecordedPhrase::get_syllable_at(int index) {
+    return syllables[index];
+}
+
+int RecordedPhrase::number_syllables() {
+    return syllables.size();
+}

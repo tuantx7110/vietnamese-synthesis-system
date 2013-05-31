@@ -19,15 +19,19 @@ public:
     virtual ~UnitSelector();
 
     bool init();
-    vector<SearchingSentence> select(vector<SearchingSentence>& input_sentences);
+    vector<SearchingSentence>& select(vector<SearchingSentence>& input_sentences);
 
 private:
     RecordedDatabaseReader recorded_database_reader;
     UnitSearcher unit_searcher;
     vector<SearchingSentence> search_result;
 
-    void calculate_score();
-    void find_best_path();
+    void select_sentence(SearchingSentence& searching_sentence);
+    void calculate_score(SearchingSentence& searching_sentence);
+    void find_best_path(SearchingSentence& searching_sentence);
+    int score_between_two_candidate_positions(FoundPosition position1, FoundPosition position2);
+    int score_between_two_syllables(RecordedSyllable syllable1, RecordedSyllable syllable2, bool left_candidate);
+    int score_between_two_tones(int tone1, int tone2);
 };
 
 #endif /* UNIT_SELECTOR_H_ */

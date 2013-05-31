@@ -59,6 +59,10 @@ public:
     string get_middle_phoneme_type() const;
     void set_initial_phoneme_type(string initial_phoneme_type);
     string get_initial_phoneme_type() const;
+    void set_right_syllable_name(string right_syllable_name);
+    string get_right_syllable_name() const;
+    void set_left_syllable_name(string left_syllable_name);
+    string get_left_syllable_name() const;
 
 private:
     int syllable_id;
@@ -79,9 +83,11 @@ private:
     int left_syllable_tone;
     string left_syllable_final_phoneme;
     string left_syllable_phoneme_type;
+    string left_syllable_name;
     int right_syllable_tone;
     string right_syllable_initial_phoneme;
     string right_syllable_phoneme_type;
+    string right_syllable_name;
 };
 
 #endif /* RECORDED_SYLLABLE_H_ */

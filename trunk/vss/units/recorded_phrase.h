@@ -30,6 +30,8 @@ public:
 
     void add_syllable(RecordedSyllable syllable);
     vector<RecordedSyllable>& get_all_syllables();
+    RecordedSyllable& get_syllable_at(int index);
+    int number_syllables();
 
 private:
     int phrase_id;
