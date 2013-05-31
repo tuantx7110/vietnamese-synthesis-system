@@ -20,8 +20,8 @@ bool VietnameseSynthesisSystem::init() {
         cerr << "Cannot initialize input text reader" << endl;
         return false;
     }
-    if (!unit_searcher.init()) {
-        cerr << "Cannot initialize unit searcher" << endl;
+    if (!unit_selector.init()) {
+        cerr << "Cannot initialize unit selector" << endl;
         return false;
     }
     return true;
@@ -33,7 +33,7 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
         return false;
     }
 
-    unit_searcher.search(input_text_reader.get_all_sentences());
+    vector<SearchingSentence> selected_result = unit_selector.select(input_text_reader.get_all_sentences());
 
     return true;
 }

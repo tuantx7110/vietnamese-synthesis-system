@@ -5,11 +5,10 @@
  *      Author: quangpham
  */
 
-#include <cstdio>
 #include "wave_file_utils.h"
 
-int Wave::read_wave_file(char *path) {
-    FILE *file = fopen(path, "rb");
+int Wave::read_wave_file(string path) {
+    FILE *file = fopen(path.c_str(), "rb");
 
     // riff
     fread(chunk_id, 1, 4, file);
@@ -38,8 +37,8 @@ int Wave::read_wave_file(char *path) {
     return 0;
 }
 
-int Wave::write_wave_file(char *path) {
-    FILE *file = fopen(path, "wb");
+int Wave::write_wave_file(string path) {
+    FILE *file = fopen(path.c_str(), "wb");
 
     // riff
     fwrite(chunk_id, 1, 4, file);

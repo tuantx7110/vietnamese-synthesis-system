@@ -97,8 +97,8 @@ int last_index_of(string s, string t) {
 }
 
 bool is_punctuation(string s) {
-    const string kPunctuation[] = {",", "...", ";", ":", "?", "!", ".", "-"};
-    for (int i = 0; i < 8; ++i) {
+    const string kPunctuation[] = {",", "...", ";", ":", "?", "!", ".", "-", "\""};
+    for (int i = 0; i < 9; ++i) {
         if (s == kPunctuation[i]) {
             return true;
         }

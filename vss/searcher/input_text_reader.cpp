@@ -72,10 +72,15 @@ bool InputTextReader::parse_input_text() {
     SearchingPhrase searching_phrase;
     SearchingPhrase sub_phrase;
 
+    bool sentence_empty = true;
+
     for (int i = 0; i < (int) tokens.size(); ++i) {
         if (is_punctuation(tokens[i])) {
-            all_searching_sentences.push_back(searching_sentence);
-            searching_sentence.init();
+            if (!sentence_empty) {
+                all_searching_sentences.push_back(searching_sentence);
+                searching_sentence.init();
+                sentence_empty = true;
+            }
             continue;
         }
 
@@ -94,6 +99,7 @@ bool InputTextReader::parse_input_text() {
         }
 
         searching_sentence.add_searching_phrase(searching_phrase);
+        sentence_empty = false;
     }
 
     if (debug_input_text_reader) {

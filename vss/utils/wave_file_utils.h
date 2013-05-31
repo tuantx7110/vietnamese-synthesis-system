@@ -5,6 +5,11 @@
  *      Author: quangpham
  */
 
+#include <string>
+#include <cstdio>
+
+using namespace std;
+
 #ifndef WAVE_FILE_UTILS_H_
 #define WAVE_FILE_UTILS_H_
 
@@ -26,8 +31,8 @@ public:
     short bytes_per_sample;
     int number_samples;
     short *data;
-    int read_wave_file(char *path);
-    int write_wave_file(char *path);
+    int read_wave_file(string path);
+    int write_wave_file(string path);
 };
 
 
