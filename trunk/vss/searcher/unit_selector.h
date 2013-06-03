@@ -5,6 +5,8 @@
  *      Author: quangpham
  */
 
+#include <cstdlib>
+
 #include "recorded_database_reader.h"
 #include "unit_searcher.h"
 
