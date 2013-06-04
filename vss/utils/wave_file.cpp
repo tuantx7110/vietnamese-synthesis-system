@@ -68,7 +68,7 @@ void WaveFile::add_data(vector<short> more_data) {
 vector<short> WaveFile::get_data(int from, int to) {
     vector<short> result;
     for (int i = from; i <= to; ++i) {
-        if (i >= data.size()) {
+        if (i >= (int) data.size()) {
             cerr << "Index out of data range" << endl;
             return result;
         }

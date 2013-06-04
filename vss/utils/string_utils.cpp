@@ -105,3 +105,13 @@ bool is_punctuation(string s) {
     }
     return false;
 }
+
+bool is_long_silence(string s) {
+    const string kLongSilence[] = {"...", ";", ":", "?", "!", "."};
+    for (int i = 0; i < 6; ++i) {
+        if (s == kLongSilence[i]) {
+            return true;
+        }
+    }
+    return false;
+}
