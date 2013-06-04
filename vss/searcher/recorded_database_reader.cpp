@@ -13,7 +13,7 @@ using namespace std;
 #include "../utils/string_utils.h"
 
 const string RecordedDatabaseReader::kRecordedDatabasePath = "searcher/recorded_database/";
-const string RecordedDatabaseReader::kRecordedDatabaseDescriptionPath = kRecordedDatabasePath + "Text_DB_Creator.xml";//"recorded_database_description.xml";
+const string RecordedDatabaseReader::kRecordedDatabaseDescriptionPath = kRecordedDatabasePath + "recorded_database_description.xml";
 
 RecordedDatabaseReader::RecordedDatabaseReader() {
     init();
