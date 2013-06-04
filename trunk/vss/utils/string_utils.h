@@ -20,6 +20,7 @@ bool parse_double(string s, double &ret);
 int first_index_of(string s, string t);
 int last_index_of(string s, string t);
 bool is_punctuation(string s);
+bool is_long_silence(string s);
 
 #endif	/* STRING_UTILS_H */
 
