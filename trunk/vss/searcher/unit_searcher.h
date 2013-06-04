@@ -20,7 +20,7 @@ using namespace std;
 #ifndef UNIT_SEARCHER_H_
 #define UNIT_SEARCHER_H_
 
-#define debug_unit_searcher 1
+#define debug_unit_searcher 0
 
 class UnitSearcher {
 public:
