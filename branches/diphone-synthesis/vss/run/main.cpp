@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstdio>
+#include "../diphone/read_binary_file.h"
 using namespace std;
 
 const string kDataPath = "data/";
@@ -35,5 +36,7 @@ void run_system() {
 
 int main() {
     run_system();
+//	read_file("diphone/data/HALFSYL.DAT");
+
     return 0;
 }
