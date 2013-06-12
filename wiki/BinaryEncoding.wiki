@@ -1,0 +1,28 @@
+#Các loại nén dữ liệu nhị phân sử dụng trong chương trình 
+
+= Unary Coding =
+
+Một số nguyên dương N được biểu diễn bằng (N-1) bit 0 theo sau là một bit 1.
+
+Ví dụ:
+
+5 => 00001
+
+3 => 001
+
+1 => 1
+
+http://en.wikipedia.org/wiki/Unary_coding
+
+= Gamma Coding =
+
+Một số nguyên dương N được biểu diễn như sau:
+
+- Viết N dưới dạng nhị phân có K bit (không tính các chữ số 0 ở đầu)
+
+- Thêm vào trước dãy nhị phân này (K - 1) bit 0.
+
+Ví dụ:
+6   => 00110
+
+10 => 0001010
