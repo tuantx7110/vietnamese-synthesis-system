@@ -1,0 +1,1 @@
+Các function của phần ghép diphone và các phần liên quan
