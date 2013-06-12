@@ -19,9 +19,9 @@ http://en.wikipedia.org/wiki/Unary_coding
 
 Một số nguyên dương N được biểu diễn như sau:
 
-- Viết N dưới dạng nhị phân có K bit (không tính các chữ số 0 ở đầu)
+- Tính số mũ cao nhất trong biểu diễn nhị phân của N, gọi là K
 
-- Thêm vào trước dãy nhị phân này (K - 1) bit 0.
+- Thêm vào trước dãy nhị phân này K bit 0.
 
 Ví dụ:
 
@@ -36,11 +36,11 @@ http://en.wikipedia.org/wiki/Elias_gamma_coding
 
 Một số nguyên dương N được biểu diễn như sau:
 
-- Tính số lượng bit trong biểu diễn nhị phân của N (không tính các chữ số 0 ở đầu), gọi là K
+- Tính số mũ cao nhất trong biểu diễn nhị phân của N, gọi là K
 
 - Viết (K + 1) bằng Elias Gamma coding
 
-- Viết tiếp (K - 1) bit ở cuối trong biểu diễn nhị phân của N
+- Viết tiếp K bit ở cuối trong biểu diễn nhị phân của N
 
 Ví dụ:
 
