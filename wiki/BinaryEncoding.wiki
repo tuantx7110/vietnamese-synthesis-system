@@ -26,3 +26,5 @@ Ví dụ:
 6   => 00110
 
 10 => 0001010
+
+http://en.wikipedia.org/wiki/Elias_gamma_coding
