@@ -14,7 +14,7 @@ Ví dụ:
 
 http://en.wikipedia.org/wiki/Unary_coding
 
-= Gamma Coding =
+= Elias Gamma Coding =
 
 Một số nguyên dương N được biểu diễn như sau:
 
@@ -23,8 +23,25 @@ Một số nguyên dương N được biểu diễn như sau:
 - Thêm vào trước dãy nhị phân này (K - 1) bit 0.
 
 Ví dụ:
+
 6   => 00110
 
 10 => 0001010
 
 http://en.wikipedia.org/wiki/Elias_gamma_coding
+
+= Elias Delta Coding =
+
+Một số nguyên dương N được biểu diễn như sau:
+
+- Tính số lượng bit trong biểu diễn nhị phân của N (không tính các chữ số 0 ở đầu), gọi là K
+
+- Viết (K + 1) bằng Elias Gamma coding
+
+- Viết tiếp (K - 1) bit ở cuối trong biểu diễn nhị phân của N
+
+Ví dụ:
+
+6 => 01110
+
+13 => 00100101
