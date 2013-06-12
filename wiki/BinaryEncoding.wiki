@@ -14,6 +14,7 @@ Ví dụ:
 
 http://en.wikipedia.org/wiki/Unary_coding
 
+
 = Elias Gamma Coding =
 
 Một số nguyên dương N được biểu diễn như sau:
@@ -30,6 +31,7 @@ Ví dụ:
 
 http://en.wikipedia.org/wiki/Elias_gamma_coding
 
+
 = Elias Delta Coding =
 
 Một số nguyên dương N được biểu diễn như sau:
@@ -45,3 +47,5 @@ Ví dụ:
 6 => 01110
 
 13 => 00100101
+
+http://en.wikipedia.org/wiki/Elias_delta_coding
