@@ -32,8 +32,10 @@ void run_system() {
 }
 
 #include "../test/test_wave_file_utils.h"
+#include "../test/test_binary_encoding.h"
 
 int main() {
-    run_system();
+//    run_system();
+    test_binary_encoding();
     return 0;
 }
