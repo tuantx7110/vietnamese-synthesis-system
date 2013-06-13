@@ -23,6 +23,7 @@ public:
     bool write_gamma(int number);
     bool write_delta(int number);
     bool write_omega(int number);
+    void write_string(string s);
 
 private:
     void flush_buffer();

@@ -96,3 +96,24 @@ int BinaryFileReader::read_binary(int n) {
     }
     return number;
 }
+
+string BinaryFileReader::read_string() {
+    const int s_len = read_omega();
+    const int w_len = read_omega();
+
+    wchar_t w[w_len];
+    char s[s_len];
+
+    for (int i = 0; i < w_len; ++i) {
+        w[i] = read_omega();
+    }
+    w[w_len] = 0;
+
+    codec.UTF8Encode2BytesUnicode(s, w);
+
+    string result = "";
+    for (int i = 0; i < s_len; ++i) {
+        result += s[i];
+    }
+    return result;
+}

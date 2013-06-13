@@ -23,6 +23,7 @@ public:
     int read_gamma();
     int read_delta();
     int read_omega();
+    string read_string();
 
 private:
     void fill_buffer();

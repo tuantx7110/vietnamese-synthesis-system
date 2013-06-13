@@ -12,6 +12,7 @@
 #include <cstdio>
 #include <iostream>
 
+#include "../parser/char_codec.h"
 #include "../utils/data_types.h"
 #include "../utils/constants.h"
 #include "../utils/integer_utils.h"
@@ -31,6 +32,7 @@ protected:
     word buffer[kBufferSize];
     int pointer;
     bool opened;
+    CharCodec codec;
 
     int get_iword();
     int get_ibit();
