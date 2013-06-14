@@ -11,7 +11,6 @@
 #include <string>
 #include <cstdio>
 #include <iostream>
-
 #include "../parser/char_codec.h"
 #include "../utils/data_types.h"
 #include "../utils/constants.h"
@@ -25,6 +24,7 @@ public:
     virtual ~BinaryFile();
 
     void print_buffer();
+    bool is_opened();
 
 protected:
     string file_name;

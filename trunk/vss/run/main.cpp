@@ -7,13 +7,13 @@
 
 #include <iostream>
 #include <cstdio>
-using namespace std;
-
-const string kDataPath = "data/";
-const string kInputTextFileName = kDataPath + "input_text.txt";
-const string kOutputWaveFileName = kDataPath + "output_speech.wav";
-
+#include "../utils/constants.h"
 #include "vietnamese_synthesis_system.h"
+#include "../test/test_wave_file_utils.h"
+#include "../test/test_binary_encoding.h"
+#include "../searcher/binary_database_converter.h"
+
+using namespace std;
 
 void run_system() {
     VietnameseSynthesisSystem vss;
@@ -31,11 +31,12 @@ void run_system() {
     cout << endl << "SPEECH SYNTHESIZED SUCCESSFULLY!" << endl;
 }
 
-#include "../test/test_wave_file_utils.h"
-#include "../test/test_binary_encoding.h"
-
 int main() {
-//    run_system();
-    test_binary_encoding();
+    //    run_system();
+    //    test_binary_encoding();
+
+    BinaryDatabaseConverter converter;
+    converter.convert_to_binary();
+
     return 0;
 }

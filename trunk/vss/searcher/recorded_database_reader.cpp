@@ -5,15 +5,7 @@
  * Created on May 28, 2013, 9:19 AM
  */
 
-#include <iostream>
-#include <fstream>
-using namespace std;
-
 #include "recorded_database_reader.h"
-#include "../utils/string_utils.h"
-
-const string RecordedDatabaseReader::kRecordedDatabasePath = "searcher/recorded_database/";
-const string RecordedDatabaseReader::kRecordedDatabaseDescriptionPath = kRecordedDatabasePath + "recorded_database_description.xml";
 
 RecordedDatabaseReader::RecordedDatabaseReader() {
     init();
@@ -40,7 +32,7 @@ RecordedSentence& RecordedDatabaseReader::get_sentence_at(int index) {
 }
 
 bool RecordedDatabaseReader::load_data() {
-    ifstream ifs(kRecordedDatabaseDescriptionPath.c_str());
+    ifstream ifs(kXmlRecordedDatabasePath.c_str());
 
     if (!ifs.is_open()) {
         cerr << "Error loading recorded database description file" << endl;

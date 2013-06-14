@@ -5,14 +5,7 @@
  *      Author: quangpham
  */
 
-#include <cstdio>
-#include "../utils/wave_file_utils.h"
-
-#include <string>
-#include <iostream>
-#include <cstdio>
-
-using namespace std;
+#include "test_wave_file_utils.h"
 
 void test_wave_file_utils() {
     WaveFile wave_file;

@@ -6,9 +6,6 @@
 
 using namespace std;
 
-const string Tokenizer::kConfigurePath = "parser/configure/config.ini";
-const string Tokenizer::kDictionaryPath = "parser/dictionary/";
-
 Tokenizer::Tokenizer() {
 }
 
@@ -67,9 +64,9 @@ string Tokenizer::trim(string str) {
 }
 
 bool Tokenizer::load_configure() {
-	cout << "Loading tokenizer configure ..." << endl;
+    cout << "Loading tokenizer configure ..." << endl;
 
-	string path = kConfigurePath;
+    string path = kConfigurePath;
     ifstream ifs;
     ifs.open(path.c_str());
 

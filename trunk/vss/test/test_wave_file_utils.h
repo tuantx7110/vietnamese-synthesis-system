@@ -8,7 +8,13 @@
 #ifndef TEST_WAVE_FILE_UTILS_H_
 #define TEST_WAVE_FILE_UTILS_H_
 
-void test_wave_file_utils();
+#include <cstdio>
+#include <string>
+#include <iostream>
+#include "../utils/wave_file_utils.h"
 
+using namespace std;
+
+void test_wave_file_utils();
 
 #endif /* TEST_WAVE_FILE_UTILS_H_ */

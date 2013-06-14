@@ -1,17 +1,17 @@
-#include "char_codec.h"
-#include <string>
-#include <vector>
-#include <set>
-using namespace std;
 
 #ifndef TOKENIZER_H_
 #define TOKENIZER_H_
 
+#include <string>
+#include <vector>
+#include <set>
+#include "char_codec.h"
+#include "../utils/constants.h"
+
+using namespace std;
+
 class Tokenizer {
 public:
-    static const string kConfigurePath;
-    static const string kDictionaryPath;
-
     Tokenizer();
     ~Tokenizer();
 

@@ -29,6 +29,10 @@ void BinaryFile::print_buffer() {
     cout << endl;
 }
 
+bool BinaryFile::is_opened() {
+    return opened;
+}
+
 void BinaryFile::error_file_not_opened() {
     cerr << "File " << file_name << " is not opened." << endl;
 }

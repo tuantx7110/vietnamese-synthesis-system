@@ -13,7 +13,7 @@ public:
     FoundPosition();
     FoundPosition(int sentence_index, int phrase_index, int start_syllable_index, int finish_syllable_index);
     virtual ~FoundPosition();
-    
+
     int get_finish_syllable_index() const;
     int get_start_syllable_index() const;
     int get_phrase_index() const;

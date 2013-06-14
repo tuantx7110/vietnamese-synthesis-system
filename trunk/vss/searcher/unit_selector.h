@@ -5,13 +5,12 @@
  *      Author: quangpham
  */
 
-#include <cstdlib>
-
-#include "recorded_database_reader.h"
-#include "unit_searcher.h"
-
 #ifndef UNIT_SELECTOR_H_
 #define UNIT_SELECTOR_H_
+
+#include <cstdlib>
+#include "recorded_database_reader.h"
+#include "unit_searcher.h"
 
 #define debug_unit_selector 1
 

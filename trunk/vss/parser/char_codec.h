@@ -1,7 +1,12 @@
 
-#include "iostream"
+#ifndef CHAR_CODEC_H_
+#define CHAR_CODEC_H_
+
+#include <iostream>
 #include <cstring>
 #include <vector>
+
+using namespace std;
 
 #define         MASKBITS                0x3F
 #define         MASKBYTE                0x80
@@ -13,11 +18,6 @@
 
 typedef unsigned short Unicode2Bytes;
 typedef unsigned int Unicode4Bytes;
-
-using namespace std;
-
-#ifndef CHAR_CODEC_H_
-#define CHAR_CODEC_H_
 
 class CharCodec {
 public:

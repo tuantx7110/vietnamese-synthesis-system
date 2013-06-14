@@ -5,15 +5,15 @@
  *      Author: quangpham
  */
 
-#include <string>
-#include <cstdio>
-
-using namespace std;
-
-#include "wave_file.h"
 
 #ifndef WAVE_FILE_UTILS_H_
 #define WAVE_FILE_UTILS_H_
+
+#include <string>
+#include <cstdio>
+#include "wave_file.h"
+
+using namespace std;
 
 bool read_wave_file(string path, WaveFile& wave_file);
 bool write_wave_file(string path, WaveFile wave_file);

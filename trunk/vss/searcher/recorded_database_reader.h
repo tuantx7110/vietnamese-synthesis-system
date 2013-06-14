@@ -4,25 +4,26 @@
  *
  * Created on May 28, 2013, 9:19 AM
  */
-#include <string>
-#include <vector>
-
-using namespace std;
-
-#include "../units/recorded_sentence.h"
-#include "../units/recorded_phrase.h"
-#include "../units/recorded_syllable.h"
-
-#define debug_recorded_database_reader 0
 
 #ifndef RECORDED_DATABASE_READER_H
 #define	RECORDED_DATABASE_READER_H
 
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include "../utils/string_utils.h"
+#include "../units/recorded_sentence.h"
+#include "../units/recorded_phrase.h"
+#include "../units/recorded_syllable.h"
+#include "../utils/constants.h"
+
+using namespace std;
+
+#define debug_recorded_database_reader 0
+
 class RecordedDatabaseReader {
 public:
-    static const string kRecordedDatabasePath;
-    static const string kRecordedDatabaseDescriptionPath;
-
     RecordedDatabaseReader();
     virtual ~RecordedDatabaseReader();
 
@@ -50,4 +51,3 @@ private:
 };
 
 #endif	/* RECORDED_DATABASE_READER_H */
-

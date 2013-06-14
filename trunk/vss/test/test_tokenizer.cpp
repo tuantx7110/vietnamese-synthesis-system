@@ -1,14 +1,5 @@
-#include "../parser/tokenizer.h"
 
-#include <iostream>
-#include <vector>
-#include <cstdio>
-#include <fstream>
-#include <sstream>
-
-using namespace std;
-
-const string kDataPath = "data/";
+#include "test_tokenizer.h"
 
 void test_tokenizer() {
     ifstream ifs((kDataPath + "file1.vn").c_str());
