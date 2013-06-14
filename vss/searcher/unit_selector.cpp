@@ -6,7 +6,6 @@
  */
 
 #include "unit_selector.h"
-#include<cstdlib>
 
 UnitSelector::UnitSelector() {
     // TODO Auto-generated constructor stub

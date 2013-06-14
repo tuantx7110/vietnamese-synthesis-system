@@ -4,12 +4,14 @@
  *
  * Created on May 28, 2013, 11:57 AM
  */
-#include <string>
-#include <vector>
-using namespace std;
 
 #ifndef STRING_UTILS_H
 #define	STRING_UTILS_H
+
+#include <string>
+#include <vector>
+
+using namespace std;
 
 void trim_string(string& s);
 vector<string> split_string(string s);

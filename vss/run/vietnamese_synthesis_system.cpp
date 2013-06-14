@@ -44,7 +44,7 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
             if (!phrases[j].is_found()) {
                 continue;
             }
-            string path = RecordedDatabaseReader::kRecordedDatabasePath + "wave/" + phrases[j].get_chose_file_name();
+            string path = kRecordedDatabasePath + "wave/" + phrases[j].get_chose_file_name();
             int start = phrases[j].get_chose_start();
             int finish = phrases[j].get_chose_finish();
             WaveFile temp;

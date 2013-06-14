@@ -32,4 +32,3 @@ private:
 };
 
 #endif	/* BINARY_FILE_WRITER_H */
-

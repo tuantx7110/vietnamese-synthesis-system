@@ -5,20 +5,19 @@
  *      Author: quangpham
  */
 
+#ifndef UNIT_SEARCHER_H_
+#define UNIT_SEARCHER_H_
+
 #include <iostream>
 #include <vector>
 #include <string>
-
-using namespace std;
-
 #include "../units/searching_sentence.h"
 #include "../units/searching_phrase.h"
 #include "../units/recorded_sentence.h"
 #include "../units/recorded_phrase.h"
 #include "../units/recorded_syllable.h"
 
-#ifndef UNIT_SEARCHER_H_
-#define UNIT_SEARCHER_H_
+using namespace std;
 
 #define debug_unit_searcher 0
 

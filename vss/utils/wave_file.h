@@ -5,12 +5,13 @@
  *      Author: quangpham
  */
 
-#include <vector>
-#include <iostream>
-using namespace std;
-
 #ifndef WAVE_FILE_H_
 #define WAVE_FILE_H_
+
+#include <vector>
+#include <iostream>
+
+using namespace std;
 
 class WaveFile {
 public:

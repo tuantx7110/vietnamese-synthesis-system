@@ -5,16 +5,15 @@
  *      Author: quangpham
  */
 
+#ifndef SEARCHING_SENTENCE_H_
+#define SEARCHING_SENTENCE_H_
+
 #include <vector>
 #include <string>
-
-using namespace std;
-
 #include "searching_phrase.h"
 #include "../utils/string_utils.h"
 
-#ifndef SEARCHING_SENTENCE_H_
-#define SEARCHING_SENTENCE_H_
+using namespace std;
 
 class SearchingSentence {
 public:

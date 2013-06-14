@@ -5,21 +5,20 @@
  *      Author: quangpham
  */
 
+#ifndef INPUT_TEXT_READER_H_
+#define INPUT_TEXT_READER_H_
+
 #include <string>
 #include <vector>
-
-using namespace std;
-
 #include "../parser/tokenizer.h"
 #include "../utils/string_utils.h"
 #include "../utils/text_file_utils.h"
 #include "../units/searching_sentence.h"
 #include "../units/searching_phrase.h"
 
-#define debug_input_text_reader 1
+using namespace std;
 
-#ifndef INPUT_TEXT_READER_H_
-#define INPUT_TEXT_READER_H_
+#define debug_input_text_reader 1
 
 class InputTextReader {
 public:

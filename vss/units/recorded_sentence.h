@@ -5,16 +5,15 @@
  *      Author: quangpham
  */
 
+#ifndef RECORDED_SENTENCE_H_
+#define RECORDED_SENTENCE_H_
+
 #include <string>
 #include <vector>
-
-using namespace std;
-
 #include "recorded_phrase.h"
 #include "../utils/string_utils.h"
 
-#ifndef RECORDED_SENTENCE_H_
-#define RECORDED_SENTENCE_H_
+using namespace std;
 
 class RecordedSentence {
 public:

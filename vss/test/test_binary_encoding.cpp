@@ -12,7 +12,7 @@
 
 using namespace std;
 
-const string file_name = "data/test.bin";
+const string file_name = kDataPath + "test.bin";
 
 void test_binary_encoding() {
     test_unary();

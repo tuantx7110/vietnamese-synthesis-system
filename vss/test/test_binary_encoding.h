@@ -10,6 +10,7 @@
 
 #include "../encoding/binary_file_reader.h"
 #include "../encoding/binary_file_writer.h"
+#include "../utils/constants.h"
 
 #define debug_test_binary_encoding 1
 

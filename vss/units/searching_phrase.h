@@ -5,15 +5,14 @@
  *      Author: quangpham
  */
 
-#include <string>
-#include <vector>
-
-using namespace std;
-
-#include "../searcher/found_position.h"
-
 #ifndef SEARCHING_PHRASE_H_
 #define SEARCHING_PHRASE_H_
+
+#include <string>
+#include <vector>
+#include "../searcher/found_position.h"
+
+using namespace std;
 
 class SearchingPhrase {
 public:

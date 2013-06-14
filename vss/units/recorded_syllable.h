@@ -5,11 +5,12 @@
  *      Author: quangpham
  */
 
-#include <string>
-using namespace std;
-
 #ifndef RECORDED_SYLLABLE_H_
 #define RECORDED_SYLLABLE_H_
+
+#include <string>
+
+using namespace std;
 
 class RecordedSyllable {
 public:

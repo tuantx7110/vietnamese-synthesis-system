@@ -5,19 +5,20 @@
  *      Author: quangpham
  */
 
+#ifndef VIETNAMESE_SYNTHESIS_SYSTEM_H_
+#define VIETNAMESE_SYNTHESIS_SYSTEM_H_
+
 #include <iostream>
 #include <string>
-using namespace std;
-
 #include "../searcher/input_text_reader.h"
 #include "../searcher/unit_selector.h"
 #include "../utils/wave_file_utils.h"
 #include "../utils/wave_file.h"
+#include "../utils/constants.h"
+
+using namespace std;
 
 #define debug_vietnamese_synthesis_system 1
-
-#ifndef VIETNAMESE_SYNTHESIS_SYSTEM_H_
-#define VIETNAMESE_SYNTHESIS_SYSTEM_H_
 
 class VietnameseSynthesisSystem {
 public:
