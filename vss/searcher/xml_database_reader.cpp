@@ -5,16 +5,16 @@
  * Created on May 28, 2013, 9:19 AM
  */
 
-#include "recorded_database_reader.h"
+#include "xml_database_reader.h"
 
-RecordedDatabaseReader::RecordedDatabaseReader() {
+XmlDatabaseReader::XmlDatabaseReader() {
     init();
 }
 
-RecordedDatabaseReader::~RecordedDatabaseReader() {
+XmlDatabaseReader::~XmlDatabaseReader() {
 }
 
-void RecordedDatabaseReader::init() {
+void XmlDatabaseReader::init() {
     current_file_id = -1;
     current_file_name = "";
     all_sentences.clear();
@@ -23,15 +23,15 @@ void RecordedDatabaseReader::init() {
     current_syllable.init();
 }
 
-vector<RecordedSentence>& RecordedDatabaseReader::get_all_sentences() {
+vector<RecordedSentence>& XmlDatabaseReader::get_all_sentences() {
     return all_sentences;
 }
 
-RecordedSentence& RecordedDatabaseReader::get_sentence_at(int index) {
+RecordedSentence& XmlDatabaseReader::get_sentence_at(int index) {
     return all_sentences[index];
 }
 
-bool RecordedDatabaseReader::load_data() {
+bool XmlDatabaseReader::load_data() {
     ifstream ifs(kXmlRecordedDatabasePath.c_str());
 
     if (!ifs.is_open()) {
@@ -147,7 +147,7 @@ bool RecordedDatabaseReader::load_data() {
     return true;
 }
 
-bool RecordedDatabaseReader::read_attribute_value(string s, string& value) {
+bool XmlDatabaseReader::read_attribute_value(string s, string& value) {
     int from = first_index_of(s, "\"");
     int to = last_index_of(s, "\"");
 
@@ -160,7 +160,7 @@ bool RecordedDatabaseReader::read_attribute_value(string s, string& value) {
     return true;
 }
 
-bool RecordedDatabaseReader::read_content_value(string s, string& value) {
+bool XmlDatabaseReader::read_content_value(string s, string& value) {
     int from = first_index_of(s, ">");
     int to = first_index_of(s, "</");
 
@@ -173,7 +173,7 @@ bool RecordedDatabaseReader::read_content_value(string s, string& value) {
     return true;
 }
 
-bool RecordedDatabaseReader::read_file_details(vector<string> tokens) {
+bool XmlDatabaseReader::read_file_details(vector<string> tokens) {
     for (int i = 1; i < (int) tokens.size(); ++i) {
         string s = tokens[i];
         string value = "";
@@ -199,7 +199,7 @@ bool RecordedDatabaseReader::read_file_details(vector<string> tokens) {
     return true;
 }
 
-bool RecordedDatabaseReader::read_sentence_details(vector<string> tokens) {
+bool XmlDatabaseReader::read_sentence_details(vector<string> tokens) {
     for (int i = 1; i < (int) tokens.size(); ++i) {
         string s = tokens[i];
         string value = "";
@@ -221,7 +221,7 @@ bool RecordedDatabaseReader::read_sentence_details(vector<string> tokens) {
     return true;
 }
 
-bool RecordedDatabaseReader::read_phrase_details(vector<string> tokens) {
+bool XmlDatabaseReader::read_phrase_details(vector<string> tokens) {
     for (int i = 1; i < (int) tokens.size(); ++i) {
         string s = tokens[i];
         string value = "";
@@ -255,7 +255,7 @@ bool RecordedDatabaseReader::read_phrase_details(vector<string> tokens) {
     return true;
 }
 
-bool RecordedDatabaseReader::read_syllable_details(vector<string> tokens) {
+bool XmlDatabaseReader::read_syllable_details(vector<string> tokens) {
     for (int i = 1; i < (int) tokens.size(); ++i) {
         string s = tokens[i];
         string value = "";
@@ -332,7 +332,7 @@ bool RecordedDatabaseReader::read_syllable_details(vector<string> tokens) {
     return true;
 }
 
-bool RecordedDatabaseReader::read_phoneme_details(vector<string> tokens, string which_phoneme) {
+bool XmlDatabaseReader::read_phoneme_details(vector<string> tokens, string which_phoneme) {
     for (int i = 1; i < (int) tokens.size(); ++i) {
         string s = tokens[i];
         string value = "";
@@ -379,7 +379,7 @@ bool RecordedDatabaseReader::read_phoneme_details(vector<string> tokens, string 
     return true;
 }
 
-bool RecordedDatabaseReader::read_neighbor_syllable_details(vector<string> tokens, bool is_left_neighbor) {
+bool XmlDatabaseReader::read_neighbor_syllable_details(vector<string> tokens, bool is_left_neighbor) {
     for (int i = 0; i < (int) tokens.size(); ++i) {
         string s = tokens[i];
         string value = "";

@@ -16,7 +16,7 @@ UnitSelector::~UnitSelector() {
 }
 
 bool UnitSelector::init() {
-    if (!recorded_database_reader.load_data()) {
+    if (!binary_database_reader.load_data()) {
         cerr << "Cannot load recorded database description" << endl;
         return false;
     }
@@ -28,7 +28,7 @@ bool UnitSelector::init() {
 }
 
 vector<SearchingSentence>& UnitSelector::select(vector<SearchingSentence>& input_sentences) {
-    search_result = unit_searcher.search(input_sentences, recorded_database_reader.get_all_sentences());
+    search_result = unit_searcher.search(input_sentences, binary_database_reader.get_all_sentences());
     for (int i = 0; i < (int) search_result.size(); ++i) {
         select_sentence(search_result[i]);
     }
@@ -67,8 +67,8 @@ void UnitSelector::calculate_score(SearchingSentence& searching_sentence) {
 }
 
 int UnitSelector::score_between_two_candidate_positions(FoundPosition position1, FoundPosition position2) {
-    RecordedPhrase phrase1 = recorded_database_reader.get_sentence_at(position1.get_sentence_index()).get_phrase_at(position1.get_phrase_index());
-    RecordedPhrase phrase2 = recorded_database_reader.get_sentence_at(position2.get_sentence_index()).get_phrase_at(position2.get_phrase_index());
+    RecordedPhrase phrase1 = binary_database_reader.get_sentence_at(position1.get_sentence_index()).get_phrase_at(position1.get_phrase_index());
+    RecordedPhrase phrase2 = binary_database_reader.get_sentence_at(position2.get_sentence_index()).get_phrase_at(position2.get_phrase_index());
 
     RecordedSyllable syllable1 = phrase1.get_syllable_at(position1.get_finish_syllable_index());
     RecordedSyllable syllable2 = phrase2.get_syllable_at(position2.get_start_syllable_index());
@@ -156,9 +156,9 @@ void UnitSelector::find_best_path(SearchingSentence& searching_sentence) {
     while (i >= 0) {
         if (phrases[i].is_found()) {
             FoundPosition position = phrases[i].get_found_position(chose);
-            RecordedPhrase chose_phrase = recorded_database_reader.get_sentence_at(position.get_sentence_index()).get_phrase_at(position.get_phrase_index());
+            RecordedPhrase chose_phrase = binary_database_reader.get_sentence_at(position.get_sentence_index()).get_phrase_at(position.get_phrase_index());
             phrases[i].set_chose_candidate(chose);
-            phrases[i].set_chose_file_name(recorded_database_reader.get_sentence_at(position.get_sentence_index()).get_file_name());
+            phrases[i].set_chose_file_name(binary_database_reader.get_sentence_at(position.get_sentence_index()).get_file_name());
             phrases[i].set_chose_start(chose_phrase.get_syllable_at(position.get_start_syllable_index()).get_start_index());
             phrases[i].set_chose_finish(chose_phrase.get_syllable_at(position.get_finish_syllable_index()).get_finish_index());
         }
