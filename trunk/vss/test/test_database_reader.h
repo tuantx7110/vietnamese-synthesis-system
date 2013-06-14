@@ -9,11 +9,13 @@
 #define	TEST_DATABASE_READER_H
 
 #include "test_database_reader.h"
-#include "../searcher/recorded_database_reader.h"
+#include "../searcher/xml_database_reader.h"
+#include "../searcher/binary_database_reader.h"
 
 using namespace std;
 
-void test_database_reader();
+void test_xml_database_reader();
+void test_binary_database_reader();
 
 #endif	/* TEST_DATABASE_READER_H */
 

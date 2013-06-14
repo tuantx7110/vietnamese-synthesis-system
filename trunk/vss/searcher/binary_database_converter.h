@@ -8,7 +8,7 @@
 #ifndef BINARY_DATABASE_CONVERTER_H
 #define	BINARY_DATABASE_CONVERTER_H
 
-#include "recorded_database_reader.h"
+#include "xml_database_reader.h"
 #include "../encoding/binary_file_writer.h"
 #include "../utils/constants.h"
 
@@ -20,7 +20,7 @@ public:
     void convert_to_binary();
 
 private:
-    RecordedDatabaseReader database_reader;
+    XmlDatabaseReader database_reader;
     BinaryFileWriter database_writer;
 };
 

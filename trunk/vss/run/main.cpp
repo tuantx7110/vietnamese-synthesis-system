@@ -12,6 +12,7 @@
 #include "../test/test_wave_file_utils.h"
 #include "../test/test_binary_encoding.h"
 #include "../searcher/binary_database_converter.h"
+#include "../test/test_database_reader.h"
 
 using namespace std;
 
@@ -32,11 +33,8 @@ void run_system() {
 }
 
 int main() {
-    //    run_system();
-    //    test_binary_encoding();
-
-    BinaryDatabaseConverter converter;
-    converter.convert_to_binary();
-
+    run_system();
+    //  test_binary_encoding();
+    //	test_binary_database_reader();
     return 0;
 }

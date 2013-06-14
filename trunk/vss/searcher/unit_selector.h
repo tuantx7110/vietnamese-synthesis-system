@@ -9,7 +9,7 @@
 #define UNIT_SELECTOR_H_
 
 #include <cstdlib>
-#include "recorded_database_reader.h"
+#include "binary_database_reader.h"
 #include "unit_searcher.h"
 
 #define debug_unit_selector 1
@@ -23,7 +23,7 @@ public:
     vector<SearchingSentence>& select(vector<SearchingSentence>& input_sentences);
 
 private:
-    RecordedDatabaseReader recorded_database_reader;
+    BinaryDatabaseReader binary_database_reader;
     UnitSearcher unit_searcher;
     vector<SearchingSentence> search_result;
 

@@ -1,12 +1,12 @@
 /*
- * File:   recorded_database_reader.h
+ * File:   xml_database_reader.h
  * Author: quangpham
  *
  * Created on May 28, 2013, 9:19 AM
  */
 
-#ifndef RECORDED_DATABASE_READER_H
-#define	RECORDED_DATABASE_READER_H
+#ifndef XML_DATABASE_READER_H
+#define	XML_DATABASE_READER_H
 
 #include <string>
 #include <vector>
@@ -22,10 +22,10 @@ using namespace std;
 
 #define debug_recorded_database_reader 0
 
-class RecordedDatabaseReader {
+class XmlDatabaseReader {
 public:
-    RecordedDatabaseReader();
-    virtual ~RecordedDatabaseReader();
+    XmlDatabaseReader();
+    virtual ~XmlDatabaseReader();
 
     bool load_data();
     vector<RecordedSentence>& get_all_sentences();
@@ -50,4 +50,4 @@ private:
     bool read_neighbor_syllable_details(vector<string> tokens, bool is_left_neighbor);
 };
 
-#endif	/* RECORDED_DATABASE_READER_H */
+#endif	/* XML_DATABASE_READER_H */
