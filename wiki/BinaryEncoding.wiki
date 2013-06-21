@@ -99,6 +99,7 @@ Một số nguyên dương N được mã hoá như sau:
 Ví dụ:
 
 17 => 10 100 10001 0
+
 1000 => 11 1001 1111101000 0
 
 http://en.wikipedia.org/wiki/Elias_omega_coding
@@ -121,4 +122,3 @@ void write_recursive_omega(int number) {
     }
 }
 }}}
-
