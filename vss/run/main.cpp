@@ -33,7 +33,8 @@ void run_system() {
 }
 
 int main() {
-    run_system();
+	test_wave_file_utils();
+//    run_system();
     //  test_binary_encoding();
     //	test_binary_database_reader();
     return 0;

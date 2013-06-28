@@ -11,7 +11,7 @@ void test_wave_file_utils() {
     WaveFile wave_file;
 
     read_wave_file("/Users/quangpham/Desktop/test.wav", wave_file);
-    write_wave_file("/Users/quangpham/Desktop/result.wav", wave_file);
+//    write_wave_file("/Users/quangpham/Desktop/result.wav", wave_file);
 
     cout << wave_file.chunk_id << endl;
     cout << wave_file.chunk_size << endl;
