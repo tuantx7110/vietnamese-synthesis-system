@@ -5,11 +5,15 @@ package recordeddatabasemaker;
 
 import Player.ClipPlayer;
 import Player.GraphPainter;
+import Player.PhraseInfo;
+import Player.RecordedDatabase;
 import Player.SelectedPhrase;
 import Player.TextFile;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -23,6 +27,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JSlider;
+import javax.swing.JSpinner;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -35,13 +40,14 @@ public class RecordedDatabaseMakerView extends FrameView {
 
         initComponents();
 
+        recordedDatabase = new RecordedDatabase();
+
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                statusMessageLabel.setText("");
             }
         });
         messageTimer.setRepeats(false);
@@ -53,12 +59,9 @@ public class RecordedDatabaseMakerView extends FrameView {
 
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
-                statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
             }
         });
         idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
-        statusAnimationLabel.setIcon(idleIcon);
-        progressBar.setVisible(false);
 
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
@@ -68,26 +71,16 @@ public class RecordedDatabaseMakerView extends FrameView {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
                     if (!busyIconTimer.isRunning()) {
-                        statusAnimationLabel.setIcon(busyIcons[0]);
                         busyIconIndex = 0;
                         busyIconTimer.start();
                     }
-                    progressBar.setVisible(true);
-                    progressBar.setIndeterminate(true);
                 } else if ("done".equals(propertyName)) {
                     busyIconTimer.stop();
-                    statusAnimationLabel.setIcon(idleIcon);
-                    progressBar.setVisible(false);
-                    progressBar.setValue(0);
                 } else if ("message".equals(propertyName)) {
                     String text = (String) (evt.getNewValue());
-                    statusMessageLabel.setText((text == null) ? "" : text);
                     messageTimer.restart();
                 } else if ("progress".equals(propertyName)) {
                     int value = (Integer) (evt.getNewValue());
-                    progressBar.setVisible(true);
-                    progressBar.setIndeterminate(false);
-                    progressBar.setValue(value);
                 }
             }
         });
@@ -120,16 +113,15 @@ public class RecordedDatabaseMakerView extends FrameView {
         startLabel = new javax.swing.JLabel();
         startSpinner = new javax.swing.JSpinner();
         finishSpinner = new javax.swing.JSpinner();
-        audioContentTextArea = new java.awt.TextArea();
         currentPhraseLabel = new javax.swing.JLabel();
         currentPhraseTextField = new javax.swing.JTextField();
         minusButton = new javax.swing.JButton();
         plusButton = new javax.swing.JButton();
         savePhraseButton = new javax.swing.JButton();
-        addPhraseTextField = new javax.swing.JTextField();
-        addPhraseButton = new javax.swing.JButton();
         savedPhraseScrollPane = new javax.swing.JScrollPane();
         savedPhraseTextArea = new javax.swing.JTextArea();
+        textContentScrollPane = new javax.swing.JScrollPane();
+        textContentArea = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         openAudioItem = new javax.swing.JMenuItem();
@@ -140,9 +132,8 @@ public class RecordedDatabaseMakerView extends FrameView {
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
-        statusMessageLabel = new javax.swing.JLabel();
-        statusAnimationLabel = new javax.swing.JLabel();
-        progressBar = new javax.swing.JProgressBar();
+        textFileLabel = new javax.swing.JLabel();
+        audioFileLabel = new javax.swing.JLabel();
 
         mainPanel.setName("mainPanel"); // NOI18N
         mainPanel.setPreferredSize(new java.awt.Dimension(1024, 768));
@@ -157,7 +148,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         graphPanel.setLayout(graphPanelLayout);
         graphPanelLayout.setHorizontalGroup(
             graphPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 1437, Short.MAX_VALUE)
+            .add(0, 1430, Short.MAX_VALUE)
         );
         graphPanelLayout.setVerticalGroup(
             graphPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -166,9 +157,8 @@ public class RecordedDatabaseMakerView extends FrameView {
 
         frameSlider.setMajorTickSpacing(500);
         frameSlider.setMaximum(10000);
-        frameSlider.setMinorTickSpacing(50);
+        frameSlider.setMinorTickSpacing(1);
         frameSlider.setPaintLabels(true);
-        frameSlider.setPaintTicks(true);
         frameSlider.setSnapToTicks(true);
         frameSlider.setValue(0);
         frameSlider.setEnabled(false);
@@ -196,93 +186,122 @@ public class RecordedDatabaseMakerView extends FrameView {
 
         startSpinner.setEnabled(false);
         startSpinner.setName("startSpinner"); // NOI18N
+        startSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                startSpinnerStateChanged(evt);
+            }
+        });
 
         finishSpinner.setEnabled(false);
         finishSpinner.setName("finishSpinner"); // NOI18N
-
-        audioContentTextArea.setEditable(false);
-        audioContentTextArea.setName("audioContentTextArea"); // NOI18N
+        finishSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                finishSpinnerStateChanged(evt);
+            }
+        });
 
         currentPhraseLabel.setText(resourceMap.getString("currentPhraseLabel.text")); // NOI18N
         currentPhraseLabel.setName("currentPhraseLabel"); // NOI18N
 
         currentPhraseTextField.setEditable(false);
+        currentPhraseTextField.setFont(resourceMap.getFont("currentPhraseTextField.font")); // NOI18N
         currentPhraseTextField.setText(resourceMap.getString("currentPhraseTextField.text")); // NOI18N
         currentPhraseTextField.setName("currentPhraseTextField"); // NOI18N
 
         minusButton.setText(resourceMap.getString("minusButton.text")); // NOI18N
+        minusButton.setEnabled(false);
         minusButton.setName("minusButton"); // NOI18N
+        minusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minusButtonActionPerformed(evt);
+            }
+        });
 
         plusButton.setText(resourceMap.getString("plusButton.text")); // NOI18N
+        plusButton.setEnabled(false);
         plusButton.setName("plusButton"); // NOI18N
+        plusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plusButtonActionPerformed(evt);
+            }
+        });
 
         savePhraseButton.setText(resourceMap.getString("savePhraseButton.text")); // NOI18N
+        savePhraseButton.setEnabled(false);
         savePhraseButton.setName("savePhraseButton"); // NOI18N
-
-        addPhraseTextField.setText(resourceMap.getString("addPhraseTextField.text")); // NOI18N
-        addPhraseTextField.setName("addPhraseTextField"); // NOI18N
-
-        addPhraseButton.setText(resourceMap.getString("addPhraseButton.text")); // NOI18N
-        addPhraseButton.setName("addPhraseButton"); // NOI18N
+        savePhraseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savePhraseButtonActionPerformed(evt);
+            }
+        });
 
         savedPhraseScrollPane.setName("savedPhraseScrollPane"); // NOI18N
 
         savedPhraseTextArea.setColumns(20);
         savedPhraseTextArea.setEditable(false);
+        savedPhraseTextArea.setFont(resourceMap.getFont("savedPhraseTextArea.font")); // NOI18N
         savedPhraseTextArea.setRows(5);
         savedPhraseTextArea.setName("savedPhraseTextArea"); // NOI18N
         savedPhraseScrollPane.setViewportView(savedPhraseTextArea);
+
+        textContentScrollPane.setName("textContentScrollPane"); // NOI18N
+
+        textContentArea.setColumns(20);
+        textContentArea.setEditable(false);
+        textContentArea.setRows(5);
+        textContentArea.setName("textContentArea"); // NOI18N
+        textContentScrollPane.setViewportView(textContentArea);
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
+            .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(frameSlider, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1441, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(mainPanelLayout.createSequentialGroup()
-                                .add(playButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 133, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(36, 36, 36)
-                                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(finishLabel)
-                                    .add(startLabel))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(graphPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
                                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                    .add(finishSpinner)
-                                    .add(startSpinner, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                                .add(41, 41, 41)
-                                .add(currentPhraseLabel)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(currentPhraseTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 296, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(mainPanelLayout.createSequentialGroup()
-                                        .add(70, 70, 70)
-                                        .add(minusButton)
+                                        .add(playButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 133, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(36, 36, 36)
+                                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                            .add(finishLabel)
+                                            .add(startLabel))
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(plusButton)))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(savePhraseButton)
-                                .add(27, 27, 27)
-                                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(addPhraseButton)
-                                    .add(addPhraseTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
-                            .add(audioContentTextArea, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1218, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 213, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(graphPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                            .add(finishSpinner)
+                                            .add(startSpinner, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                                        .add(41, 41, 41)
+                                        .add(currentPhraseLabel)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(currentPhraseTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 296, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(mainPanelLayout.createSequentialGroup()
+                                                .add(70, 70, 70)
+                                                .add(minusButton)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                .add(plusButton)))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(savePhraseButton))
+                                    .add(textContentScrollPane))
+                                .add(18, 18, 18)
+                                .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, frameSlider, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1434, Short.MAX_VALUE))
+                        .add(20, 20, 20))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
-                        .add(audioContentTextArea, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                        .add(19, 19, 19)
+                        .add(textContentScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                        .add(18, 18, 18)
                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(mainPanelLayout.createSequentialGroup()
                                 .add(startSpinner, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -306,15 +325,10 @@ public class RecordedDatabaseMakerView extends FrameView {
                                         .add(finishLabel)))
                                 .add(8, 8, 8))
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
-                                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
-                                        .add(addPhraseTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .add(addPhraseButton))
-                                    .add(savePhraseButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .add(6, 6, 6)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED))
-                    .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+                                .add(savePhraseButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(6, 6, 6))))
+                    .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(frameSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(graphPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -367,37 +381,35 @@ public class RecordedDatabaseMakerView extends FrameView {
 
         statusPanelSeparator.setName("statusPanelSeparator"); // NOI18N
 
-        statusMessageLabel.setName("statusMessageLabel"); // NOI18N
+        textFileLabel.setText(resourceMap.getString("textFileLabel.text")); // NOI18N
+        textFileLabel.setName("textFileLabel"); // NOI18N
 
-        statusAnimationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        statusAnimationLabel.setName("statusAnimationLabel"); // NOI18N
-
-        progressBar.setName("progressBar"); // NOI18N
+        audioFileLabel.setText(resourceMap.getString("audioFileLabel.text")); // NOI18N
+        audioFileLabel.setName("audioFileLabel"); // NOI18N
 
         org.jdesktop.layout.GroupLayout statusPanelLayout = new org.jdesktop.layout.GroupLayout(statusPanel);
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1481, Short.MAX_VALUE)
             .add(statusPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 1285, Short.MAX_VALUE)
-                .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(statusAnimationLabel)
-                .addContainerGap())
+                .add(statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(statusPanelLayout.createSequentialGroup()
+                        .add(28, 28, 28)
+                        .add(statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(textFileLabel)
+                            .add(audioFileLabel)))
+                    .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 1439, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         statusPanelLayout.setVerticalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(statusPanelLayout.createSequentialGroup()
-                .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(textFileLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(statusMessageLabel)
-                    .add(statusAnimationLabel)
-                    .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(3, 3, 3))
+                .add(audioFileLabel)
+                .addContainerGap())
         );
 
         setComponent(mainPanel);
@@ -413,6 +425,9 @@ public class RecordedDatabaseMakerView extends FrameView {
         if (fileChooser.showOpenDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
             try {
                 File selectedFile = fileChooser.getSelectedFile();
+                currentAudioFile = selectedFile;
+
+                audioFileLabel.setText("Audio File: " + selectedFile.getAbsolutePath());
                 clipPlayer = new ClipPlayer(selectedFile);
 
                 graphPainter = new GraphPainter(selectedFile, graphPanel.getWidth(), graphPanel.getHeight());
@@ -423,11 +438,14 @@ public class RecordedDatabaseMakerView extends FrameView {
                 graphPainter.setLayout(new BorderLayout());
                 graphPainter.add(selectedPhrase, BorderLayout.WEST);
 
-                playButton.setEnabled(true);
+                startSpinner.setValue(0);
+                finishSpinner.setValue(0);
+                finishSpinner.setEnabled(true);
                 frameSlider.setEnabled(true);
-                frameSlider.setValue(frameSlider.getMinimum());
+
+                playButton.setEnabled(true);
             } catch (Exception ex) {
-                System.err.println(ex.getMessage());
+                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_openAudioItemActionPerformed
@@ -435,13 +453,31 @@ public class RecordedDatabaseMakerView extends FrameView {
     private void frameSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_frameSliderStateChanged
         JSlider slider = (JSlider) evt.getSource();
         int value = slider.getValue();
+        if (value - slider.getMinimum() >= graphPainter.getRemainFrames()) {
+            value = slider.getMinimum() + graphPainter.getRemainFrames() - 1;
+            slider.setValue(value);
+        }
+        updateSavePhraseButton();
         finishSpinner.setValue(value);
-        selectedPhrase.setWidth(graphPainter.getX(value - slider.getMinimum()));
+        int width = graphPainter.getX(value - slider.getMinimum());
+        if (width != selectedPhrase.getWidth()) {
+            selectedPhrase.setWidth(width);
+        }
     }//GEN-LAST:event_frameSliderStateChanged
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         clipPlayer.play(frameSlider.getMinimum(), frameSlider.getValue());
     }//GEN-LAST:event_playButtonActionPerformed
+
+    private String nextSyllable() {
+        String s = textContentArea.getText();
+        int index = s.indexOf(' ');
+        if (index == -1) {
+            return "";
+        }
+        textContentArea.setText(s.substring(index + 1).trim());
+        return s.substring(0, index).trim();
+    }
 
     private void openTextItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openTextItemActionPerformed
         JFileChooser fileChooser = new JFileChooser();
@@ -449,16 +485,140 @@ public class RecordedDatabaseMakerView extends FrameView {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files (*.txt)", "txt");
         fileChooser.setFileFilter(filter);
         if (fileChooser.showOpenDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            TextFile textFile = new TextFile(selectedFile);
-            textFile.readAll();
-            audioContentTextArea.setText(textFile.getContent());
+            try {
+                File selectedFile = fileChooser.getSelectedFile();
+                textFileLabel.setText("Text File: " + selectedFile.getAbsolutePath());
+                currentTextFile = selectedFile;
+
+                TextFile textFile = new TextFile(selectedFile);
+                textFile.readAll();
+                textContentArea.setText(textFile.getContent());
+                textContentArea.setEditable(true);
+                textContentArea.setLineWrap(true);
+                textContentArea.setWrapStyleWord(true);
+
+                String syllable = nextSyllable();
+                if (syllable.length() > 0) {
+                    currentPhraseTextField.setText(syllable);
+                    setNumberCurrentSyllables(1);
+                } else {
+                    currentPhraseTextField.setText("");
+                    setNumberCurrentSyllables(0);
+                }
+
+                updateSavePhraseButton();
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
         }
     }//GEN-LAST:event_openTextItemActionPerformed
+
+    private void finishSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_finishSpinnerStateChanged
+        JSpinner spinner = (JSpinner) evt.getSource();
+        int currentValue = (Integer) spinner.getValue();
+        frameSlider.setValue(currentValue);
+    }//GEN-LAST:event_finishSpinnerStateChanged
+
+    private void plusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusButtonActionPerformed
+        if (numberCurrentSyllables >= 4) {
+            return;
+        }
+        String syllable = nextSyllable();
+        if (syllable.length() > 0) {
+            currentPhraseTextField.setText((currentPhraseTextField.getText() + " " + syllable).trim());
+            setNumberCurrentSyllables(numberCurrentSyllables + 1);
+            updateSavePhraseButton();
+        }
+    }//GEN-LAST:event_plusButtonActionPerformed
+
+    private String lastSyllable() {
+        String s = currentPhraseTextField.getText();
+        if (numberCurrentSyllables == 1) {
+            currentPhraseTextField.setText("");
+            return s.trim();
+        }
+        int index = s.lastIndexOf(' ');
+        if (index == -1) {
+            return "";
+        }
+        currentPhraseTextField.setText(s.substring(0, index).trim());
+        return s.substring(index + 1).trim();
+    }
+
+    private void minusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusButtonActionPerformed
+        if (numberCurrentSyllables <= 0) {
+            return;
+        }
+        String syllable = lastSyllable();
+        if (syllable.length() > 0) {
+            textContentArea.setText((syllable + " " + textContentArea.getText()).trim());
+            setNumberCurrentSyllables(numberCurrentSyllables - 1);
+            updateSavePhraseButton();
+        }
+    }//GEN-LAST:event_minusButtonActionPerformed
+
+    private void setNumberCurrentSyllables(int number) {
+        numberCurrentSyllables = number;
+        if (number <= 0) {
+            minusButton.setEnabled(false);
+        } else {
+            minusButton.setEnabled(true);
+        }
+        if (number >= 4) {
+            plusButton.setEnabled(false);
+        } else {
+            plusButton.setEnabled(true);
+        }
+    }
+
+    private void savePhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePhraseButtonActionPerformed
+        String phraseContent = currentPhraseTextField.getText();
+        String fileName = currentAudioFile.getName();
+        int startFrame = (Integer) startSpinner.getValue();
+        int finishFrame = (Integer) finishSpinner.getValue();
+        recordedDatabase.addPhrase(new PhraseInfo(phraseContent, fileName, startFrame, finishFrame));
+
+        String currentPhrase = "[" + phraseContent + "] - [" + fileName + "] - [" + startFrame + ".." + finishFrame + "]";
+        if (savedPhraseTextArea.getText().length() > 0) {
+            savedPhraseTextArea.setText(savedPhraseTextArea.getText() + "\n" + currentPhrase);
+        } else {
+            savedPhraseTextArea.setText(currentPhrase);
+        }
+
+        String syllable = nextSyllable();
+        if (syllable.length() > 0) {
+            currentPhraseTextField.setText(syllable);
+            setNumberCurrentSyllables(1);
+        } else {
+            currentPhraseTextField.setText("");
+            setNumberCurrentSyllables(0);
+        }
+
+        try {
+            graphPainter.moveGraphLeft(finishFrame - startFrame + 1);
+            startSpinner.setValue(finishFrame + 1);
+            finishSpinner.setValue(finishFrame + 1);
+        } catch (Exception ex) {
+            Logger.getLogger(RecordedDatabaseMakerView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_savePhraseButtonActionPerformed
+
+    void updateSavePhraseButton() {
+        if (numberCurrentSyllables > 0 && frameSlider.getValue() > frameSlider.getMinimum()) {
+            savePhraseButton.setEnabled(true);
+        } else {
+            savePhraseButton.setEnabled(false);
+        }
+    }
+
+    private void startSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startSpinnerStateChanged
+        int value = (Integer) ((JSpinner) evt.getSource()).getValue();
+        frameSlider.setMinimum(value);
+        frameSlider.setMaximum(value + 10000);
+        frameSlider.setValue(value);
+    }//GEN-LAST:event_startSpinnerStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addPhraseButton;
-    private javax.swing.JTextField addPhraseTextField;
-    private java.awt.TextArea audioContentTextArea;
+    private javax.swing.JLabel audioFileLabel;
     private javax.swing.JLabel currentPhraseLabel;
     private javax.swing.JTextField currentPhraseTextField;
     private javax.swing.JLabel finishLabel;
@@ -472,16 +632,16 @@ public class RecordedDatabaseMakerView extends FrameView {
     private javax.swing.JMenuItem openTextItem;
     private javax.swing.JButton playButton;
     private javax.swing.JButton plusButton;
-    private javax.swing.JProgressBar progressBar;
     private javax.swing.JButton savePhraseButton;
     private javax.swing.JMenuItem saveResultItem;
     private javax.swing.JScrollPane savedPhraseScrollPane;
     private javax.swing.JTextArea savedPhraseTextArea;
     private javax.swing.JLabel startLabel;
     private javax.swing.JSpinner startSpinner;
-    private javax.swing.JLabel statusAnimationLabel;
-    private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
+    private javax.swing.JTextArea textContentArea;
+    private javax.swing.JScrollPane textContentScrollPane;
+    private javax.swing.JLabel textFileLabel;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;
     private final Timer busyIconTimer;
@@ -492,4 +652,8 @@ public class RecordedDatabaseMakerView extends FrameView {
     private GraphPainter graphPainter;
     private ClipPlayer clipPlayer;
     private SelectedPhrase selectedPhrase;
+    private int numberCurrentSyllables = 0;
+    private RecordedDatabase recordedDatabase;
+    private File currentAudioFile;
+    private File currentTextFile;
 }
