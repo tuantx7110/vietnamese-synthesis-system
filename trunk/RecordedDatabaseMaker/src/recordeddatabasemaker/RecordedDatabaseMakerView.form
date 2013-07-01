@@ -16,52 +16,54 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="frameSlider" alignment="1" pref="1441" max="32767" attributes="1"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="playButton" min="-2" pref="133" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="finishLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="startLabel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="finishSpinner" max="32767" attributes="1"/>
-                                      <Component id="startSpinner" alignment="0" pref="152" max="32767" attributes="1"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="currentPhraseLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="currentPhraseTextField" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                                          <Component id="minusButton" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="plusButton" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="savePhraseButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="addPhraseButton" min="-2" max="-2" attributes="0"/>
-                                      <Component id="addPhraseTextField" alignment="0" pref="213" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="audioContentTextArea" alignment="0" pref="1218" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="graphPanel" max="32767" attributes="1"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="savedPhraseScrollPane" min="-2" pref="213" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="graphPanel" alignment="1" max="32767" attributes="1"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="playButton" min="-2" pref="133" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="finishLabel" min="-2" max="-2" attributes="0"/>
+                                              <Component id="startLabel" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="finishSpinner" max="32767" attributes="1"/>
+                                              <Component id="startSpinner" alignment="0" pref="152" max="32767" attributes="1"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                          <Component id="currentPhraseLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="currentPhraseTextField" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                                  <Component id="minusButton" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="plusButton" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="savePhraseButton" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="textContentScrollPane" max="32767" attributes="1"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="savedPhraseScrollPane" pref="438" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="frameSlider" alignment="0" pref="1434" max="32767" attributes="1"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -69,10 +71,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="audioContentTextArea" pref="118" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Component id="textContentScrollPane" pref="81" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="startSpinner" min="-2" pref="36" max="-2" attributes="0"/>
@@ -103,21 +105,14 @@
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="addPhraseTextField" min="-2" pref="36" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="addPhraseButton" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="savePhraseButton" alignment="1" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="savePhraseButton" max="32767" attributes="0"/>
                                   <EmptySpace min="6" pref="6" max="6" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="savedPhraseScrollPane" pref="215" max="32767" attributes="0"/>
+                      <Component id="savedPhraseScrollPane" pref="177" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="frameSlider" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="graphPanel" min="-2" max="-2" attributes="0"/>
@@ -140,7 +135,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1437" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1430" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -154,9 +149,8 @@
           <Properties>
             <Property name="majorTickSpacing" type="int" value="500"/>
             <Property name="maximum" type="int" value="10000"/>
-            <Property name="minorTickSpacing" type="int" value="50"/>
+            <Property name="minorTickSpacing" type="int" value="1"/>
             <Property name="paintLabels" type="boolean" value="true"/>
-            <Property name="paintTicks" type="boolean" value="true"/>
             <Property name="snapToTicks" type="boolean" value="true"/>
             <Property name="value" type="int" value="0"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -193,18 +187,18 @@
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="startSpinner" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="startSpinnerStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSpinner" name="finishSpinner">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="finishSpinner" noResource="true"/>
           </Properties>
-        </Component>
-        <Component class="java.awt.TextArea" name="audioContentTextArea">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="name" type="java.lang.String" value="audioContentTextArea" noResource="true"/>
-          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="finishSpinnerStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="currentPhraseLabel">
           <Properties>
@@ -215,6 +209,7 @@
         <Component class="javax.swing.JTextField" name="currentPhraseTextField">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" resourceKey="currentPhraseTextField.font"/>
             <Property name="text" type="java.lang.String" resourceKey="currentPhraseTextField.text"/>
             <Property name="name" type="java.lang.String" value="currentPhraseTextField" noResource="true"/>
           </Properties>
@@ -222,32 +217,32 @@
         <Component class="javax.swing.JButton" name="minusButton">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="minusButton.text"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="minusButton" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="minusButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="plusButton">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="plusButton.text"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="plusButton" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="savePhraseButton">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="savePhraseButton.text"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="savePhraseButton" noResource="true"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="addPhraseTextField">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="addPhraseTextField.text"/>
-            <Property name="name" type="java.lang.String" value="addPhraseTextField" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="addPhraseButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="addPhraseButton.text"/>
-            <Property name="name" type="java.lang.String" value="addPhraseButton" noResource="true"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="savePhraseButtonActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="savedPhraseScrollPane">
           <Properties>
@@ -263,8 +258,29 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" resourceKey="savedPhraseTextArea.font"/>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="name" type="java.lang.String" value="savedPhraseTextArea" noResource="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JScrollPane" name="textContentScrollPane">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="textContentScrollPane" noResource="true"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="textContentArea">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="name" type="java.lang.String" value="textContentArea" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -362,29 +378,30 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusPanelSeparator" alignment="0" pref="1481" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="1285" max="32767" attributes="0"/>
-                  <Component id="progressBar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="textFileLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="audioFileLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="statusPanelSeparator" alignment="0" min="-2" pref="1439" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="statusPanelSeparator" min="-2" pref="2" max="-2" attributes="0"/>
+                  <Component id="statusPanelSeparator" min="-2" pref="4" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="textFileLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="statusMessageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="statusAnimationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="progressBar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  <Component id="audioFileLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -399,33 +416,17 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="statusMessageLabel">
+        <Component class="javax.swing.JLabel" name="textFileLabel">
           <Properties>
-            <Property name="name" type="java.lang.String" value="statusMessageLabel" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="textFileLabel.text"/>
+            <Property name="name" type="java.lang.String" value="textFileLabel" noResource="true"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="2"/>
-          </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="statusAnimationLabel">
+        <Component class="javax.swing.JLabel" name="audioFileLabel">
           <Properties>
-            <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="name" type="java.lang.String" value="statusAnimationLabel" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="audioFileLabel.text"/>
+            <Property name="name" type="java.lang.String" value="audioFileLabel" noResource="true"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="2"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JProgressBar" name="progressBar">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="progressBar" noResource="true"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="2"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -451,6 +452,6 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-27,0,0,5,-55"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-27,0,0,5,-62"/>
   </AuxValues>
 </Form>

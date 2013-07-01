@@ -26,7 +26,9 @@ public class GraphPainter extends JPanel {
     private int startFrame;
     private int finishFrame;
     private int Ox;
-    List<Point> points;
+    private List<Point> points;
+    private double xScale;
+    private double yScale;
 
     public GraphPainter(File waveFile, int width, int height) throws Exception {
         this.setBackground(Color.WHITE);
@@ -37,18 +39,16 @@ public class GraphPainter extends JPanel {
         wavFile = WavFile.openWavFile(waveFile);
         samples = new ArrayList<Integer>();
         Ox = height / 2;
+        xScale = ((double) getWidth() - 2 * BORDER_GAP) / (BUFFER_SIZE - 1);
+        yScale = ((double) getHeight() - 2 * BORDER_GAP) / (MAX_SCORE - 1);
+        points = new ArrayList<Point>();
+        startFrame = 0;
+        finishFrame = 0;
 
         initGraph();
     }
 
     public void moveGraphLeft(int numberFrames) throws Exception {
-        int a[] = new int[numberFrames];
-        numberFrames = wavFile.readFrames(a, numberFrames);
-
-        if (numberFrames == 0) {
-            return;
-        }
-
         for (int i = 0; i < numberFrames; ++i) {
             if (samples.isEmpty()) {
                 break;
@@ -56,6 +56,9 @@ public class GraphPainter extends JPanel {
             samples.remove(0);
             startFrame++;
         }
+
+        int a[] = new int[numberFrames];
+        numberFrames = wavFile.readFrames(a, numberFrames);
 
         for (int i = 0; i < numberFrames; ++i) {
             samples.add(a[i]);
@@ -85,21 +88,26 @@ public class GraphPainter extends JPanel {
         this.repaint();
     }
 
+    public int getRemainFrames() {
+        return samples.size();
+    }
+
     public int getX(int frame) {
-        return points.get(frame).x;
+        return (int) (frame * xScale + BORDER_GAP);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        if (samples.size() <= 1) {
+            return;
+        }
+
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        double xScale = ((double) getWidth() - 2 * BORDER_GAP) / (samples.size() - 1);
-        double yScale = ((double) getHeight() - 2 * BORDER_GAP) / (MAX_SCORE - 1);
-
-        points = new ArrayList<Point>();
+        points.clear();
         for (int i = 0; i < samples.size(); ++i) {
             int x = (int) (i * xScale + BORDER_GAP);
             int y = (int) (Ox - samples.get(i) * yScale);
