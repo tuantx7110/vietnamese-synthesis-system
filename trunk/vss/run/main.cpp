@@ -13,7 +13,7 @@
 #include "../test/test_binary_encoding.h"
 #include "../searcher/binary_database_converter.h"
 #include "../test/test_database_reader.h"
-
+#include "../test/test_synthesis_diphone.h"
 using namespace std;
 
 void run_system() {
@@ -33,7 +33,9 @@ void run_system() {
 }
 
 int main() {
-	test_wave_file_utils();
+
+	test_synthesis_diphone();
+//	test_wave_file_utils();
 //    run_system();
     //  test_binary_encoding();
     //	test_binary_database_reader();
