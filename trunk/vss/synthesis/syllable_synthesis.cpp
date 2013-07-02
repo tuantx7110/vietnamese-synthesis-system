@@ -29,13 +29,39 @@ void synthesis::read_vowel_tone(){
 
 //void read()
 
-void synthesis::create_wave_file(string in){
+WaveFile synthesis::create_wave_file(string in){
 	int tone = cut_tone(in);
+	WaveFile W;
+	W.init();
 	if(syllable_map[in].left_diphone_name.length() != 0){
 		cout << tone << " " << syllable_map[in].left_diphone_name << " " << syllable_map[in].right_diphone_name << endl;
+		int pos1 = diphone_map[syllable_map[in].left_diphone_name], pos2 = diphone_map[syllable_map[in].right_diphone_name];
+
+		add_data(W, pos1);
+		add_data(W, pos2);
+		return W;
 	}
-	else cout << "đéo có";
-	cout << "ss";
+	else {
+		cout << "đéo có";
+		return W;
+	}
+}
+
+void synthesis::add_data(WaveFile &W, int pos){
+	FILE *f = fopen("synthesis/diphone_data/HALFSYL.DAT", "rb");
+	char *header = new char[20000];
+	char *temp = new char[20000];
+
+	fseek(f, 0, SEEK_SET);
+	fread(header, 1, 20000, f);
+	fseek(f, (*(int *)(header + 8 * pos + 4 + 2)), SEEK_SET);
+	fread(temp, 1, 20000, f);
+	int diphone_len = *(int *)(temp + 3) - 8;
+	vector<short> Vtemp;
+	for(int i = 0; i < diphone_len; i += 2){
+		Vtemp.push_back(*(short *)(temp + 28 + i));
+	}
+	W.add_data(Vtemp);
 }
 
 int synthesis::cut_tone(string &in){
@@ -44,7 +70,7 @@ int synthesis::cut_tone(string &in){
 	wchar_t wch[1005];
 	char ch[1005];
 	CC.UTF8Decode2BytesUnicode(wch, in.c_str());
-	for(int i = 0; ; i++){
+	for(int i = 0; i < (int)wcslen(wch); i++){
 		if(tone_map[wch[i]].second != 0){
 			int ret = tone_map[wch[i]].second;
 			wch[i] = tone_map[wch[i]].first;
@@ -66,17 +92,15 @@ void synthesis::read_diphone_binary(){
 
 	for (int run = 0; run < val; ++run) {
 
-		char name[6];
+		char name[5];
 		fread(name, 1, 4, f);
 		name[4] = '\0';
-		if(run < 10) cout << name << " ";
-
+		diphone_map[(string)(name)] = run;
 		int pos;
 		fread(&pos, 4, 1, f);
-		if(run < 10) cout << pos << endl;
 	}
 
-	char *header;
+	char *header = new char[20000];
 	char ch;
 
 	fseek(f, 0, SEEK_SET);
@@ -84,10 +108,8 @@ void synthesis::read_diphone_binary(){
 
 	for(int run = 0; run < 1; run++){
 		fseek(f, (*(int *)(header + 8 * run + 4 + 2)), SEEK_SET);
-		cout << (*(int *)(header + 8 * run + 4 + 2)) << endl;
 		for(int i = 0; i < 27; i++){
 			fread(&ch, 1, 1, f);
-			cout << i << " " << (int)(ch) << endl;
 		}
 	}
 	fclose(f);
