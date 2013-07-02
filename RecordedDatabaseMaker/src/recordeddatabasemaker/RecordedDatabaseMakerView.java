@@ -359,6 +359,11 @@ public class RecordedDatabaseMakerView extends FrameView {
 
         saveResultItem.setText(resourceMap.getString("saveResultItem.text")); // NOI18N
         saveResultItem.setName("saveResultItem"); // NOI18N
+        saveResultItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveResultItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveResultItem);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(recordeddatabasemaker.RecordedDatabaseMakerApp.class).getContext().getActionMap(RecordedDatabaseMakerView.class, this);
@@ -516,7 +521,13 @@ public class RecordedDatabaseMakerView extends FrameView {
     private void finishSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_finishSpinnerStateChanged
         JSpinner spinner = (JSpinner) evt.getSource();
         int currentValue = (Integer) spinner.getValue();
-        frameSlider.setValue(currentValue);
+        if (currentValue > frameSlider.getMaximum()) {
+            spinner.setValue(frameSlider.getMaximum());
+        } else if (currentValue < frameSlider.getMinimum()) {
+            spinner.setValue(frameSlider.getMinimum());
+        } else {
+            frameSlider.setValue(currentValue);
+        }
     }//GEN-LAST:event_finishSpinnerStateChanged
 
     private void plusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusButtonActionPerformed
@@ -617,6 +628,25 @@ public class RecordedDatabaseMakerView extends FrameView {
         frameSlider.setMaximum(value + 10000);
         frameSlider.setValue(value);
     }//GEN-LAST:event_startSpinnerStateChanged
+
+    private void saveResultItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveResultItemActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Xml files (*.xml)", "xml");
+        fileChooser.setFileFilter(filter);
+        if (fileChooser.showSaveDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            if (!path.endsWith(".xml")) {
+                path = path + ".xml";
+            }
+            File selectedFile = new File(path);
+            try {
+                recordedDatabase.writeToXmlFile(selectedFile);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_saveResultItemActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel audioFileLabel;
     private javax.swing.JLabel currentPhraseLabel;
