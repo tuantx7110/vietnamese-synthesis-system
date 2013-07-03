@@ -314,18 +314,15 @@ public class RecordedDatabaseMakerView extends FrameView {
                                         .add(18, 18, 18)
                                         .add(savePhraseButton)
                                         .add(18, 18, 18)
-                                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                            .add(mainPanelLayout.createSequentialGroup()
-                                                .add(delButton)
-                                                .add(27, 27, 27))
-                                            .add(mainPanelLayout.createSequentialGroup()
-                                                .add(currentPhraseLabel)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)))
+                                        .add(currentPhraseLabel)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(mainPanelLayout.createSequentialGroup()
                                                 .add(minusButton)
                                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(plusButton))
+                                                .add(plusButton)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                .add(delButton))
                                             .add(currentPhraseTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 238, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
@@ -370,8 +367,7 @@ public class RecordedDatabaseMakerView extends FrameView {
                                         .add(mainPanelLayout.createSequentialGroup()
                                             .add(playRemainButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                                             .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                            .add(playButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(delButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                            .add(playButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                                     .add(8, 8, 8))
                                 .add(mainPanelLayout.createSequentialGroup()
                                     .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -383,7 +379,8 @@ public class RecordedDatabaseMakerView extends FrameView {
                                             .add(10, 10, 10)
                                             .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                                 .add(minusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(plusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                                .add(plusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .add(delButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                                         .add(mainPanelLayout.createSequentialGroup()
                                             .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                             .add(finishLabel)))))))
@@ -438,6 +435,11 @@ public class RecordedDatabaseMakerView extends FrameView {
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(recordeddatabasemaker.RecordedDatabaseMakerApp.class).getContext().getActionMap(RecordedDatabaseMakerView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
@@ -847,6 +849,15 @@ public class RecordedDatabaseMakerView extends FrameView {
     private void playRemainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playRemainButtonActionPerformed
         clipPlayer.play(frameSlider.getValue() + 1, frameSlider.getMaximum());
     }//GEN-LAST:event_playRemainButtonActionPerformed
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        if (resultChanged) {
+            int chose = JOptionPane.showConfirmDialog(mainPanel, "Your working result is not saved. Do you want to save current working result?");
+            if (chose == JOptionPane.YES_OPTION) {
+                doSaveResult();
+            }
+        }
+    }//GEN-LAST:event_exitMenuItemActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel audioFileLabel;
     private javax.swing.JLabel currentPhraseLabel;
