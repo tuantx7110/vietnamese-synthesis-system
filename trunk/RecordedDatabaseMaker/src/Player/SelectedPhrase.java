@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class SelectedPhrase extends JPanel {
 
     public SelectedPhrase(Dimension dimension) {
-        this.setBackground(new Color(255, 255, 0, 20));
+        this.setBackground(new Color(0, 0, 255, 60));
         this.setSize(dimension);
         this.setPreferredSize(dimension);
         this.setOpaque(false);

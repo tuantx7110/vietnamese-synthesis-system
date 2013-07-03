@@ -17,7 +17,7 @@ public class GraphPainter extends JPanel {
     public static final int BUFFER_SIZE = 10001;
     public static final int BORDER_GAP = 20;
     private static final int GRAPH_POINT_WIDTH = 1;
-    private static final int MAX_SCORE = 30000;
+    private static final int DEFAULT_MAX_SCORE = 30000;
     private static final Color GRAPH_COLOR = Color.BLACK;
     private static final Color GRAPH_POINT_COLOR = Color.BLACK;
     private static final Stroke GRAPH_STROKE = new BasicStroke(0.7f);
@@ -40,12 +40,18 @@ public class GraphPainter extends JPanel {
         samples = new ArrayList<Integer>();
         Ox = height / 2;
         xScale = ((double) getWidth() - 2 * BORDER_GAP) / (BUFFER_SIZE - 1);
-        yScale = ((double) getHeight() - 2 * BORDER_GAP) / (MAX_SCORE - 1);
+        yScale = ((double) getHeight() - 2 * BORDER_GAP) / (DEFAULT_MAX_SCORE - 1);
         points = new ArrayList<Point>();
         startFrame = 0;
         finishFrame = 0;
 
         initGraph();
+    }
+
+    public void changeMaxScore(int level) {
+        int maxScore = level * 10000 + DEFAULT_MAX_SCORE;
+        yScale = ((double) getHeight() - 2 * BORDER_GAP) / (maxScore - 1);
+        refresh();
     }
 
     public void moveGraphLeft(int numberFrames) throws Exception {
