@@ -19,11 +19,13 @@ public class ClipPlayer {
     }
 
     public void play(int start, int finish) {
-        if (start > finish || finish >= clip.getFrameLength()) {
+        if (start >= finish || finish >= clip.getFrameLength()) {
             return;
         }
 
         clip.setFramePosition(start);
+        clip.setLoopPoints(start, finish);
+
         clip.start();
 
         while (clip.isRunning() && clip.getFramePosition() <= finish) {
@@ -34,8 +36,6 @@ public class ClipPlayer {
             }
         }
 
-        if (clip.isRunning()) {
-            clip.stop();
-        }
+        clip.stop();
     }
 }

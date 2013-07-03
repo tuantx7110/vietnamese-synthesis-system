@@ -14,7 +14,7 @@ public class TextFile {
 
     public TextFile(File textFile) throws FileNotFoundException {
         this.textFile = textFile;
-        scanner = new Scanner(textFile);
+        scanner = new Scanner(textFile, "UTF-8");
     }
 
     public void readAll() {

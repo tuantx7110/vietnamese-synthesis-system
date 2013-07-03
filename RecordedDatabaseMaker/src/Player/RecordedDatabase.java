@@ -18,6 +18,10 @@ public class RecordedDatabase {
         allPhrases = new ArrayList<PhraseInfo>();
     }
 
+    public void clear() {
+        allPhrases.clear();
+    }
+
     public void addPhrase(PhraseInfo phrase) {
         allPhrases.add(phrase);
     }
@@ -26,12 +30,12 @@ public class RecordedDatabase {
         return allPhrases.get(0).getAudioFilename();
     }
 
-    private boolean isEndSentence(String s) {
+    public static boolean isEndSentence(String s) {
         s = s.trim();
         return (".".equals(s) || "?".equals(s) || "!".equals(s));
     }
 
-    private boolean isEndPhrase(String s) {
+    public static boolean isEndPhrase(String s) {
         s = s.trim();
         return (",".equals(s) || "-".equals(s));
     }
