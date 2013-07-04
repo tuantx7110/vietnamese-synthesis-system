@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 public class GraphPainter extends JPanel {
 
-    public static final int BUFFER_SIZE = 10001;
+    public static final int BUFFER_SIZE = 20001;
     public static final int BORDER_GAP = 20;
     private static final int GRAPH_POINT_WIDTH = 1;
     private static final int DEFAULT_MAX_SCORE = 30000;

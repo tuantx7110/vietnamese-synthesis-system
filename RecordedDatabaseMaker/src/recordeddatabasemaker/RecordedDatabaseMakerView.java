@@ -3,7 +3,7 @@
  */
 package recordeddatabasemaker;
 
-import Player.ClipPlayer;
+import Player.AudioPlayer;
 import Player.GraphPainter;
 import Player.PhraseInfo;
 import Player.RecordedDatabase;
@@ -44,6 +44,7 @@ public class RecordedDatabaseMakerView extends FrameView {
 
         recordedDatabase = new RecordedDatabase();
         resultChanged = false;
+        frameSlider.setMaximum(GraphPainter.BUFFER_SIZE);
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -162,7 +163,7 @@ public class RecordedDatabaseMakerView extends FrameView {
             .add(0, 384, Short.MAX_VALUE)
         );
 
-        frameSlider.setMajorTickSpacing(500);
+        frameSlider.setMajorTickSpacing(1000);
         frameSlider.setMaximum(10000);
         frameSlider.setMinorTickSpacing(1);
         frameSlider.setPaintLabels(true);
@@ -275,7 +276,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         ymaxSlider.setPaintLabels(true);
         ymaxSlider.setPaintTicks(true);
         ymaxSlider.setSnapToTicks(true);
-        ymaxSlider.setValue(2);
+        ymaxSlider.setValue(5);
         ymaxSlider.setEnabled(false);
         ymaxSlider.setName("ymaxSlider"); // NOI18N
         ymaxSlider.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -504,11 +505,12 @@ public class RecordedDatabaseMakerView extends FrameView {
                 currentAudioFile = selectedFile;
 
                 audioFileLabel.setText("Audio File: " + selectedFile.getAbsolutePath());
-                clipPlayer = new ClipPlayer(selectedFile);
+                player = new AudioPlayer(selectedFile);
 
                 graphPainter = new GraphPainter(selectedFile, graphPanel.getWidth(), graphPanel.getHeight());
                 graphPanel.add(graphPainter);
                 graphPainter.refresh();
+                graphPainter.changeMaxScore(ymaxSlider.getValue() - DEFAULT_LEVEL);
 
                 selectedPhrase = new SelectedPhrase(new Dimension(GraphPainter.BORDER_GAP, graphPanel.getHeight()));
                 graphPainter.setLayout(new BorderLayout());
@@ -551,7 +553,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     }//GEN-LAST:event_frameSliderStateChanged
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        clipPlayer.play(frameSlider.getMinimum(), frameSlider.getValue());
+        player.play(frameSlider.getMinimum(), frameSlider.getValue());
     }//GEN-LAST:event_playButtonActionPerformed
 
     private String nextSyllable() {
@@ -719,7 +721,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     private void startSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startSpinnerStateChanged
         int value = (Integer) ((JSpinner) evt.getSource()).getValue();
         frameSlider.setMinimum(value);
-        frameSlider.setMaximum(value + 10000);
+        frameSlider.setMaximum(value + GraphPainter.BUFFER_SIZE);
         frameSlider.setValue(value);
     }//GEN-LAST:event_startSpinnerStateChanged
 
@@ -751,8 +753,10 @@ public class RecordedDatabaseMakerView extends FrameView {
 
     private void ymaxSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ymaxSliderStateChanged
         JSlider slider = (JSlider) (evt.getSource());
-        int level = slider.getValue() - 2;
-        graphPainter.changeMaxScore(level);
+        int level = slider.getValue() - DEFAULT_LEVEL;
+        if (graphPainter != null) {
+            graphPainter.changeMaxScore(level);
+        }
     }//GEN-LAST:event_ymaxSliderStateChanged
 
     private void removeCurrentGraph() {
@@ -782,7 +786,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         savedPhraseTextArea.setEditable(false);
 
         frameSlider.setMinimum(0);
-        frameSlider.setMaximum(10000);
+        frameSlider.setMaximum(GraphPainter.BUFFER_SIZE);
         frameSlider.setValue(0);
         frameSlider.setEnabled(false);
 
@@ -801,7 +805,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         currentPhraseTextField.setEnabled(false);
 
         ymaxSlider.setEnabled(false);
-        ymaxSlider.setValue(2);
+        ymaxSlider.setValue(5);
 
         textFileLabel.setText("Text File:");
         audioFileLabel.setText("Audio File:");
@@ -811,7 +815,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         } else {
             recordedDatabase = new RecordedDatabase();
         }
-        clipPlayer = null;
+        player = null;
         numberCurrentSyllables = 0;
         currentAudioFile = null;
         currentTextFile = null;
@@ -847,7 +851,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     }//GEN-LAST:event_delButtonActionPerformed
 
     private void playRemainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playRemainButtonActionPerformed
-        clipPlayer.play(frameSlider.getValue() + 1, frameSlider.getMaximum());
+        player.play(frameSlider.getValue(), frameSlider.getMaximum());
     }//GEN-LAST:event_playRemainButtonActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -895,11 +899,12 @@ public class RecordedDatabaseMakerView extends FrameView {
     private int busyIconIndex = 0;
     private JDialog aboutBox;
     private GraphPainter graphPainter;
-    private ClipPlayer clipPlayer;
+    private AudioPlayer player;
     private SelectedPhrase selectedPhrase;
     private int numberCurrentSyllables = 0;
     private RecordedDatabase recordedDatabase;
     private File currentAudioFile;
     private File currentTextFile;
     private boolean resultChanged;
+    private static final int DEFAULT_LEVEL = 2;
 }
