@@ -44,7 +44,7 @@ public class RecordedDatabaseMakerView extends FrameView {
 
         recordedDatabase = new RecordedDatabase();
         resultChanged = false;
-        frameSlider.setMaximum(GraphPainter.BUFFER_SIZE);
+        frameSlider.setMaximum(GraphPainter.BUFFER_SIZE - 1);
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -129,6 +129,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         delButton = new javax.swing.JButton();
         ymaxSlider = new javax.swing.JSlider();
         playRemainButton = new javax.swing.JButton();
+        xmaxSlider = new javax.swing.JSlider();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         openAudioItem = new javax.swing.JMenuItem();
@@ -163,7 +164,7 @@ public class RecordedDatabaseMakerView extends FrameView {
             .add(0, 384, Short.MAX_VALUE)
         );
 
-        frameSlider.setMajorTickSpacing(1000);
+        frameSlider.setMajorTickSpacing(2000);
         frameSlider.setMaximum(10000);
         frameSlider.setMinorTickSpacing(1);
         frameSlider.setPaintLabels(true);
@@ -294,6 +295,19 @@ public class RecordedDatabaseMakerView extends FrameView {
             }
         });
 
+        xmaxSlider.setMaximum(4);
+        xmaxSlider.setMinorTickSpacing(1);
+        xmaxSlider.setPaintLabels(true);
+        xmaxSlider.setPaintTicks(true);
+        xmaxSlider.setSnapToTicks(true);
+        xmaxSlider.setValue(2);
+        xmaxSlider.setName("xmaxSlider"); // NOI18N
+        xmaxSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                xmaxSliderStateChanged(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -339,7 +353,9 @@ public class RecordedDatabaseMakerView extends FrameView {
                                             .add(org.jdesktop.layout.GroupLayout.LEADING, startSpinner, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
                                     .add(mainPanelLayout.createSequentialGroup()
                                         .add(textContentScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 745, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 120, Short.MAX_VALUE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 24, Short.MAX_VALUE)
+                                        .add(xmaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 93, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                         .add(ymaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE))
@@ -352,9 +368,10 @@ public class RecordedDatabaseMakerView extends FrameView {
                 .addContainerGap()
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(ymaxSlider, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .add(textContentScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, ymaxSlider, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, textContentScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .add(xmaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(mainPanelLayout.createSequentialGroup()
@@ -499,8 +516,14 @@ public class RecordedDatabaseMakerView extends FrameView {
         fileChooser.setMultiSelectionEnabled(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Wave files (*.wav)", "wav");
         fileChooser.setFileFilter(filter);
+        if (lastDirectory != null) {
+            fileChooser.setCurrentDirectory(lastDirectory);
+        }
+
         if (fileChooser.showOpenDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
             try {
+                lastDirectory = fileChooser.getCurrentDirectory();
+
                 File selectedFile = fileChooser.getSelectedFile();
                 currentAudioFile = selectedFile;
 
@@ -571,8 +594,13 @@ public class RecordedDatabaseMakerView extends FrameView {
         fileChooser.setMultiSelectionEnabled(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files (*.txt)", "txt");
         fileChooser.setFileFilter(filter);
+        if (lastDirectory != null) {
+            fileChooser.setCurrentDirectory(lastDirectory);
+        }
+
         if (fileChooser.showOpenDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
             try {
+                lastDirectory = fileChooser.getCurrentDirectory();
                 File selectedFile = fileChooser.getSelectedFile();
                 textFileLabel.setText("Text File: " + selectedFile.getAbsolutePath());
                 currentTextFile = selectedFile;
@@ -721,7 +749,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     private void startSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startSpinnerStateChanged
         int value = (Integer) ((JSpinner) evt.getSource()).getValue();
         frameSlider.setMinimum(value);
-        frameSlider.setMaximum(value + GraphPainter.BUFFER_SIZE);
+        frameSlider.setMaximum(value + graphPainter.getCurrentOxLen());
         frameSlider.setValue(value);
     }//GEN-LAST:event_startSpinnerStateChanged
 
@@ -730,8 +758,14 @@ public class RecordedDatabaseMakerView extends FrameView {
         fileChooser.setMultiSelectionEnabled(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Xml files (*.xml)", "xml");
         fileChooser.setFileFilter(filter);
+
+        if (lastDirectory != null) {
+            fileChooser.setCurrentDirectory(lastDirectory);
+        }
+
         int ret = fileChooser.showSaveDialog(mainPanel);
         if (ret == JFileChooser.APPROVE_OPTION) {
+            lastDirectory = fileChooser.getCurrentDirectory();
             String path = fileChooser.getSelectedFile().getAbsolutePath();
             if (!path.endsWith(".xml")) {
                 path = path + ".xml";
@@ -786,7 +820,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         savedPhraseTextArea.setEditable(false);
 
         frameSlider.setMinimum(0);
-        frameSlider.setMaximum(GraphPainter.BUFFER_SIZE);
+        frameSlider.setMaximum(GraphPainter.BUFFER_SIZE - 1);
         frameSlider.setValue(0);
         frameSlider.setEnabled(false);
 
@@ -862,6 +896,20 @@ public class RecordedDatabaseMakerView extends FrameView {
             }
         }
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void xmaxSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_xmaxSliderStateChanged
+        JSlider slider = (JSlider) evt.getSource();
+        int level = slider.getValue() - 2;
+        if (graphPainter != null) {
+            graphPainter.changeXScale(level);
+            frameSlider.setMaximum(frameSlider.getMinimum() + graphPainter.getCurrentOxLen());
+            if (frameSlider.getValue() > frameSlider.getMaximum()) {
+                frameSlider.setValue(frameSlider.getMaximum());
+            }
+            frameSlider.revalidate();
+            frameSlider.repaint();
+        }
+    }//GEN-LAST:event_xmaxSliderStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel audioFileLabel;
     private javax.swing.JLabel currentPhraseLabel;
@@ -890,6 +938,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     private javax.swing.JTextArea textContentArea;
     private javax.swing.JScrollPane textContentScrollPane;
     private javax.swing.JLabel textFileLabel;
+    private javax.swing.JSlider xmaxSlider;
     private javax.swing.JSlider ymaxSlider;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;
@@ -907,4 +956,5 @@ public class RecordedDatabaseMakerView extends FrameView {
     private File currentTextFile;
     private boolean resultChanged;
     private static final int DEFAULT_LEVEL = 2;
+    private File lastDirectory = null;
 }
