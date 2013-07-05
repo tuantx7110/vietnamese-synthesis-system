@@ -9,6 +9,7 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -21,8 +22,8 @@ public class GraphPainter extends JPanel {
     private static final Color GRAPH_COLOR = Color.BLACK;
     private static final Color GRAPH_POINT_COLOR = Color.BLACK;
     private static final Stroke GRAPH_STROKE = new BasicStroke(0.7f);
-    private List<Integer> samples;
-    private List<Integer> backup;
+    private LinkedList<Integer> samples;
+    private LinkedList<Integer> backup;
     private WavFile wavFile;
     private int Ox;
     private List<Point> points;
@@ -37,8 +38,8 @@ public class GraphPainter extends JPanel {
         this.setVisible(true);
 
         wavFile = WavFile.openWavFile(waveFile);
-        samples = new ArrayList<Integer>();
-        backup = new ArrayList<Integer>();
+        samples = new LinkedList<Integer>();
+        backup = new LinkedList<Integer>();
         Ox = height / 2;
         currentOxLen = BUFFER_SIZE - 1;
         xScale = ((double) getWidth() - 2 * BORDER_GAP) / currentOxLen;
@@ -69,8 +70,8 @@ public class GraphPainter extends JPanel {
             if (samples.isEmpty()) {
                 break;
             }
-            backup.add(samples.get(0));
-            samples.remove(0);
+            backup.addLast(samples.getFirst());
+            samples.removeFirst();
         }
 
         numberFrames = Math.min(numberFrames, BUFFER_SIZE + 10000 - samples.size());
@@ -79,7 +80,7 @@ public class GraphPainter extends JPanel {
             numberFrames = wavFile.readFrames(a, numberFrames);
 
             for (int i = 0; i < numberFrames; ++i) {
-                samples.add(a[i]);
+                samples.addLast(a[i]);
             }
         }
 
@@ -91,8 +92,8 @@ public class GraphPainter extends JPanel {
             if (backup.isEmpty()) {
                 break;
             }
-            samples.add(0, backup.get(backup.size() - 1));
-            backup.remove(backup.size() - 1);
+            samples.addFirst(backup.getLast());
+            backup.removeLast();
         }
 
         refresh();
@@ -131,13 +132,16 @@ public class GraphPainter extends JPanel {
             return;
         }
 
+        Object[] a = samples.toArray();
+
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         points.clear();
-        for (int i = 0; i < samples.size(); ++i) {
+        for (int i = 0; i < a.length; ++i) {
+            int val = (Integer) a[i];
             int x = (int) (i * xScale + BORDER_GAP);
-            int y = (int) (Ox - samples.get(i) * yScale);
+            int y = (int) (Ox - val * yScale);
             points.add(new Point(x, y));
         }
 
