@@ -66,14 +66,17 @@
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="textContentScrollPane" min="-2" pref="745" max="-2" attributes="1"/>
-                                          <EmptySpace pref="24" max="32767" attributes="0"/>
-                                          <Component id="xmaxSlider" min="-2" pref="93" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="undoButton" min="-2" max="-2" attributes="0"/>
+                                              <Component id="xmaxSlider" min="-2" pref="112" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="ymaxSlider" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="savedPhraseScrollPane" pref="517" max="32767" attributes="0"/>
+                                  <Component id="savedPhraseScrollPane" pref="513" max="32767" attributes="0"/>
                               </Group>
                               <Component id="frameSlider" alignment="0" pref="1434" max="32767" attributes="1"/>
                           </Group>
@@ -92,7 +95,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ymaxSlider" alignment="1" pref="183" max="32767" attributes="0"/>
                               <Component id="textContentScrollPane" alignment="1" pref="183" max="32767" attributes="0"/>
-                              <Component id="xmaxSlider" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="xmaxSlider" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="116" max="32767" attributes="0"/>
+                                  <Component id="undoButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -361,6 +368,16 @@
           </Properties>
           <Events>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="xmaxSliderStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="undoButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="undoButton.text"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="undoButton" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="undoButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

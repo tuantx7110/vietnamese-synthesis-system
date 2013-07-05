@@ -130,6 +130,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         ymaxSlider = new javax.swing.JSlider();
         playRemainButton = new javax.swing.JButton();
         xmaxSlider = new javax.swing.JSlider();
+        undoButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         openAudioItem = new javax.swing.JMenuItem();
@@ -308,6 +309,15 @@ public class RecordedDatabaseMakerView extends FrameView {
             }
         });
 
+        undoButton.setText(resourceMap.getString("undoButton.text")); // NOI18N
+        undoButton.setEnabled(false);
+        undoButton.setName("undoButton"); // NOI18N
+        undoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoButtonActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -353,12 +363,14 @@ public class RecordedDatabaseMakerView extends FrameView {
                                             .add(org.jdesktop.layout.GroupLayout.LEADING, startSpinner, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
                                     .add(mainPanelLayout.createSequentialGroup()
                                         .add(textContentScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 745, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 24, Short.MAX_VALUE)
-                                        .add(xmaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 93, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(undoButton)
+                                            .add(xmaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 112, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(ymaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE))
+                                .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
                             .add(org.jdesktop.layout.GroupLayout.LEADING, frameSlider, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1434, Short.MAX_VALUE))
                         .add(20, 20, 20))))
         );
@@ -371,7 +383,10 @@ public class RecordedDatabaseMakerView extends FrameView {
                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, ymaxSlider, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, textContentScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .add(xmaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
+                                .add(xmaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 116, Short.MAX_VALUE)
+                                .add(undoButton)))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(mainPanelLayout.createSequentialGroup()
@@ -700,7 +715,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         int finishFrame = (Integer) finishSpinner.getValue();
         recordedDatabase.addPhrase(new PhraseInfo(phraseContent, fileName, startFrame, finishFrame));
 
-        String currentPhrase = "[" + phraseContent + "] - [" + fileName + "] - [" + startFrame + ".." + finishFrame + "]";
+        String currentPhrase = "[" + phraseContent + "] - [" + startFrame + ".." + finishFrame + "]";
         if (savedPhraseTextArea.getText().length() > 0) {
             savedPhraseTextArea.setText(savedPhraseTextArea.getText() + "\n" + currentPhrase);
         } else {
@@ -731,6 +746,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         resultChanged = true;
         doCutPhrase(currentPhraseTextField.getText());
         updateCurrentPhrase();
+        undoButton.setEnabled(true);
     }//GEN-LAST:event_savePhraseButtonActionPerformed
 
     void updateSavePhraseButton() {
@@ -882,6 +898,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         } else {
             doCutPhrase("SIL");
         }
+        undoButton.setEnabled(true);
     }//GEN-LAST:event_delButtonActionPerformed
 
     private void playRemainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playRemainButtonActionPerformed
@@ -910,6 +927,47 @@ public class RecordedDatabaseMakerView extends FrameView {
             frameSlider.repaint();
         }
     }//GEN-LAST:event_xmaxSliderStateChanged
+
+    private boolean isDel(String content) {
+        return "SIL".equals(content);
+    }
+
+    private void undoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoButtonActionPerformed
+        PhraseInfo lastPhrase = recordedDatabase.removeLastPhrase();
+        if (lastPhrase == null) {
+            return;
+        }
+        int start = lastPhrase.getStartFrame();
+        int finish = lastPhrase.getFinishFrame();
+        String content = lastPhrase.getPhraseContent();
+        try {
+            graphPainter.moveGraphRight(finish - start + 1);
+
+            startSpinner.setValue(start);
+            finishSpinner.setValue(finish);
+
+            String saved = savedPhraseTextArea.getText();
+            int index = saved.lastIndexOf("\n");
+            if (index >= 0) {
+                saved = saved.substring(0, index);
+            } else {
+                saved = "";
+            }
+            savedPhraseTextArea.setText(saved);
+
+            if (!isDel(content)) {
+                String textContent = currentPhraseTextField.getText() + " " + textContentArea.getText();
+                textContentArea.setText(textContent);
+                currentPhraseTextField.setText(content);
+            }
+
+            if (recordedDatabase.isEmpty()) {
+                undoButton.setEnabled(false);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_undoButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel audioFileLabel;
     private javax.swing.JLabel currentPhraseLabel;
@@ -938,6 +996,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     private javax.swing.JTextArea textContentArea;
     private javax.swing.JScrollPane textContentScrollPane;
     private javax.swing.JLabel textFileLabel;
+    private javax.swing.JButton undoButton;
     private javax.swing.JSlider xmaxSlider;
     private javax.swing.JSlider ymaxSlider;
     // End of variables declaration//GEN-END:variables

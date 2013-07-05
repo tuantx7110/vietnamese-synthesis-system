@@ -22,9 +22,8 @@ public class GraphPainter extends JPanel {
     private static final Color GRAPH_POINT_COLOR = Color.BLACK;
     private static final Stroke GRAPH_STROKE = new BasicStroke(0.7f);
     private List<Integer> samples;
+    private List<Integer> backup;
     private WavFile wavFile;
-    private int startFrame;
-    private int finishFrame;
     private int Ox;
     private List<Point> points;
     private double xScale;
@@ -39,13 +38,12 @@ public class GraphPainter extends JPanel {
 
         wavFile = WavFile.openWavFile(waveFile);
         samples = new ArrayList<Integer>();
+        backup = new ArrayList<Integer>();
         Ox = height / 2;
         currentOxLen = BUFFER_SIZE - 1;
         xScale = ((double) getWidth() - 2 * BORDER_GAP) / currentOxLen;
         yScale = ((double) getHeight() - 2 * BORDER_GAP) / (DEFAULT_MAX_SCORE - 1);
         points = new ArrayList<Point>();
-        startFrame = 0;
-        finishFrame = 0;
 
         initGraph();
     }
@@ -71,16 +69,30 @@ public class GraphPainter extends JPanel {
             if (samples.isEmpty()) {
                 break;
             }
+            backup.add(samples.get(0));
             samples.remove(0);
-            startFrame++;
         }
 
-        int a[] = new int[numberFrames];
-        numberFrames = wavFile.readFrames(a, numberFrames);
+        numberFrames = Math.min(numberFrames, BUFFER_SIZE + 10000 - samples.size());
+        if (numberFrames > 0) {
+            int a[] = new int[numberFrames];
+            numberFrames = wavFile.readFrames(a, numberFrames);
 
+            for (int i = 0; i < numberFrames; ++i) {
+                samples.add(a[i]);
+            }
+        }
+
+        refresh();
+    }
+
+    public void moveGraphRight(int numberFrames) throws Exception {
         for (int i = 0; i < numberFrames; ++i) {
-            samples.add(a[i]);
-            finishFrame++;
+            if (backup.isEmpty()) {
+                break;
+            }
+            samples.add(0, backup.get(backup.size() - 1));
+            backup.remove(backup.size() - 1);
         }
 
         refresh();
@@ -94,9 +106,6 @@ public class GraphPainter extends JPanel {
         for (int i = 0; i < n; ++i) {
             samples.add(a[i]);
         }
-
-        setStartFrame(0);
-        setFinishFrame(n - 1);
 
         refresh();
     }
@@ -152,33 +161,5 @@ public class GraphPainter extends JPanel {
             int ovalH = GRAPH_POINT_WIDTH;
             g2.fillOval(x, y, ovalW, ovalH);
         }
-    }
-
-    /**
-     * @return the startFrame
-     */
-    public int getStartFrame() {
-        return startFrame;
-    }
-
-    /**
-     * @param startFrame the startFrame to set
-     */
-    public void setStartFrame(int startFrame) {
-        this.startFrame = startFrame;
-    }
-
-    /**
-     * @return the finishFrame
-     */
-    public int getFinishFrame() {
-        return finishFrame;
-    }
-
-    /**
-     * @param finishFrame the finishFrame to set
-     */
-    public void setFinishFrame(int finishFrame) {
-        this.finishFrame = finishFrame;
     }
 }

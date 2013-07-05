@@ -26,6 +26,19 @@ public class RecordedDatabase {
         allPhrases.add(phrase);
     }
 
+    public boolean isEmpty() {
+        return allPhrases.isEmpty();
+    }
+
+    public PhraseInfo removeLastPhrase() {
+        if (allPhrases.isEmpty()) {
+            return null;
+        }
+        PhraseInfo info = allPhrases.get(allPhrases.size() - 1);
+        allPhrases.remove(allPhrases.size() - 1);
+        return info;
+    }
+
     private String getFilename() {
         return allPhrases.get(0).getAudioFilename();
     }
