@@ -29,6 +29,7 @@ public class GraphPainter extends JPanel {
     private List<Point> points;
     private double xScale;
     private double yScale;
+    private int currentOxLen;
 
     public GraphPainter(File waveFile, int width, int height) throws Exception {
         this.setBackground(Color.WHITE);
@@ -39,7 +40,8 @@ public class GraphPainter extends JPanel {
         wavFile = WavFile.openWavFile(waveFile);
         samples = new ArrayList<Integer>();
         Ox = height / 2;
-        xScale = ((double) getWidth() - 2 * BORDER_GAP) / (BUFFER_SIZE - 1);
+        currentOxLen = BUFFER_SIZE - 1;
+        xScale = ((double) getWidth() - 2 * BORDER_GAP) / currentOxLen;
         yScale = ((double) getHeight() - 2 * BORDER_GAP) / (DEFAULT_MAX_SCORE - 1);
         points = new ArrayList<Point>();
         startFrame = 0;
@@ -51,6 +53,16 @@ public class GraphPainter extends JPanel {
     public void changeMaxScore(int level) {
         int maxScore = level * 10000 + DEFAULT_MAX_SCORE;
         yScale = ((double) getHeight() - 2 * BORDER_GAP) / (maxScore - 1);
+        refresh();
+    }
+
+    public int getCurrentOxLen() {
+        return currentOxLen;
+    }
+
+    public void changeXScale(int level) {
+        currentOxLen = level * 5000 + BUFFER_SIZE - 1;
+        xScale = ((double) getWidth() - 2 * BORDER_GAP) / currentOxLen;
         refresh();
     }
 
@@ -75,7 +87,7 @@ public class GraphPainter extends JPanel {
     }
 
     private void initGraph() throws Exception {
-        int n = BUFFER_SIZE;
+        int n = BUFFER_SIZE + 10000;
         int a[] = new int[n];
 
         n = wavFile.readFrames(a, n);
