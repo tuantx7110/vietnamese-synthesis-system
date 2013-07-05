@@ -90,7 +90,7 @@ public class RecordedDatabase {
 
     public void writeToXmlFile(File xmlFile) throws Exception {
         XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-        eventWriter = outputFactory.createXMLEventWriter(new FileOutputStream(xmlFile));
+        eventWriter = outputFactory.createXMLEventWriter(new FileOutputStream(xmlFile), "UTF-8");
         eventFactory = XMLEventFactory.newInstance();
 
         eventWriter.add(eventFactory.createStartDocument());
