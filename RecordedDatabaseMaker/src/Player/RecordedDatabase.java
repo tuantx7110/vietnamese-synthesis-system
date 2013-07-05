@@ -53,6 +53,54 @@ public class RecordedDatabase {
         return (",".equals(s) || "-".equals(s));
     }
 
+    public static boolean isSilence(String s) {
+        s = s.trim();
+        return ("NUL".equals(s) || "SIL".equals(s) || "SILS".equals(s));
+    }
+
+    public static String getInitial(String s) {
+        s = s.trim();
+        if ((s.length() == 0) || isEndPhrase(s) || isEndSentence(s) || isSilence(s)) {
+            return "NUL";
+        }
+
+        if (s.length() >= 2) {
+            String start = s.substring(0, 2).trim();
+            String[] a = new String[]{"gi", "gh", "tr", "ch", "ph", "th", "kh", "ng", "nh"};
+            for (int i = 0; i < a.length; ++i) {
+                if (a[i].equals(start)) {
+                    return start;
+                }
+            }
+        }
+
+        String start = s.substring(0, 1).trim();
+        if ("c".equals(start) || "k".equals(start) || "q".equals(start)) {
+            return "c";
+        }
+
+        return start;
+    }
+
+    public static String getFinal(String s) {
+        s = s.trim();
+        if ((s.length() == 0) || isEndPhrase(s) || isEndSentence(s) || isSilence(s)) {
+            return "NUL";
+        }
+
+        if (s.length() >= 2) {
+            String finish = s.substring(s.length() - 2).trim();
+            String[] a = new String[]{"ch", "ng", "nh"};
+            for (int i = 0; i < a.length; ++i) {
+                if (a[i].equals(finish)) {
+                    return finish;
+                }
+            }
+        }
+
+        return s.substring(s.length() - 1).trim();
+    }
+
     private void writePhrase(int phraseId, int start, int finish) throws Exception {
         eventWriter.add(eventFactory.createStartElement("", "", "phrase"));
         eventWriter.add(eventFactory.createAttribute("id_phrase", Integer.toString(phraseId)));
@@ -66,13 +114,23 @@ public class RecordedDatabase {
             eventWriter.add(eventFactory.createAttribute("start_index", Integer.toString(phrase.getStartFrame())));
             eventWriter.add(eventFactory.createAttribute("end_index", Integer.toString(phrase.getFinishFrame())));
 
+            eventWriter.add(eventFactory.createStartElement("", "", "initial"));
+            eventWriter.add(eventFactory.createCharacters(getInitial(phrase.getPhraseContent())));
+            eventWriter.add(eventFactory.createEndElement("", "", "initial"));
+
+            eventWriter.add(eventFactory.createStartElement("", "", "final"));
+            eventWriter.add(eventFactory.createCharacters(getFinal(phrase.getPhraseContent())));
+            eventWriter.add(eventFactory.createEndElement("", "", "final"));
+
             eventWriter.add(eventFactory.createStartElement("", "", "leftSyl"));
             String leftSyllable = (i <= 1 ? "NUL" : allPhrases.get(i - 1).getPhraseContent());
+            eventWriter.add(eventFactory.createAttribute("finalPhnm", getFinal(leftSyllable)));
             eventWriter.add(eventFactory.createCharacters(leftSyllable));
             eventWriter.add(eventFactory.createEndElement("", "", "leftSyl"));
 
             eventWriter.add(eventFactory.createStartElement("", "", "rightSyl"));
             String rightSyllable = (i >= allPhrases.size() - 1 ? "NUL" : allPhrases.get(i + 1).getPhraseContent());
+            eventWriter.add(eventFactory.createAttribute("initialPhnm", getInitial(rightSyllable)));
             eventWriter.add(eventFactory.createCharacters(rightSyllable));
             eventWriter.add(eventFactory.createEndElement("", "", "rightSyl"));
 
@@ -129,6 +187,7 @@ public class RecordedDatabase {
 
         eventWriter.add(eventFactory.createEndElement("", "", "root"));
         eventWriter.add(eventFactory.createEndDocument());
+
         eventWriter.close();
     }
 }

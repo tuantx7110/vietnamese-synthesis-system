@@ -13,8 +13,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -43,7 +41,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         initComponents();
 
         recordedDatabase = new RecordedDatabase();
-        resultChanged = false;
+        needToSave = false;
         frameSlider.setMaximum(GraphPainter.BUFFER_SIZE - 1);
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -563,6 +561,7 @@ public class RecordedDatabaseMakerView extends FrameView {
                 playRemainButton.setEnabled(true);
                 openAudioItem.setEnabled(false);
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
                 ex.printStackTrace();
             }
         }
@@ -591,7 +590,12 @@ public class RecordedDatabaseMakerView extends FrameView {
     }//GEN-LAST:event_frameSliderStateChanged
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        player.play(frameSlider.getMinimum(), frameSlider.getValue());
+        try {
+            player.play(frameSlider.getMinimum(), frameSlider.getValue());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_playButtonActionPerformed
 
     private String nextSyllable() {
@@ -640,7 +644,8 @@ public class RecordedDatabaseMakerView extends FrameView {
                 updateSavePhraseButton();
                 openTextItem.setEnabled(false);
             } catch (Exception ex) {
-                System.err.println(ex.getMessage());
+                JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
+                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_openTextItemActionPerformed
@@ -727,7 +732,8 @@ public class RecordedDatabaseMakerView extends FrameView {
             startSpinner.setValue(finishFrame + 1);
             finishSpinner.setValue(finishFrame + 1);
         } catch (Exception ex) {
-            Logger.getLogger(RecordedDatabaseMakerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -743,7 +749,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     }
 
     private void savePhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePhraseButtonActionPerformed
-        resultChanged = true;
+        needToSave = true;
         doCutPhrase(currentPhraseTextField.getText());
         updateCurrentPhrase();
         undoButton.setEnabled(true);
@@ -765,7 +771,11 @@ public class RecordedDatabaseMakerView extends FrameView {
     private void startSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startSpinnerStateChanged
         int value = (Integer) ((JSpinner) evt.getSource()).getValue();
         frameSlider.setMinimum(value);
-        frameSlider.setMaximum(value + graphPainter.getCurrentOxLen());
+        if (graphPainter != null) {
+            frameSlider.setMaximum(value + graphPainter.getCurrentOxLen());
+        } else {
+            frameSlider.setMaximum(value + GraphPainter.BUFFER_SIZE - 1);
+        }
         frameSlider.setValue(value);
     }//GEN-LAST:event_startSpinnerStateChanged
 
@@ -789,8 +799,9 @@ public class RecordedDatabaseMakerView extends FrameView {
             File selectedFile = new File(path);
             try {
                 recordedDatabase.writeToXmlFile(selectedFile);
-                resultChanged = false;
+                needToSave = false;
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
                 ex.printStackTrace();
             }
         }
@@ -870,11 +881,11 @@ public class RecordedDatabaseMakerView extends FrameView {
         currentAudioFile = null;
         currentTextFile = null;
         selectedPhrase = null;
-        resultChanged = false;
+        needToSave = false;
     }
 
     private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
-        if (resultChanged) {
+        if (needToSave) {
             int chose = JOptionPane.showConfirmDialog(mainPanel, "Your working result is not saved. Do you want to save current working result?");
             if (chose == JOptionPane.CANCEL_OPTION) {
                 return;
@@ -890,7 +901,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     }//GEN-LAST:event_newMenuItemActionPerformed
 
     private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
-        resultChanged = true;
+        needToSave = true;
         String phraseContent = currentPhraseTextField.getText();
         if (RecordedDatabase.isEndPhrase(phraseContent) || RecordedDatabase.isEndSentence(phraseContent)) {
             doCutPhrase(phraseContent);
@@ -902,11 +913,17 @@ public class RecordedDatabaseMakerView extends FrameView {
     }//GEN-LAST:event_delButtonActionPerformed
 
     private void playRemainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playRemainButtonActionPerformed
-        player.play(frameSlider.getValue(), frameSlider.getMaximum());
+        try {
+            player.play(frameSlider.getValue(), frameSlider.getMaximum());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_playRemainButtonActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        if (resultChanged) {
+        if (needToSave) {
             int chose = JOptionPane.showConfirmDialog(mainPanel, "Your working result is not saved. Do you want to save current working result?");
             if (chose == JOptionPane.YES_OPTION) {
                 doSaveResult();
@@ -963,8 +980,12 @@ public class RecordedDatabaseMakerView extends FrameView {
 
             if (recordedDatabase.isEmpty()) {
                 undoButton.setEnabled(false);
+                needToSave = false;
+            } else {
+                needToSave = true;
             }
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
             ex.printStackTrace();
         }
     }//GEN-LAST:event_undoButtonActionPerformed
@@ -1013,7 +1034,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     private RecordedDatabase recordedDatabase;
     private File currentAudioFile;
     private File currentTextFile;
-    private boolean resultChanged;
+    private boolean needToSave;
     private static final int DEFAULT_LEVEL = 2;
     private File lastDirectory = null;
 }
