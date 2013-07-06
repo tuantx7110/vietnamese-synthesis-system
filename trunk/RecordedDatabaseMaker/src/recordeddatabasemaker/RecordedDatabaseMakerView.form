@@ -35,7 +35,10 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="savePhraseButton" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="currentPhraseLabel" min="-2" max="-2" attributes="1"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="saveWaveButton" min="-2" max="-2" attributes="1"/>
+                                              <Component id="currentPhraseLabel" min="-2" pref="100" max="-2" attributes="1"/>
+                                          </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="1">
@@ -76,7 +79,7 @@
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="savedPhraseScrollPane" pref="513" max="32767" attributes="0"/>
+                                  <Component id="savedPhraseScrollPane" pref="499" max="32767" attributes="0"/>
                               </Group>
                               <Component id="frameSlider" alignment="0" pref="1434" max="32767" attributes="1"/>
                           </Group>
@@ -133,6 +136,7 @@
                                                   <Component id="minusButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                                   <Component id="plusButton" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                                   <Component id="delButton" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                                  <Component id="saveWaveButton" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -359,6 +363,7 @@
         <Component class="javax.swing.JSlider" name="xmaxSlider">
           <Properties>
             <Property name="maximum" type="int" value="4"/>
+            <Property name="minimum" type="int" value="-1"/>
             <Property name="minorTickSpacing" type="int" value="1"/>
             <Property name="paintLabels" type="boolean" value="true"/>
             <Property name="paintTicks" type="boolean" value="true"/>
@@ -378,6 +383,16 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="undoButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="saveWaveButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="saveWaveButton.text"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="saveWaveButton" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveWaveButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

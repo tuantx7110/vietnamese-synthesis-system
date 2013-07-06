@@ -9,6 +9,7 @@ import Player.PhraseInfo;
 import Player.RecordedDatabase;
 import Player.SelectedPhrase;
 import Player.TextFile;
+import Player.WavFile;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -129,6 +130,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         playRemainButton = new javax.swing.JButton();
         xmaxSlider = new javax.swing.JSlider();
         undoButton = new javax.swing.JButton();
+        saveWaveButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         openAudioItem = new javax.swing.JMenuItem();
@@ -295,6 +297,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         });
 
         xmaxSlider.setMaximum(4);
+        xmaxSlider.setMinimum(-1);
         xmaxSlider.setMinorTickSpacing(1);
         xmaxSlider.setPaintLabels(true);
         xmaxSlider.setPaintTicks(true);
@@ -313,6 +316,15 @@ public class RecordedDatabaseMakerView extends FrameView {
         undoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 undoButtonActionPerformed(evt);
+            }
+        });
+
+        saveWaveButton.setText(resourceMap.getString("saveWaveButton.text")); // NOI18N
+        saveWaveButton.setEnabled(false);
+        saveWaveButton.setName("saveWaveButton"); // NOI18N
+        saveWaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveWaveButtonActionPerformed(evt);
             }
         });
 
@@ -337,7 +349,9 @@ public class RecordedDatabaseMakerView extends FrameView {
                                         .add(18, 18, 18)
                                         .add(savePhraseButton)
                                         .add(18, 18, 18)
-                                        .add(currentPhraseLabel)
+                                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                            .add(saveWaveButton)
+                                            .add(currentPhraseLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(mainPanelLayout.createSequentialGroup()
@@ -368,7 +382,7 @@ public class RecordedDatabaseMakerView extends FrameView {
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(ymaxSlider, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
+                                .add(savedPhraseScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))
                             .add(org.jdesktop.layout.GroupLayout.LEADING, frameSlider, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1434, Short.MAX_VALUE))
                         .add(20, 20, 20))))
         );
@@ -411,7 +425,8 @@ public class RecordedDatabaseMakerView extends FrameView {
                                             .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                                 .add(minusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                 .add(plusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(delButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                                .add(delButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .add(saveWaveButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                                         .add(mainPanelLayout.createSequentialGroup()
                                             .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                             .add(finishLabel)))))))
@@ -758,8 +773,10 @@ public class RecordedDatabaseMakerView extends FrameView {
     void updateSavePhraseButton() {
         if (frameSlider.getValue() > frameSlider.getMinimum()) {
             delButton.setEnabled(true);
+            saveWaveButton.setEnabled(true);
         } else {
             delButton.setEnabled(false);
+            saveWaveButton.setEnabled(false);
         }
         if (numberCurrentSyllables > 0 && frameSlider.getValue() > frameSlider.getMinimum()) {
             savePhraseButton.setEnabled(true);
@@ -989,6 +1006,40 @@ public class RecordedDatabaseMakerView extends FrameView {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_undoButtonActionPerformed
+
+    private void saveWaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveWaveButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Wave files (*.wav)", "wav");
+        fileChooser.setFileFilter(filter);
+
+        if (lastDirectory != null) {
+            fileChooser.setCurrentDirectory(lastDirectory);
+        }
+
+        int ret = fileChooser.showSaveDialog(mainPanel);
+        if (ret == JFileChooser.APPROVE_OPTION) {
+            lastDirectory = fileChooser.getCurrentDirectory();
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            if (!path.endsWith(".wav")) {
+                path = path + ".wav";
+            }
+
+            File selectedFile = new File(path);
+            try {
+                WavFile currentWav = graphPainter.getWavFile();
+                int start = frameSlider.getMinimum();
+                int finish = frameSlider.getValue();
+                int numFrames = finish - start + 1;
+                WavFile writeWav = WavFile.newWavFile(selectedFile, currentWav.getNumChannels(), numFrames, currentWav.getValidBits(), currentWav.getSampleRate());
+                writeWav.writeFrames(graphPainter.getData(numFrames), numFrames);
+                writeWav.close();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_saveWaveButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel audioFileLabel;
     private javax.swing.JLabel currentPhraseLabel;
@@ -1009,6 +1060,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     private javax.swing.JButton plusButton;
     private javax.swing.JButton savePhraseButton;
     private javax.swing.JMenuItem saveResultItem;
+    private javax.swing.JButton saveWaveButton;
     private javax.swing.JScrollPane savedPhraseScrollPane;
     private javax.swing.JTextArea savedPhraseTextArea;
     private javax.swing.JLabel startLabel;

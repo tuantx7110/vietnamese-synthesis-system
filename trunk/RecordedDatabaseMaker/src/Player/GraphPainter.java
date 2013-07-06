@@ -9,6 +9,7 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -47,6 +48,23 @@ public class GraphPainter extends JPanel {
         points = new ArrayList<Point>();
 
         initGraph();
+    }
+
+    public WavFile getWavFile() {
+        return wavFile;
+    }
+
+    public int[] getData(int numberFrames) {
+        int[] a = new int[numberFrames];
+        Iterator<Integer> it = samples.iterator();
+        for (int i = 0; i < numberFrames; ++i) {
+            if (it.hasNext()) {
+                a[i] = it.next();
+            } else {
+                a[i] = 0;
+            }
+        }
+        return a;
     }
 
     public void changeMaxScore(int level) {
