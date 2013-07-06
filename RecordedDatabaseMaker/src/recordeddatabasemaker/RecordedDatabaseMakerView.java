@@ -21,6 +21,8 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
@@ -138,6 +140,8 @@ public class RecordedDatabaseMakerView extends FrameView {
         newMenuItem = new javax.swing.JMenuItem();
         saveResultItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
+        viewMenu = new javax.swing.JMenu();
+        audioInfoMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
@@ -303,6 +307,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         xmaxSlider.setPaintTicks(true);
         xmaxSlider.setSnapToTicks(true);
         xmaxSlider.setValue(2);
+        xmaxSlider.setEnabled(false);
         xmaxSlider.setName("xmaxSlider"); // NOI18N
         xmaxSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -490,6 +495,21 @@ public class RecordedDatabaseMakerView extends FrameView {
 
         menuBar.add(fileMenu);
 
+        viewMenu.setText(resourceMap.getString("viewMenu.text")); // NOI18N
+        viewMenu.setName("viewMenu"); // NOI18N
+
+        audioInfoMenuItem.setText(resourceMap.getString("audioInfoMenuItem.text")); // NOI18N
+        audioInfoMenuItem.setEnabled(false);
+        audioInfoMenuItem.setName("audioInfoMenuItem"); // NOI18N
+        audioInfoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                audioInfoMenuItemActionPerformed(evt);
+            }
+        });
+        viewMenu.add(audioInfoMenuItem);
+
+        menuBar.add(viewMenu);
+
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
         helpMenu.setName("helpMenu"); // NOI18N
 
@@ -571,10 +591,17 @@ public class RecordedDatabaseMakerView extends FrameView {
                 finishSpinner.setValue(0);
                 finishSpinner.setEnabled(true);
                 frameSlider.setEnabled(true);
+                xmaxSlider.setEnabled(true);
                 ymaxSlider.setEnabled(true);
                 playButton.setEnabled(true);
                 playRemainButton.setEnabled(true);
                 openAudioItem.setEnabled(false);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                PrintStream ps = new PrintStream(baos);
+                graphPainter.getWavFile().display(ps);
+                audioInfo = baos.toString();
+                audioInfoMenuItem.setEnabled(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(mainPanel, ex.getMessage());
                 ex.printStackTrace();
@@ -899,6 +926,8 @@ public class RecordedDatabaseMakerView extends FrameView {
         currentTextFile = null;
         selectedPhrase = null;
         needToSave = false;
+        audioInfo = "";
+        audioInfoMenuItem.setEnabled(false);
     }
 
     private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
@@ -1040,8 +1069,13 @@ public class RecordedDatabaseMakerView extends FrameView {
             }
         }
     }//GEN-LAST:event_saveWaveButtonActionPerformed
+
+    private void audioInfoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audioInfoMenuItemActionPerformed
+        JOptionPane.showMessageDialog(mainPanel, audioInfo);
+    }//GEN-LAST:event_audioInfoMenuItemActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel audioFileLabel;
+    private javax.swing.JMenuItem audioInfoMenuItem;
     private javax.swing.JLabel currentPhraseLabel;
     private javax.swing.JTextField currentPhraseTextField;
     private javax.swing.JButton delButton;
@@ -1070,6 +1104,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     private javax.swing.JScrollPane textContentScrollPane;
     private javax.swing.JLabel textFileLabel;
     private javax.swing.JButton undoButton;
+    private javax.swing.JMenu viewMenu;
     private javax.swing.JSlider xmaxSlider;
     private javax.swing.JSlider ymaxSlider;
     // End of variables declaration//GEN-END:variables
@@ -1089,4 +1124,5 @@ public class RecordedDatabaseMakerView extends FrameView {
     private boolean needToSave;
     private static final int DEFAULT_LEVEL = 2;
     private File lastDirectory = null;
+    private String audioInfo = "";
 }
