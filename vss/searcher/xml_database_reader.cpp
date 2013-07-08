@@ -117,7 +117,7 @@ bool XmlDatabaseReader::load_data() {
         }
 
         if (start_with_string(element, "<leftSyl") || start_with_string(element, "<rightSyl")) {
-            if (!read_neighbor_syllable_details(tokens, element == "<leftSyl")) {
+            if (!read_neighbor_syllable_details(tokens, start_with_string(element, "<leftSyl"))) {
                 cerr << "Cannot read neighbor syllable details" << endl;
                 return false;
             }
@@ -364,13 +364,13 @@ bool XmlDatabaseReader::read_phoneme_details(vector<string> tokens, string which
         return false;
     }
     if (debug_recorded_database_reader) cout << "     " << which_phoneme << " phoneme content = " << phoneme << endl;
-    if (which_phoneme == "initial") {
+    if (start_with_string(which_phoneme, "initial")) {
         current_syllable.set_initial_phoneme(phoneme);
-    } else if (which_phoneme == "middle") {
+    } else if (start_with_string(which_phoneme, "middle")) {
         current_syllable.set_middle_phoneme(phoneme);
-    } else if (which_phoneme == "nucleus") {
+    } else if (start_with_string(which_phoneme, "nucleus")) {
         current_syllable.set_nucleus_phoneme(phoneme);
-    } else if (which_phoneme == "final") {
+    } else if (start_with_string(which_phoneme, "final")) {
         current_syllable.set_final_phoneme(phoneme);
     } else {
         cerr << "Unknown phoneme" << endl;

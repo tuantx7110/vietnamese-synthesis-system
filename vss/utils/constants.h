@@ -27,7 +27,7 @@ const string kConfigurePath = "parser/configure/config.ini";
 const string kDictionaryPath = "parser/dictionary/";
 
 const string kRecordedDatabasePath = "searcher/recorded_database/";
-const string kXmlRecordedDatabasePath = kRecordedDatabasePath + "recorded_database_description.xml";
+const string kXmlRecordedDatabasePath = kRecordedDatabasePath + "baloteli_sap_cuoi.xml";//"recorded_database_description.xml";
 const string kBinaryRecordedDatabasePath = kRecordedDatabasePath + "recorded_database_description.bin";
 
 #endif	/* CONSTANTS_H */
