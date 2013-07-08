@@ -105,6 +105,7 @@ public class RecordedDatabase {
         eventWriter.add(eventFactory.createStartElement("", "", "phrase"));
         eventWriter.add(eventFactory.createAttribute("id_phrase", Integer.toString(phraseId)));
         eventWriter.add(eventFactory.createAttribute("length", Integer.toString(finish - start + 1)));
+        endline();
 
         for (int i = start; i <= finish; ++i) {
             PhraseInfo phrase = allPhrases.get(i);
@@ -113,36 +114,44 @@ public class RecordedDatabase {
             eventWriter.add(eventFactory.createAttribute("name", phrase.getPhraseContent()));
             eventWriter.add(eventFactory.createAttribute("start_index", Integer.toString(phrase.getStartFrame())));
             eventWriter.add(eventFactory.createAttribute("end_index", Integer.toString(phrase.getFinishFrame())));
+            endline();
 
             eventWriter.add(eventFactory.createStartElement("", "", "initial"));
             eventWriter.add(eventFactory.createCharacters(getInitial(phrase.getPhraseContent())));
             eventWriter.add(eventFactory.createEndElement("", "", "initial"));
+            endline();
 
             eventWriter.add(eventFactory.createStartElement("", "", "final"));
             eventWriter.add(eventFactory.createCharacters(getFinal(phrase.getPhraseContent())));
             eventWriter.add(eventFactory.createEndElement("", "", "final"));
+            endline();
 
             eventWriter.add(eventFactory.createStartElement("", "", "leftSyl"));
-            String leftSyllable = (i <= 1 ? "NUL" : allPhrases.get(i - 1).getPhraseContent());
+            String leftSyllable = (i <= 0 ? "NUL" : allPhrases.get(i - 1).getPhraseContent());
             eventWriter.add(eventFactory.createAttribute("finalPhnm", getFinal(leftSyllable)));
             eventWriter.add(eventFactory.createCharacters(leftSyllable));
             eventWriter.add(eventFactory.createEndElement("", "", "leftSyl"));
+            endline();
 
             eventWriter.add(eventFactory.createStartElement("", "", "rightSyl"));
             String rightSyllable = (i >= allPhrases.size() - 1 ? "NUL" : allPhrases.get(i + 1).getPhraseContent());
             eventWriter.add(eventFactory.createAttribute("initialPhnm", getInitial(rightSyllable)));
             eventWriter.add(eventFactory.createCharacters(rightSyllable));
             eventWriter.add(eventFactory.createEndElement("", "", "rightSyl"));
+            endline();
 
             eventWriter.add(eventFactory.createEndElement("", "", "syllable"));
+            endline();
         }
 
         eventWriter.add(eventFactory.createEndElement("", "", "phrase"));
+        endline();
     }
 
     private void writeSentence(int sentenceId, int start, int finish) throws Exception {
         eventWriter.add(eventFactory.createStartElement("", "", "sentence"));
         eventWriter.add(eventFactory.createAttribute("id_sen", Integer.toString(sentenceId)));
+        endline();
 
         int begin = start;
         int phraseId = 0;
@@ -157,6 +166,11 @@ public class RecordedDatabase {
         }
 
         eventWriter.add(eventFactory.createEndElement("", "", "sentence"));
+        endline();
+    }
+
+    private void endline() throws Exception {
+        eventWriter.add(eventFactory.createDTD("\n"));
     }
 
     public void writeToXmlFile(File xmlFile) throws Exception {
@@ -165,10 +179,13 @@ public class RecordedDatabase {
         eventFactory = XMLEventFactory.newInstance();
 
         eventWriter.add(eventFactory.createStartDocument());
+        endline();
         eventWriter.add(eventFactory.createStartElement("", "", "root"));
+        endline();
 
         eventWriter.add(eventFactory.createStartElement("", "", "file"));
         eventWriter.add(eventFactory.createAttribute("file_name", getFilename()));
+        endline();
 
         int n = allPhrases.size();
         int start = 0;
@@ -184,9 +201,13 @@ public class RecordedDatabase {
         }
 
         eventWriter.add(eventFactory.createEndElement("", "", "file"));
+        endline();
 
         eventWriter.add(eventFactory.createEndElement("", "", "root"));
+        endline();
+
         eventWriter.add(eventFactory.createEndDocument());
+        endline();
 
         eventWriter.close();
     }
