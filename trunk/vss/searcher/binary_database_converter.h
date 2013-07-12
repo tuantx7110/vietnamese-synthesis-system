@@ -15,12 +15,13 @@
 class BinaryDatabaseConverter {
 public:
     BinaryDatabaseConverter();
+    BinaryDatabaseConverter(string output_binary_file);
     virtual ~BinaryDatabaseConverter();
 
-    void convert_to_binary();
+    bool convertXmlDatabase(XmlDatabaseReader xml_database_reader);
+    bool convertXmlDatabase(vector<RecordedSentence>& all_sentences);
 
 private:
-    XmlDatabaseReader database_reader;
     BinaryFileWriter database_writer;
 };
 
