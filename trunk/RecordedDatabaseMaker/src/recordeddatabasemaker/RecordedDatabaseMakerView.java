@@ -10,6 +10,7 @@ import Player.RecordedDatabase;
 import Player.SelectedPhrase;
 import Player.TextFile;
 import Player.WavFile;
+import Player.XmlMerger;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -139,6 +140,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         openTextItem = new javax.swing.JMenuItem();
         newMenuItem = new javax.swing.JMenuItem();
         saveResultItem = new javax.swing.JMenuItem();
+        mergeAllXmlItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         viewMenu = new javax.swing.JMenu();
         audioInfoMenuItem = new javax.swing.JMenuItem();
@@ -482,6 +484,15 @@ public class RecordedDatabaseMakerView extends FrameView {
             }
         });
         fileMenu.add(saveResultItem);
+
+        mergeAllXmlItem.setText(resourceMap.getString("mergeAllXmlItem.text")); // NOI18N
+        mergeAllXmlItem.setName("mergeAllXmlItem"); // NOI18N
+        mergeAllXmlItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mergeAllXmlItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(mergeAllXmlItem);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(recordeddatabasemaker.RecordedDatabaseMakerApp.class).getContext().getActionMap(RecordedDatabaseMakerView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
@@ -1073,6 +1084,28 @@ public class RecordedDatabaseMakerView extends FrameView {
     private void audioInfoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audioInfoMenuItemActionPerformed
         JOptionPane.showMessageDialog(mainPanel, audioInfo);
     }//GEN-LAST:event_audioInfoMenuItemActionPerformed
+
+    private void mergeAllXmlItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mergeAllXmlItemActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(true);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("XML files (*.xml)", "xml");
+        fileChooser.setFileFilter(filter);
+        if (lastDirectory != null) {
+            fileChooser.setCurrentDirectory(lastDirectory);
+        }
+
+        if (fileChooser.showOpenDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
+            try {
+                lastDirectory = fileChooser.getCurrentDirectory();
+                File[] selectedFiles = fileChooser.getSelectedFiles();
+                XmlMerger xmlMerger = new XmlMerger(selectedFiles, lastDirectory.getAbsolutePath());
+                String statistic = xmlMerger.start();
+                JOptionPane.showMessageDialog(mainPanel, statistic);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_mergeAllXmlItemActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel audioFileLabel;
     private javax.swing.JMenuItem audioInfoMenuItem;
@@ -1085,6 +1118,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     private javax.swing.JPanel graphPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem mergeAllXmlItem;
     private javax.swing.JButton minusButton;
     private javax.swing.JMenuItem newMenuItem;
     private javax.swing.JMenuItem openAudioItem;
