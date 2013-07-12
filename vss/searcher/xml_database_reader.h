@@ -20,11 +20,12 @@
 
 using namespace std;
 
-#define debug_recorded_database_reader 0
+#define debug_recorded_database_reader 1
 
 class XmlDatabaseReader {
 public:
     XmlDatabaseReader();
+    XmlDatabaseReader(string xml_database_path);
     virtual ~XmlDatabaseReader();
 
     bool load_data();
@@ -32,6 +33,7 @@ public:
     RecordedSentence& get_sentence_at(int index);
 
 private:
+    string xml_database_path;
     int current_file_id;
     string current_file_name;
     RecordedSentence current_sentence;
@@ -39,7 +41,7 @@ private:
     RecordedSyllable current_syllable;
     vector<RecordedSentence> all_sentences;
 
-    void init();
+    void init(string xml_database_path);
     bool read_attribute_value(string s, string& value);
     bool read_content_value(string s, string& value);
     bool read_file_details(vector<string> tokens);

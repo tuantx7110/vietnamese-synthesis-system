@@ -75,19 +75,19 @@ void UnitSearcher::search_phrase(SearchingPhrase& searching_phrase, vector<Recor
             vector<RecordedSyllable>& recorded_syllables = recorded_phrases[j].get_all_syllables();
             int number_syllables = (int) recorded_syllables.size();
 
-            if (!searching_phrase.has_sub_phrase()) {
-                for (int k = 0; k < number_syllables; ++k) {
-                    if (searching_phrase.get_phrase_content() == recorded_syllables[k].get_syllable_name()) {
-                        searching_phrase.set_found(true);
-                        searching_phrase.add_found_position(FoundPosition(i, j, k, k));
+			for (int k = 0; k < number_syllables; ++k) {
+				if (searching_phrase.get_phrase_content() == recorded_syllables[k].get_syllable_name()) {
+					searching_phrase.set_found(true);
+					searching_phrase.add_found_position(FoundPosition(i, j, k, k));
 
-                        if (debug_unit_searcher) {
-                            cout << "Found phrase \"" << searching_phrase.get_phrase_content() << "\" at " << i << " " << j << " " << k << endl;
-                            cout << all_recorded_sentences[i].get_all_phrases()[j].get_phrase_content() << endl << endl;
-                        }
-                    }
-                }
-            } else {
+					if (debug_unit_searcher) {
+						cout << "Found phrase \"" << searching_phrase.get_phrase_content() << "\" at " << i << " " << j << " " << k << endl;
+						cout << all_recorded_sentences[i].get_all_phrases()[j].get_phrase_content() << endl << endl;
+					}
+				}
+			}
+
+			if (searching_phrase.has_sub_phrase()) {
                 vector<SearchingPhrase>& sub_phrases = searching_phrase.get_sub_phrases();
                 int number_sub_phrases = (int) sub_phrases.size();
 

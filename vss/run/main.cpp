@@ -14,6 +14,7 @@
 #include "../searcher/binary_database_converter.h"
 #include "../test/test_database_reader.h"
 #include "../test/test_synthesis_diphone.h"
+
 using namespace std;
 
 void run_system() {
@@ -33,10 +34,14 @@ void run_system() {
 }
 
 int main() {
+//	XmlDatabaseReader xmlReader;
+//	BinaryDatabaseConverter converter;
+//	converter.convertXmlDatabase(xmlReader);
 
-	test_synthesis_diphone();
+//	test_xml_database_reader();
+//	test_synthesis_diphone();
 //	test_wave_file_utils();
-//    run_system();
+    run_system();
     //  test_binary_encoding();
     //	test_binary_database_reader();
     return 0;

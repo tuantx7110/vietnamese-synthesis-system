@@ -32,7 +32,6 @@ private:
     void find_best_path(SearchingSentence& searching_sentence);
     int score_between_two_candidate_positions(FoundPosition position1, FoundPosition position2);
     int score_between_two_syllables(RecordedSyllable syllable1, RecordedSyllable syllable2, bool left_candidate);
-    int score_between_two_tones(int tone1, int tone2);
 };
 
 #endif /* UNIT_SELECTOR_H_ */
