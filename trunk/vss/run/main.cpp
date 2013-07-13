@@ -33,16 +33,14 @@ void run_system() {
     cout << endl << "SPEECH SYNTHESIZED SUCCESSFULLY!" << endl;
 }
 
-int main() {
-//	XmlDatabaseReader xmlReader;
-//	BinaryDatabaseConverter converter;
-//	converter.convertXmlDatabase(xmlReader);
+void convert_xml_to_binary() {
+	XmlDatabaseReader xmlReader;
+	BinaryDatabaseConverter converter;
+	converter.convertXmlDatabase(xmlReader);
+}
 
-//	test_xml_database_reader();
-//	test_synthesis_diphone();
-//	test_wave_file_utils();
-    run_system();
-    //  test_binary_encoding();
-    //	test_binary_database_reader();
+int main() {
+//	convert_xml_to_binary();
+	run_system();
     return 0;
 }
