@@ -18,6 +18,7 @@ public class DatabaseStatistic {
     private int numberSyllables;
     private TreeSet<String> syllableSet;
     private TreeSet<String> singleWordSet;
+    private TreeSet<String> multiWordSet;
 
     public DatabaseStatistic() {
         numberFiles = 0;
@@ -26,11 +27,21 @@ public class DatabaseStatistic {
         numberSyllables = 0;
         syllableSet = new TreeSet<String>();
         singleWordSet = new TreeSet<String>();
+        multiWordSet = new TreeSet<String>();
     }
 
     public void writeStatisticFile(File statisticFile) throws Exception {
-        PrintStream out = new PrintStream(statisticFile);
+        PrintStream out = new PrintStream(statisticFile, "UTF-8");
         display(out, true);
+    }
+
+    public void writeCompoundDictionary(File dictionaryFile) throws Exception {
+        PrintStream out = new PrintStream(dictionaryFile, "UTF-8");
+        Iterator<String> iterator = multiWordSet.iterator();
+        while (iterator.hasNext()) {
+            out.println(iterator.next());
+        }
+        out.close();
     }
 
     public void display(PrintStream out, boolean showSyllables) {
@@ -40,6 +51,7 @@ public class DatabaseStatistic {
         out.println("Number syllables: " + numberSyllables);
         out.println("Number distinct syllables: " + syllableSet.size());
         out.println("Number distinct single word: " + singleWordSet.size());
+        out.println("Number distinct compound word: " + multiWordSet.size());
         if (showSyllables) {
             out.println("======================== SYLLABLE LIST ========================");
             Iterator<String> iterator = syllableSet.iterator();
@@ -51,7 +63,13 @@ public class DatabaseStatistic {
             while (iterator.hasNext()) {
                 out.println(iterator.next());
             }
+            out.println("======================== COMPOUND WORD LIST ========================");
+            iterator = multiWordSet.iterator();
+            while (iterator.hasNext()) {
+                out.println(iterator.next());
+            }
         }
+        out.close();
     }
 
     public void addFileUnit(FileUnit fileUnit) {
@@ -97,9 +115,11 @@ public class DatabaseStatistic {
             return;
         }
         ++numberSyllables;
-        syllableSet.add(syllableName);
+        syllableSet.add(syllableName.replaceAll("_", " "));
         if (syllableName.indexOf("_") < 0) {
             singleWordSet.add(syllableName);
+        } else {
+            multiWordSet.add(syllableName.replaceAll("_", " "));
         }
     }
 }

@@ -21,7 +21,7 @@ public class RightSyllableUnit {
      * @param name the name to set
      */
     public void setName(String name) {
-        this.name = name.trim().replaceAll(" ", "_");
+        this.name = name.trim().replaceAll(" ", "_").toLowerCase();
     }
 
     /**
