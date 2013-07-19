@@ -98,7 +98,7 @@ int UnitSelector::score_between_two_syllables(RecordedSyllable syllable1, Record
         score = (syllable1.get_initial_phoneme() == syllable2.get_initial_phoneme()) ? 100 : 1000;
     }
 
-    return 2000 * score;
+    return score;
 }
 
 void UnitSelector::find_best_path(SearchingSentence& searching_sentence) {
