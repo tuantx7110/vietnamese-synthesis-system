@@ -36,7 +36,6 @@ WaveFile synthesis::create_wave_file(string in){
 	if(syllable_map[in].left_diphone_name.length() != 0){
 		cout << tone << " " << syllable_map[in].left_diphone_name << " " << syllable_map[in].right_diphone_name << endl;
 		int pos1 = diphone_map[syllable_map[in].left_diphone_name], pos2 = diphone_map[syllable_map[in].right_diphone_name];
-
 		add_data(W, pos1);
 		add_data(W, pos2);
 		return W;
@@ -57,6 +56,7 @@ void synthesis::add_data(WaveFile &W, int pos){
 	fseek(f, (*(int *)(header + 8 * pos + 4 + 2)), SEEK_SET);
 	fread(temp, 1, 20000, f);
 	int diphone_len = *(int *)(temp + 3) - 8;
+	cout << diphone_len << endl;
 	vector<short> Vtemp;
 	for(int i = 0; i < diphone_len; i += 2){
 		Vtemp.push_back(*(short *)(temp + 28 + i));
@@ -65,7 +65,6 @@ void synthesis::add_data(WaveFile &W, int pos){
 }
 
 int synthesis::cut_tone(string &in){
-
 	CharCodec CC;
 	wchar_t wch[1005];
 	char ch[1005];
