@@ -11,12 +11,12 @@
 using namespace std;
 
 struct syllable{
+	string left_diphone_name, right_diphone_name;
 	syllable(){};
 	syllable(string _left_diphone_name,string _right_diphone_name){
 		left_diphone_name = _left_diphone_name;
 		right_diphone_name = _right_diphone_name;
 	}
-	string left_diphone_name, right_diphone_name;
 };
 
 struct synthesis{
