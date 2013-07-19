@@ -246,7 +246,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="currentPhraseTextField">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" resourceKey="currentPhraseTextField.font"/>
             <Property name="foreground" type="java.awt.Color" resourceKey="currentPhraseTextField.foreground"/>
             <Property name="text" type="java.lang.String" resourceKey="currentPhraseTextField.text"/>

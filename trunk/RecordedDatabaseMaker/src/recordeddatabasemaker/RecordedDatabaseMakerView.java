@@ -219,7 +219,6 @@ public class RecordedDatabaseMakerView extends FrameView {
         currentPhraseLabel.setText(resourceMap.getString("currentPhraseLabel.text")); // NOI18N
         currentPhraseLabel.setName("currentPhraseLabel"); // NOI18N
 
-        currentPhraseTextField.setEditable(false);
         currentPhraseTextField.setFont(resourceMap.getFont("currentPhraseTextField.font")); // NOI18N
         currentPhraseTextField.setForeground(resourceMap.getColor("currentPhraseTextField.foreground")); // NOI18N
         currentPhraseTextField.setText(resourceMap.getString("currentPhraseTextField.text")); // NOI18N
@@ -658,6 +657,7 @@ public class RecordedDatabaseMakerView extends FrameView {
             return "";
         }
         textContentArea.setText(s.substring(index + 1).trim());
+        textContentArea.setCaretPosition(0);
         return s.substring(0, index).trim();
     }
 
@@ -680,6 +680,7 @@ public class RecordedDatabaseMakerView extends FrameView {
                 TextFile textFile = new TextFile(selectedFile);
                 textFile.readAll();
                 textContentArea.setText(textFile.getContent());
+                textContentArea.setCaretPosition(0);
                 textContentArea.setEditable(true);
                 textContentArea.setEnabled(true);
                 textContentArea.setLineWrap(true);
@@ -716,7 +717,7 @@ public class RecordedDatabaseMakerView extends FrameView {
     }//GEN-LAST:event_finishSpinnerStateChanged
 
     private void plusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusButtonActionPerformed
-        if (numberCurrentSyllables >= 4) {
+        if (numberCurrentSyllables >= 5) {
             return;
         }
         String syllable = nextSyllable();
@@ -748,6 +749,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         String syllable = lastSyllable();
         if (syllable.length() > 0) {
             textContentArea.setText((syllable + " " + textContentArea.getText()).trim());
+            textContentArea.setCaretPosition(0);
             setNumberCurrentSyllables(numberCurrentSyllables - 1);
             updateSavePhraseButton();
         }
@@ -760,7 +762,7 @@ public class RecordedDatabaseMakerView extends FrameView {
         } else {
             minusButton.setEnabled(true);
         }
-        if (number >= 4) {
+        if (number >= 5) {
             plusButton.setEnabled(false);
         } else {
             plusButton.setEnabled(true);
@@ -918,7 +920,8 @@ public class RecordedDatabaseMakerView extends FrameView {
         minusButton.setEnabled(false);
         savePhraseButton.setEnabled(false);
         currentPhraseTextField.setText("");
-        currentPhraseTextField.setEnabled(false);
+        currentPhraseTextField.setEnabled(true);
+        currentPhraseTextField.setEditable(true);
 
         ymaxSlider.setEnabled(false);
         ymaxSlider.setValue(5);
@@ -1032,6 +1035,7 @@ public class RecordedDatabaseMakerView extends FrameView {
             if (!isDel(content)) {
                 String textContent = currentPhraseTextField.getText() + " " + textContentArea.getText();
                 textContentArea.setText(textContent);
+                textContentArea.setCaretPosition(0);
                 currentPhraseTextField.setText(content);
             }
 
