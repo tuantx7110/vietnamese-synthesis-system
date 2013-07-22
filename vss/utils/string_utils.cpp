@@ -115,16 +115,3 @@ bool is_long_silence(string s) {
     }
     return false;
 }
-
-string to_string(int number, int len) {
-    stringstream ss;
-    ss << number;
-    string ret;
-    ss >> ret;
-    if (len > 0) {
-        while ((int) ret.length() < len) {
-            ret = "0" + ret;
-        }
-    }
-    return ret;
-}

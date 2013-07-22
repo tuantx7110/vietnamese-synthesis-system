@@ -14,7 +14,6 @@
 #include "../searcher/binary_database_converter.h"
 #include "../test/test_database_reader.h"
 #include "../test/test_synthesis_diphone.h"
-
 using namespace std;
 
 void run_system() {
@@ -33,14 +32,12 @@ void run_system() {
     cout << endl << "SPEECH SYNTHESIZED SUCCESSFULLY!" << endl;
 }
 
-void convert_xml_to_binary() {
-	XmlDatabaseReader xmlReader;
-	BinaryDatabaseConverter converter;
-	converter.convertXmlDatabase(xmlReader);
-}
-
 int main() {
-//	convert_xml_to_binary();
-	run_system();
+
+//	test_synthesis_diphone();
+//	test_wave_file_utils();
+    run_system();
+    //  test_binary_encoding();
+    //	test_binary_database_reader();
     return 0;
 }

@@ -81,7 +81,7 @@ bool InputTextReader::parse_input_text() {
             if (!sentence_empty) {
                 searching_phrase.init();
                 searching_phrase.set_phrase_level(1);
-                searching_phrase.set_phrase_content((i == number_tokens || is_long_silence(tokens[i])) ? "." : ",");
+                searching_phrase.set_phrase_content((i == number_tokens || is_long_silence(tokens[i])) ? "SILS" : "SIL");
                 searching_sentence.add_searching_phrase(searching_phrase);
 
                 all_searching_sentences.push_back(searching_sentence);
