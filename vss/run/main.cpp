@@ -32,8 +32,13 @@ void run_system() {
     cout << endl << "SPEECH SYNTHESIZED SUCCESSFULLY!" << endl;
 }
 
-int main() {
+void convert_database() {
+	BinaryDatabaseConverter converter;
+	converter.convert_to_binary();
+}
 
+int main() {
+//	convert_database();
 //	test_synthesis_diphone();
 //	test_wave_file_utils();
     run_system();

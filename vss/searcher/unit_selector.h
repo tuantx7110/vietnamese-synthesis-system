@@ -24,8 +24,8 @@ public:
     vector<SearchingSentence>& select(vector<SearchingSentence>& input_sentences);
 
 private:
-//    BinaryDatabaseReader binary_database_reader;
-    XmlDatabaseReader binary_database_reader;
+    BinaryDatabaseReader binary_database_reader;
+//    XmlDatabaseReader binary_database_reader;
     UnitSearcher unit_searcher;
     vector<SearchingSentence> search_result;
 
