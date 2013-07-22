@@ -13,7 +13,7 @@
 
 using namespace std;
 
-const int kBufferSize = 262144;
+const int kBufferSize = 65536;
 const int kLogWord = 5;
 const int kWordSize = 1 << kLogWord;
 const int kTotalBits = kWordSize * kBufferSize;
