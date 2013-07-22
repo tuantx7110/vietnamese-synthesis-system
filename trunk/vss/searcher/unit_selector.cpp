@@ -74,11 +74,15 @@ int UnitSelector::score_between_two_candidate_positions(FoundPosition position1,
     RecordedSyllable syllable2 = phrase2.get_syllable_at(position2.get_start_syllable_index());
 
     RecordedSyllable right_syllable1;
+    right_syllable1.set_syllable_tone(syllable1.get_right_syllable_tone());
     right_syllable1.set_initial_phoneme(syllable1.get_right_syllable_initial_phoneme());
+    right_syllable1.set_initial_phoneme_type(syllable1.get_right_syllable_phoneme_type());
     right_syllable1.set_syllable_name(syllable1.get_right_syllable_name());
 
     RecordedSyllable left_syllable2;
+    left_syllable2.set_syllable_tone(syllable2.get_left_syllable_tone());
     left_syllable2.set_final_phoneme(syllable2.get_left_syllable_final_phoneme());
+    left_syllable2.set_final_phoneme_type(syllable2.get_left_syllable_phoneme_type());
     left_syllable2.set_syllable_name(syllable2.get_left_syllable_name());
 
     int score1 = score_between_two_syllables(syllable1, left_syllable2, true);
@@ -91,14 +95,28 @@ int UnitSelector::score_between_two_syllables(RecordedSyllable syllable1, Record
         return 1;
     }
 
-    int score = 0;
+    int score1 = 0;
+    int score2 = 0;
+    int score3 = score_between_two_tones(syllable1.get_syllable_tone(), syllable2.get_syllable_tone());
+
     if (left_candidate) {
-        score = (syllable1.get_final_phoneme() == syllable2.get_final_phoneme()) ? 100 : 1000;
+        score1 = (syllable1.get_final_phoneme() == syllable2.get_final_phoneme()) ? 100 : 1000;
+        score2 = (syllable1.get_final_phoneme_type() == syllable2.get_final_phoneme_type()) ? 100 : 1000;
     } else {
-        score = (syllable1.get_initial_phoneme() == syllable2.get_initial_phoneme()) ? 100 : 1000;
+        score1 = (syllable1.get_initial_phoneme() == syllable2.get_initial_phoneme()) ? 100 : 1000;
+        score2 = (syllable1.get_initial_phoneme_type() == syllable2.get_initial_phoneme_type()) ? 100 : 1000;
     }
 
-    return score;
+    return 700 * score1 + 500 * score2 + 800 * score3;
+}
+
+int UnitSelector::score_between_two_tones(int tone1, int tone2) {
+    if (tone1 == tone2 || (tone1 == 0 && tone2 == 1) || (tone1 == 1 && tone2 == 0)) {
+        return 1;
+    }
+    const int d1[] = {0, 0, -1, 1, -1, 1, -1, 1, -1};
+    const int d2[] = {0, 0, 1, 4, 2, 1, 6, 1, 1};
+    return 100 * abs(d1[tone1] - d1[tone2]) + 100 * (d2[tone1] + d2[tone2]);
 }
 
 void UnitSelector::find_best_path(SearchingSentence& searching_sentence) {

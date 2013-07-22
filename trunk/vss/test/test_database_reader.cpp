@@ -23,8 +23,8 @@ void test_binary_database_reader() {
             for (int k = 0; k < (int) syllables.size(); ++k) {
                 RecordedSyllable syllable = syllables[k];
                 cout << "    + " << syllable.get_syllable_id() << " " << syllable.get_syllable_name() << " "
-                        << " " << syllable.get_start_index() << " " << syllable.get_finish_index();
-                cout << " " << syllable.get_initial_phoneme() << " " << " " << syllable.get_final_phoneme();
+                        << syllable.get_syllable_tone() << " " << syllable.get_start_index() << " " << syllable.get_finish_index();
+                cout << " " << syllable.get_initial_phoneme() << " " << syllable.get_middle_phoneme() << " " << syllable.get_nucleus_phoneme() << " " << syllable.get_final_phoneme();
                 cout << " " << syllable.get_left_syllable_name() << " " << syllable.get_right_syllable_name() << endl;
             }
         }

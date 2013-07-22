@@ -8,18 +8,13 @@
 #include "xml_database_reader.h"
 
 XmlDatabaseReader::XmlDatabaseReader() {
-    init(kXmlRecordedDatabasePath);
-}
-
-XmlDatabaseReader::XmlDatabaseReader(string xml_database_path) {
-    init(xml_database_path);
+    init();
 }
 
 XmlDatabaseReader::~XmlDatabaseReader() {
 }
 
-void XmlDatabaseReader::init(string xml_database_path) {
-    this->xml_database_path = xml_database_path;
+void XmlDatabaseReader::init() {
     current_file_id = -1;
     current_file_name = "";
     all_sentences.clear();
@@ -37,14 +32,14 @@ RecordedSentence& XmlDatabaseReader::get_sentence_at(int index) {
 }
 
 bool XmlDatabaseReader::load_data() {
-    ifstream ifs(xml_database_path.c_str());
+    ifstream ifs(kXmlRecordedDatabasePath.c_str());
 
     if (!ifs.is_open()) {
-        cerr << "Error loading recorded database description file " << xml_database_path << endl;
+        cerr << "Error loading recorded database description file" << endl;
         return false;
     }
 
-    cout << "Loading recorded database description file " << xml_database_path << " ..." << endl;
+    cout << "Loading recorded database description file ..." << endl;
 
     string line;
     vector<string> tokens;
@@ -126,6 +121,22 @@ bool XmlDatabaseReader::load_data() {
                 cerr << "Cannot read neighbor syllable details" << endl;
                 return false;
             }
+            continue;
+        }
+
+        if (start_with_string(element, "<tone")) {
+            string value = "";
+            int syllable_tone = -1;
+            if (!read_content_value(element, value)) {
+                cerr << "Cannot read syllable tone" << endl;
+                return false;
+            }
+            if (!parse_int(value, syllable_tone)) {
+                cerr << "Error parsing syllable tone" << endl;
+                return false;
+            }
+            if (debug_recorded_database_reader) cout << "     Syllable tone = " << syllable_tone << endl;
+            current_syllable.set_syllable_tone(syllable_tone);
             continue;
         }
     }
@@ -252,6 +263,7 @@ bool XmlDatabaseReader::read_syllable_details(vector<string> tokens) {
         int start_index = -1;
         int finish_index = -1;
         int number_phonemes = -1;
+        double energy = -1.0;
 
         if (start_with_string(s, "id_syl")) {
             if (!read_attribute_value(s, value)) {
@@ -304,12 +316,48 @@ bool XmlDatabaseReader::read_syllable_details(vector<string> tokens) {
             }
             if (debug_recorded_database_reader) cout << "     Number phonemes = " << number_phonemes << endl;
             current_syllable.set_number_phonemes(number_phonemes);
+        } else if (start_with_string(s, "energy")) {
+            if (!read_attribute_value(s, value)) {
+                cerr << "Error reading energy" << endl;
+                return false;
+            }
+            if (!parse_double(value, energy)) {
+                cerr << "Error parsing energy" << endl;
+                return false;
+            }
+            if (debug_recorded_database_reader) cout << "     Energy = " << energy << endl;
+            current_syllable.set_energy(energy);
         }
     }
     return true;
 }
 
 bool XmlDatabaseReader::read_phoneme_details(vector<string> tokens, string which_phoneme) {
+    for (int i = 1; i < (int) tokens.size(); ++i) {
+        string s = tokens[i];
+        string value = "";
+
+        if (start_with_string(s, "type")) {
+            if (!read_attribute_value(s, value)) {
+                cerr << "Error reading " << which_phoneme << " phoneme type" << endl;
+                return false;
+            }
+            if (debug_recorded_database_reader) cout << "     " << which_phoneme << " phoneme type = " << value << endl;
+            if (which_phoneme == "initial") {
+                current_syllable.set_initial_phoneme_type(value);
+            } else if (which_phoneme == "middle") {
+                current_syllable.set_middle_phoneme_type(value);
+            } else if (which_phoneme == "nucleus") {
+                current_syllable.set_nucleus_phoneme_type(value);
+            } else if (which_phoneme == "final") {
+                current_syllable.set_final_phoneme_type(value);
+            } else {
+                cerr << "Unknown phoneme" << endl;
+                return false;
+            }
+        }
+    }
+
     string phoneme = "";
     if (!read_content_value(tokens[(int) tokens.size() - 1], phoneme)) {
         cerr << "Error reading " << which_phoneme << " phoneme content" << endl;
@@ -318,6 +366,10 @@ bool XmlDatabaseReader::read_phoneme_details(vector<string> tokens, string which
     if (debug_recorded_database_reader) cout << "     " << which_phoneme << " phoneme content = " << phoneme << endl;
     if (start_with_string(which_phoneme, "initial")) {
         current_syllable.set_initial_phoneme(phoneme);
+    } else if (start_with_string(which_phoneme, "middle")) {
+        current_syllable.set_middle_phoneme(phoneme);
+    } else if (start_with_string(which_phoneme, "nucleus")) {
+        current_syllable.set_nucleus_phoneme(phoneme);
     } else if (start_with_string(which_phoneme, "final")) {
         current_syllable.set_final_phoneme(phoneme);
     } else {
@@ -331,8 +383,25 @@ bool XmlDatabaseReader::read_neighbor_syllable_details(vector<string> tokens, bo
     for (int i = 0; i < (int) tokens.size(); ++i) {
         string s = tokens[i];
         string value = "";
+        int neighbor_tone;
 
-        if (start_with_string(s, "finalPhnm") || start_with_string(s, "initialPhnm")) {
+        if (start_with_string(s, "tone")) {
+            if (!read_attribute_value(s, value)) {
+                cerr << "Error reading neighbor tone" << endl;
+                return false;
+            }
+            if (!parse_int(value, neighbor_tone)) {
+                cerr << "Error parsing neighbor tone" << endl;
+                return false;
+            }
+            if (is_left_neighbor) {
+                if (debug_recorded_database_reader) cout << "     Left neighbor tone = " << neighbor_tone << endl;
+                current_syllable.set_left_syllable_tone(neighbor_tone);
+            } else {
+                if (debug_recorded_database_reader) cout << "     Right neighbor tone = " << neighbor_tone << endl;
+                current_syllable.set_right_syllable_tone(neighbor_tone);
+            }
+        } else if (start_with_string(s, "finalPhnm") || start_with_string(s, "initialPhnm")) {
             if (!read_attribute_value(s, value)) {
                 cerr << "Error reading neighbor final/initial phoneme" << endl;
                 return false;
@@ -344,13 +413,23 @@ bool XmlDatabaseReader::read_neighbor_syllable_details(vector<string> tokens, bo
                 if (debug_recorded_database_reader) cout << "     Right neighbor initial phoneme = " << value << endl;
                 current_syllable.set_right_syllable_initial_phoneme(value);
             }
+        } else if (start_with_string(s, "leftPhnmType") || start_with_string(s, "rightPhnmType")) {
+            if (!read_attribute_value(s, value)) {
+                cerr << "Error reading neighbor left/right phoneme type" << endl;
+                return false;
+            }
+            if (is_left_neighbor) {
+                if (debug_recorded_database_reader) cout << "     Left neighbor phoneme type = " << value << endl;
+                current_syllable.set_left_syllable_phoneme_type(value);
+            } else {
+                if (debug_recorded_database_reader) cout << "     Right neighbor phoneme type = " << value << endl;
+                current_syllable.set_right_syllable_phoneme_type(value);
+            }
         }
     }
 
     string neighbor_name = "";
-
     if (!read_content_value(tokens[(int) tokens.size() - 1], neighbor_name)) {
-    	cout << "=> " << tokens[tokens.size() - 1] << endl;
         cerr << "Error reading " << (is_left_neighbor ? "left" : "right") << " neighbor syllable name" << endl;
         return false;
     }

@@ -174,16 +174,15 @@ void BinaryFileWriter::write_recursive_omega(int number) {
     }
 }
 
-bool BinaryFileWriter::write_string(string s) {
+void BinaryFileWriter::write_string(string s) {
     const int s_len = s.length();
     wchar_t w[s_len];
     codec.UTF8Decode2BytesUnicode(w, s.c_str());
     int w_len = wcslen(w);
 
-    if (!write_omega(s_len)) return false;
-    if (!write_omega(w_len)) return false;
+    write_omega(s_len);
+    write_omega(w_len);
     for (int i = 0; i < w_len; ++i) {
-        if (!write_omega((int) (w[i]))) return false;
+        write_omega((int) (w[i]));
     }
-    return true;
 }

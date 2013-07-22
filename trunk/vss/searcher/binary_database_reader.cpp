@@ -52,16 +52,27 @@ bool BinaryDatabaseReader::load_data() {
 
                 syllable.set_syllable_id(reader.read_omega() - 1);
                 syllable.set_syllable_name(reader.read_string());
+                syllable.set_syllable_tone(reader.read_omega() - 1);
                 syllable.set_start_index(reader.read_omega() - 1);
                 syllable.set_finish_index(reader.read_omega() - 1);
 
+                syllable.set_initial_phoneme_type(reader.read_string());
                 syllable.set_initial_phoneme(reader.read_string());
+                syllable.set_middle_phoneme_type(reader.read_string());
+                syllable.set_middle_phoneme(reader.read_string());
+                syllable.set_nucleus_phoneme_type(reader.read_string());
+                syllable.set_nucleus_phoneme(reader.read_string());
+                syllable.set_final_phoneme_type(reader.read_string());
                 syllable.set_final_phoneme(reader.read_string());
 
                 syllable.set_left_syllable_name(reader.read_string());
+                syllable.set_left_syllable_tone(reader.read_omega() - 1);
+                syllable.set_left_syllable_phoneme_type(reader.read_string());
                 syllable.set_left_syllable_final_phoneme(reader.read_string());
 
                 syllable.set_right_syllable_name(reader.read_string());
+                syllable.set_right_syllable_tone(reader.read_omega() - 1);
+                syllable.set_right_syllable_phoneme_type(reader.read_string());
                 syllable.set_right_syllable_initial_phoneme(reader.read_string());
 
                 phrase.add_syllable(syllable);

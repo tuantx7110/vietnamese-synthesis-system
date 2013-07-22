@@ -32,7 +32,7 @@ void WaveFile::init() {
     subchunk1_size = 16;
     compression_code = 1;
     number_channels = 1;
-    sample_rate = 22050;
+    sample_rate = 16000;
     byte_rate = 32000;
     block_align = 2;
     bits_per_sample = 16;
