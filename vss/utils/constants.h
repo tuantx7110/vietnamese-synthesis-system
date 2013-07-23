@@ -29,6 +29,7 @@ const string kDictionaryPath = "parser/dictionary/";
 const string kRecordedDatabasePath = "searcher/recorded_database/";
 const string kXmlRecordedDatabasePath = kRecordedDatabasePath + "recorded_database_description.xml";
 const string kBinaryRecordedDatabasePath = kRecordedDatabasePath + "recorded_database_description.bin";
+const string kDatabaseStatisticPath = kRecordedDatabasePath + "statistic.txt";
 
 #endif	/* CONSTANTS_H */
 
