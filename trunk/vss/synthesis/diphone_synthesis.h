@@ -40,7 +40,7 @@ struct frame_position{
 };
 
 struct psola{
-	int rouding(float f);
+	int rounding(float f);
 	bool create_phone(diphone dip1, diphone dip2, phone &P, int * frame_position, int number_frames);
 	void get_max_positive_value(char * signal, int len, int &smax_p);
 	void get_max_negative_value(char * signal, int len, int &smax_n);
