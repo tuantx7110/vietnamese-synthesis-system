@@ -8,6 +8,8 @@
 #ifndef TEST_BINARY_ENCODING_H
 #define	TEST_BINARY_ENCODING_H
 
+#include <ctime>
+
 #include "../encoding/binary_file_reader.h"
 #include "../encoding/binary_file_writer.h"
 #include "../utils/constants.h"
