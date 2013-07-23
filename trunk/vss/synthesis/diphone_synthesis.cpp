@@ -17,7 +17,7 @@ int psola::get_max_abs_value(int *a, int number){
 	return res;
 }
 
-int psola::rouding(float f){
+int psola::rounding(float f){
 	int res = int(f);
 	if(f >= res + 0.5) res++;
 	return res;
@@ -34,7 +34,7 @@ int psola::get_min_value(int *a, int number){
 
 int psola::sans_accent_from_phone(frame_position &st_frame_position, int new_to){
 	float fnumber_position = float(st_frame_position.signal_len + st_frame_position.addition) / (new_to * 2);
-	int number_position = rouding(fnumber_position);
+	int number_position = rounding(fnumber_position);
 
 	st_frame_position.position[0] = st_frame_position.start_point;
 	if(number_position == 0){
@@ -83,7 +83,7 @@ int psola::accent_grave_from_phone(frame_position &st_frame_position, int start_
 		st_frame_position.number_position++;
 
 		fstep = j * half_step_to;
-		step = rouding(fstep);
+		step = rounding(fstep);
 
 		additive = additive_begin + step * 2;
 	}
@@ -126,7 +126,7 @@ int psola::accent_aigu_from_phone(frame_position &st_frame_position, int start_t
 		st_frame_position.number_position++;
 
 		fstep = j * half_step_to;
-		step = rouding(fstep);
+		step = rounding(fstep);
 
 		additive = additive_begin - step * 2;
 		if(additive < 0) break;
@@ -374,13 +374,13 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		for(int i = 0; i < number_frames; i++){
 			float fnearest_peak_index;
 			fnearest_peak_index = (float)(i) / (number_frames - 1) * (number_peaks - 1);
-			nearest_peak_index = rouding(fnearest_peak_index);
+			nearest_peak_index = rounding(fnearest_peak_index);
 
 			if(new_window == false && i < number_frames){
 				int k = i + 1;
 				while(true){
 					fnearest_peak_index = (float)(k) / (number_frames - 1) * (number_peaks - 1);
-					next_peak_index = rouding(fnearest_peak_index);
+					next_peak_index = rounding(fnearest_peak_index);
 					if(next_peak_index >= nearest_peak_index + 1){
 						if(k >= i + 2){
 							number_of_window = k - i;
