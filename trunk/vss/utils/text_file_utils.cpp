@@ -23,5 +23,20 @@ bool read_text_file(string file_name, string &raw_text) {
     }
 
     trim_string(raw_text);
+    ifs.close();
+
+    return true;
+}
+
+bool write_text_file(string file_name, string raw_text) {
+    ofstream ofs(file_name.c_str());
+    if (!ofs.is_open()) {
+        cerr << "File " + file_name + " not found!" << endl;
+        return false;
+    }
+
+    ofs << raw_text;
+    ofs.close();
+
     return true;
 }

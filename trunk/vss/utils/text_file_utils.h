@@ -16,5 +16,6 @@
 using namespace std;
 
 bool read_text_file(string file_name, string& raw_text);
+bool write_text_file(string file_name, string raw_text);
 
 #endif /* TEXT_FILE_UTILS_H_ */
