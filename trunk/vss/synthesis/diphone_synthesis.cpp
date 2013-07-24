@@ -183,11 +183,12 @@ void psola::hanning_window(char * signal, int len){
 }
 
 bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_position, int number_frames){
+	cout << "creat_phone" << endl;
 	int nearest_peak_index;
 	int frame_len;
 	int tempt;
-	char *cFrame = new char[2];
-	char *cFrame2 = new char[2];
+	char *cFrame;
+	char *cFrame2;
 
 	double t1, t2;
 	int smax_p1, smax_p2, smax_n1, smax_n2;
@@ -219,6 +220,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 	int number_peaks, max_frame_len;
 
 	if(type_cn_flag){
+
 		change_amplitude(dip1.buffer, dip1.dw_diplen, dstart_coef);
 		change_amplitude(dip2.buffer, dip2.dw_diplen, dfinish_coef);
 
@@ -233,8 +235,10 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		int next_peak_index, number_of_window, win_counter, next_peak_index_old;
 		win_counter = -1;
 		double coef_mapping;
-
+		cFrame = new char[max_frame_len];
+		cFrame2 = new char[max_frame_len];
 		for(int i = 0; i < number_frames; i++){
+			cout << i << " " << number_frames << endl;
 			double temp;
 			temp = (double)(i) / (number_frames - 1) * (number_peaks - 1);
 			nearest_peak_index = (int)(temp);
@@ -246,24 +250,22 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 					temp = (double)(k) / (number_frames - 1) * (number_peaks - 1);
 					next_peak_index = (int)(temp);
 					if(temp >= next_peak_index + 0.5) next_peak_index++;
+					if(next_peak_index >= nearest_peak_index + 1){
+						if(k >= i + 2){
+							number_of_window = k - i;
+							coef_mapping = 1.0 / (number_of_window);
+							new_window = true;
+							win_counter = 0;
+							next_peak_index_old = next_peak_index;
+						}
+						break;
+					}
+					k++;
 				}
 
-				if(next_peak_index >= nearest_peak_index + 1){
-					if(k >= i + 2){
-						number_of_window = k - i;
-						coef_mapping = 1.0 / (number_of_window);
-						new_window = true;
-						win_counter = 0;
-						next_peak_index_old = next_peak_index;
-					}
-				}
-				k++;
 			}
 
-			delete[] cFrame;
-			cFrame = new char[max_frame_len];
 			memset(cFrame, 0, max_frame_len);
-
 			if(nearest_peak_index < dip1.num_pitch_marks){
 				tempt = dip1.pitch_marks[nearest_peak_index + 1] - dip1.pitch_marks[nearest_peak_index];
 				frame_len = (tempt * 2 + 1) * 2;
@@ -295,14 +297,12 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 			}
 
 			hanning_window(cFrame + (max_frame_len - frame_len) / 2, frame_len);
-
 			if(new_window && win_counter > 0){
-				delete[] cFrame2;
-				cFrame2 = new char[max_frame_len];
+
 				memset(cFrame2, 0, max_frame_len);
 				next_peak_index = next_peak_index_old;
 				if(next_peak_index < dip1.num_pitch_marks){
-					memcpy(cFrame + (max_frame_len - frame_len) / 2,
+					memcpy(cFrame2 + (max_frame_len - frame_len) / 2,
 						dip1.buffer + dip1.pitch_marks[next_peak_index] * 2 - tempt * 2, frame_len);;
 				}
 				else{
@@ -332,7 +332,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 					}
 				}
 
-				hanning_window(cFrame + (max_frame_len - frame_len) * 2, frame_len);
+				hanning_window(cFrame2 + (max_frame_len - frame_len) * 2, frame_len);
 				for(int j = 0; j < max_frame_len; j += 2){
 					*(short *)(cFrame + j) = (short)((*(short *)(cFrame + j)) * (1.0 - coef_mapping * win_counter) + (*(short *)(cFrame2 + j)) * coef_mapping * win_counter);
 				}
@@ -340,7 +340,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 			}
 			if(new_window) win_counter++;
 
-			for(int j = 0; j < max_frame_len; j++){
+			for(int j = 0; j < max_frame_len; j += 2){
 				*(short *)(P.buffer + frame_position[i] + j - (max_frame_len - 2) / 2) += *(short *)(cFrame + j);
 			}
 
@@ -353,6 +353,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 			memcpy(P.buffer + frame_position[number_frames - 1], dip2.buffer + dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2,
 					dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);
 			P.phone_len = frame_position[number_frames - 1] + dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2;
+
 		}
 	}
 	else{
@@ -446,12 +447,14 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 				dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);\
 		P.phone_len = frame_position[number_frames - 1] + dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2;
 	}
-	delete[] cFrame2;
-	delete[] cFrame;
+	cout << "ok" << endl;
+//	delete[] cFrame2;
+//	delete[] cFrame;
 	return true;
 }
 
 bool psola::accent_from_phone(diphone dip1, diphone dip2, phone &P, int *f0, int number_f0, int tone_type){
+	cout << "accent_from_phone" << endl;
 	int *to;
 	int *segment_len;
 	int number_to;
@@ -576,21 +579,127 @@ bool psola::accent_from_phone(diphone dip1, diphone dip2, phone &P, int *f0, int
 	st_frame_position.position[st_frame_position.number_position - 1] = position;
 
 	if(!create_phone(dip1, dip2, P, st_frame_position.position, st_frame_position.number_position)){
+
 		delete[] to;
 		delete[] p_position;
 		cout << "Error create new phone sau" << endl;
 		return false;
 	}
-
 	if(true && (tone_type > 0 && tone_type <= 8)) delete[] len;
 	delete[] p_position;
 	delete[] to;
 	return true;
 }
 
-//bool psola::create_syllable(syllable syl){
-//
-//}
+WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
+	WaveFile wave;
+	wave.init();
+
+	bool type_cn_flag = true;
+	if(dip1.num_pitch_marks == 0){
+		type_cn_flag = false;
+	}
+
+	char *temp;
+	phone P;
+	int old_syllable_len = 0;
+
+	if(type_cn_flag){
+		P.handle_point = dip1.pitch_marks[0] * 2;
+		if(dip1.tran_point > dip1.pitch_marks[0]){
+			P.f_transition_point = (float)(dip1.tran_point * 2) / (dip1.dw_diplen + dip2.dw_diplen);
+		}
+		else P.f_transition_point = 0;
+
+		P.new_handle_len = syl.syllable_len - dip1.pitch_marks[0] * 2 -
+				(dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);
+		if(P.new_handle_len < 0){
+			syl.syllable_len = dip1.dw_diplen + dip2.dw_diplen;
+			P.new_handle_len = syl.syllable_len - dip1.pitch_marks[0] * 2 -
+					(dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);
+			delete[] syl.new_syllable;
+			syl.new_syllable = new char[syl.syllable_len];
+		}
+
+		if(syl.tone == 6){
+			old_syllable_len = syl.syllable_len;
+			syl.syllable_len += (int)(P.new_handle_len / 4.0) * 2;
+			P.new_handle_len = (int)(3 * P.new_handle_len * 1.0 / 4) * 2;
+		}
+	}
+
+	else{
+		P.handle_point = dip1.dw_diplen + dip2.pitch_marks[0] * 2;
+		if(dip2.tran_point > dip2.pitch_marks[0]){
+			P.f_transition_point = (float)(dip1.dw_diplen + dip2.tran_point * 2)
+					/(dip1.dw_diplen + dip2.dw_diplen);
+		}
+		else P.f_transition_point = 0;
+
+		P.new_handle_len = syl.syllable_len - dip1.dw_diplen - dip2.pitch_marks[0] * 2 -
+				(dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);
+		if(syl.tone == 6){
+			old_syllable_len = syl.syllable_len;
+			syl.syllable_len += (int)(P.new_handle_len / 4.0) * 2;
+			P.new_handle_len = (int)(3 * P.new_handle_len * 1.0 / 4) * 2;
+		}
+		if(P.new_handle_len < 0){
+			syl.syllable_len -= 2 * P.new_handle_len;
+			P.new_handle_len = syl.syllable_len - dip1.dw_diplen - dip2.pitch_marks[0] * 2 -
+					(dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1]);
+			delete[] syl.new_syllable;
+			syl.new_syllable = new char[syl.syllable_len];
+		}
+	}
+
+	temp = (char *)calloc(syl.syllable_len + safe_buffer * 2, sizeof(char));
+	memset(temp, 0, syl.syllable_len + safe_buffer * 2);
+	P.buffer = temp + safe_buffer;
+	P.buffer_max = syl.syllable_len;
+	if(true){
+		int new_number_f0;
+		int *new_f0;
+		int f0_begin;
+
+		new_number_f0 = P.new_handle_len /2 /160;
+		f0_begin = P.handle_point /2 /160;
+
+		if((new_number_f0 + f0_begin)>syl.number_f0) new_number_f0 = syl.number_f0 - f0_begin;
+
+		new_f0 = new int[new_number_f0];
+		for(int i = 0; i < new_number_f0; i++){
+			new_f0[i] = syl.f0[f0_begin + i];
+		}
+
+		delete [] syl.f0;
+		syl.number_f0 = new_number_f0;
+		syl.f0 = new int[new_number_f0];
+		memcpy(syl.f0, new_f0, sizeof(int) * new_number_f0);
+		delete [] new_f0;
+	}
+
+	if(!accent_from_phone(dip1, dip2, P,  syl.f0, syl.number_f0, syl.tone)){
+		cout << "Ngu VKL" << endl;
+	}
+	cout << "doan nay van ok" << endl;
+	WaveFile W;
+	W.init();
+	cout << "doan nay van ok" << endl;
+	vector<short> Vtemp;
+	for(int i = 0; i < P.buffer_max; i += 2){
+		cout << i << " " << (*(short *)(P.buffer + i)) << endl;
+		Vtemp.push_back(*(short *)(P.buffer + i));
+	}
+	cout << "add_data ngon";
+	W.add_data(Vtemp);
+	write_wave_file(kOutputWaveFileName, W);
+//	for(int i = 0; i < P.buffer_max; i += 2){
+//		printf("%d\n", *(short *)(P.buffer + i));
+//	}
+
+	cout << "syllable ok" << endl;
+	return wave;
+}
 
 int psola::tone_for_syllable(int tone_type, int F0, int **f0, int **len, int len_of_syllable, float f_transition_point){
 	if(tone_type < 1 || tone_type > 8) return -1;
@@ -710,7 +819,7 @@ int psola::tone_for_syllable(int tone_type, int F0, int **f0, int **len, int len
 			(*len)[counter] = (*len)[counter + 1];
 		num_of_control_point--;
 	}
-
+	cout << "num_of_control_point " << num_of_control_point << endl;
 	return num_of_control_point;
 }
 
