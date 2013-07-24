@@ -27,7 +27,7 @@ public:
 private:
     XmlDatabaseReader database_reader;
     BinaryFileWriter database_writer;
-    void save_distinct_syllables(set<string> syllables, string filename);
+    void save_database_statistic(set<string> syllables, int count_syllables, string filename);
 };
 
 #endif	/* BINARY_DATABASE_CONVERTER_H */

@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include <ctime>
 #include "../searcher/input_text_reader.h"
 #include "../searcher/unit_selector.h"
 #include "../utils/wave_file_utils.h"

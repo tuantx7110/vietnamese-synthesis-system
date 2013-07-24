@@ -9,9 +9,12 @@
 #define UNIT_SELECTOR_H_
 
 #include <cstdlib>
+#include <ctime>
 #include "binary_database_reader.h"
 #include "xml_database_reader.h"
 #include "unit_searcher.h"
+
+using namespace std;
 
 #define debug_unit_selector 1
 
@@ -25,7 +28,6 @@ public:
 
 private:
     BinaryDatabaseReader binary_database_reader;
-//    XmlDatabaseReader binary_database_reader;
     UnitSearcher unit_searcher;
     vector<SearchingSentence> search_result;
 

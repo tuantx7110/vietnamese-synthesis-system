@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstdio>
+#include <ctime>
 #include "../utils/constants.h"
 #include "vietnamese_synthesis_system.h"
 #include "../test/test_wave_file_utils.h"
@@ -14,9 +15,15 @@
 #include "../searcher/binary_database_converter.h"
 #include "../test/test_database_reader.h"
 #include "../test/test_synthesis_diphone.h"
+
 using namespace std;
 
+#define debug_main 1
+
 void run_system() {
+    time_t start_time = clock();
+    time_t current_time = clock();
+
     VietnameseSynthesisSystem vss;
 
     if (!vss.init()) {
@@ -24,23 +31,29 @@ void run_system() {
         return;
     }
 
+    if (debug_main) {
+        current_time = clock();
+        cout << "=== INIT TIME: " << ((current_time - start_time) * 1000.0 / CLOCKS_PER_SEC) << " ms ===" << endl << endl;
+        start_time = current_time;
+    }
+
     if (!vss.run(kInputTextFileName, kOutputWaveFileName)) {
         cerr << "SYSTEM RUNNING FAILED!" << endl;
         return;
     }
 
-    cout << endl << "SPEECH SYNTHESIZED SUCCESSFULLY!" << endl;
+    cout << endl << "SPEECH SYNTHESIZED SUCCESSFULLY!" << endl << endl;
 }
 
 void convert_database() {
-	BinaryDatabaseConverter converter;
-	converter.convert_to_binary();
+    BinaryDatabaseConverter converter;
+    converter.convert_to_binary();
 }
 
 int main() {
-//	convert_database();
+    //	convert_database();
 //	test_synthesis_diphone();
-//	test_wave_file_utils();
+    //	test_wave_file_utils();
     run_system();
     //  test_binary_encoding();
     //	test_binary_database_reader();

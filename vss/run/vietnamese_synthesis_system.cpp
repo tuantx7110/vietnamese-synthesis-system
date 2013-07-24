@@ -28,12 +28,19 @@ bool VietnameseSynthesisSystem::init() {
 }
 
 bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_wave_file_name) {
+    time_t start_time = clock();
+    time_t current_time = clock();
+
     if (!input_text_reader.read_input_text_file(input_text_file_name)) {
         cerr << "Cannot read input text file" << endl;
         return false;
     }
 
     vector<SearchingSentence>& selected_result = unit_selector.select(input_text_reader.get_all_sentences());
+
+    if (debug_vietnamese_synthesis_system) {
+        start_time = clock();
+    }
 
     WaveFile wave_file;
     wave_file.init();
@@ -44,7 +51,7 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
             if (!phrases[j].is_found()) {
                 continue;
             }
-            string path = kRecordedDatabasePath + "wave/" + phrases[j].get_chose_file_name();
+            string path = kRecordedWavePath + phrases[j].get_chose_file_name();
             int start = phrases[j].get_chose_start();
             int finish = phrases[j].get_chose_finish();
             WaveFile temp;
@@ -54,6 +61,12 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
     }
 
     write_wave_file(output_wave_file_name, wave_file);
+
+    if (debug_vietnamese_synthesis_system) {
+        current_time = clock();
+        cout << "=== WRITE WAVE TIME: " << ((current_time - start_time) * 1000.0 / CLOCKS_PER_SEC) << " ms ===" << endl << endl;
+        start_time = current_time;
+    }
 
     return true;
 }
