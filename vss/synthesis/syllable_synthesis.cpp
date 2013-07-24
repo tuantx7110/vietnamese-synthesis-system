@@ -47,6 +47,9 @@ WaveFile synthesis::create_wave_file(string in){
 	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << endl;
 
 	diphone dip1 = get_diphone(syl.left_diphone_name);
+	for(int i = 0; i < dip1.dw_diplen; i += 2){
+		cout << "dip1 " << i << "  " << (*(short *)(dip1.buffer + i)) << endl;
+	}
 	diphone dip2 = get_diphone(syl.right_diphone_name);
 	psola ss;
 	WaveFile W = ss.create_syllable(syl, dip1, dip2);
@@ -77,6 +80,8 @@ diphone synthesis::get_diphone(string in){
 	res.num_pitch_marks = (element_len - 96 - 20 - (*(int *)(temp + 3))) / sizeof(int);
 	res.pitch_marks = new int[res.num_pitch_marks];
 	memcpy(res.pitch_marks,temp + 20 + (*(int *)(temp + 3)),res.num_pitch_marks * sizeof(int));
+//	delete[] header;
+//	delete[] temp;
 	return res;
 }
 
