@@ -28,10 +28,27 @@ bool UnitSelector::init() {
 }
 
 vector<SearchingSentence>& UnitSelector::select(vector<SearchingSentence>& input_sentences) {
+    time_t start_time = clock();
+    time_t current_time = clock();
+
     search_result = unit_searcher.search(input_sentences, binary_database_reader.get_all_sentences());
+
+    if (debug_unit_selector) {
+        current_time = clock();
+        cout << "=== SEARCH TIME: " << ((current_time - start_time) * 1000.0 / CLOCKS_PER_SEC) << " ms ===" << endl << endl;
+        start_time = current_time;
+    }
+
     for (int i = 0; i < (int) search_result.size(); ++i) {
         select_sentence(search_result[i]);
     }
+
+    if (debug_unit_selector) {
+        current_time = clock();
+        cout << "=== SELECT TIME: " << ((current_time - start_time) * 1000.0 / CLOCKS_PER_SEC) << " ms ===" << endl << endl;
+        start_time = current_time;
+    }
+
     return search_result;
 }
 
@@ -149,7 +166,7 @@ void UnitSelector::find_best_path(SearchingSentence& searching_sentence) {
     }
 
     if (debug_unit_selector) {
-        cout << endl << "Sentence: " << searching_sentence.get_sentence_content() << endl;
+        cout << "Sentence: " << searching_sentence.get_sentence_content() << endl;
         cout << "Best score = " << best_score << endl;
     }
 
@@ -175,5 +192,6 @@ void UnitSelector::find_best_path(SearchingSentence& searching_sentence) {
                 cout << "not found" << endl;
             }
         }
+        cout << endl;
     }
 }

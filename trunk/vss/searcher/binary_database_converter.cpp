@@ -29,6 +29,7 @@ void BinaryDatabaseConverter::convert_to_binary() {
     database_writer.write_omega(n_sentences + 1); // Make sure value is positive
 
     set<string> distinct_syllables;
+    int count_syllables = 0;
 
     for (int i = 0; i < n_sentences; ++i) {
         RecordedSentence& sentence = all_sentences[i];
@@ -49,6 +50,8 @@ void BinaryDatabaseConverter::convert_to_binary() {
 
             for (int k = 0; k < n_syllables; ++k) {
                 RecordedSyllable& syllable = syllables[k];
+
+                ++count_syllables;
                 distinct_syllables.insert(syllable.get_left_syllable_name());
 
                 database_writer.write_omega(syllable.get_syllable_id() + 1);
@@ -80,11 +83,11 @@ void BinaryDatabaseConverter::convert_to_binary() {
     }
 
     cout << "Converted successfully. #Number distinct syllables = " << distinct_syllables.size() << endl;
-    save_distinct_syllables(distinct_syllables, kDatabaseStatisticPath);
+    save_database_statistic(distinct_syllables, count_syllables, kDatabaseStatisticPath);
 }
 
-void BinaryDatabaseConverter::save_distinct_syllables(set<string> syllables, string filename) {
-    string raw_text = "Number distinct syllables: " + to_string(syllables.size()) + "\n\n";
+void BinaryDatabaseConverter::save_database_statistic(set<string> syllables, int count_syllables, string filename) {
+    string raw_text = "Number syllables: " + to_string(count_syllables) + "\nNumber distinct syllables: " + to_string(syllables.size()) + "\n\n";
     for (set<string>::iterator it = syllables.begin(); it != syllables.end(); ++it) {
         raw_text = raw_text + (*it) + "\n";
     }
