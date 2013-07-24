@@ -218,7 +218,8 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 	}
 	int Max1 = 0, Max2 = 0;
 	int number_peaks, max_frame_len;
-
+	cFrame = new char[max_frame_len];
+	cFrame2 = new char[max_frame_len];
 	if(type_cn_flag){
 
 		change_amplitude(dip1.buffer, dip1.dw_diplen, dstart_coef);
@@ -235,8 +236,6 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		int next_peak_index, number_of_window, win_counter, next_peak_index_old;
 		win_counter = -1;
 		double coef_mapping;
-		cFrame = new char[max_frame_len];
-		cFrame2 = new char[max_frame_len];
 		for(int i = 0; i < number_frames; i++){
 			cout << i << " " << number_frames << endl;
 			double temp;
@@ -396,8 +395,8 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 				}
 			}
 
-			delete[] cFrame;
-			cFrame = new char[max_frame_len];
+//			delete[] cFrame;
+//			cFrame = new char[max_frame_len];
 			memset(cFrame, 0, max_frame_len);
 
 			tempt = dip2.pitch_marks[nearest_peak_index + 1] - dip2.pitch_marks[nearest_peak_index];
@@ -416,8 +415,8 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 
 			hanning_window(cFrame + (max_frame_len - frame_len) / 2, frame_len);
 			if(new_window && win_counter > 0){
-				delete[] cFrame2;
-				cFrame2 = new char[max_frame_len];
+//				delete[] cFrame2;
+//				cFrame2 = new char[max_frame_len];
 				memset(cFrame2, 0, max_frame_len);
 				next_peak_index = next_peak_index_old;
 
@@ -519,8 +518,8 @@ bool psola::accent_from_phone(diphone dip1, diphone dip2, phone &P, int *f0, int
 		else{
 			end_point = sans_accent_from_phone(st_frame_position, to[0]);
 			if(end_point == 1){
-				delete[] st_frame_position.position;
-				delete[] to;
+//				delete[] st_frame_position.position;
+//				delete[] to;
 				cout << "end_point = -1" << endl;
 				return false;
 			}
@@ -530,13 +529,13 @@ bool psola::accent_from_phone(diphone dip1, diphone dip2, phone &P, int *f0, int
 		}
 
 		if(!create_phone(dip1, dip2, P, st_frame_position.position, st_frame_position.number_position)){
-			delete[] st_frame_position.position;
-			delete[] to;
+//			delete[] st_frame_position.position;
+//			delete[] to;
 			cout << "Error create new phone" << endl;
 			return false;
 		}
-		delete[] st_frame_position.position;
-		delete[] to;
+//		delete[] st_frame_position.position;
+//		delete[] to;
 		return true;
 	}
 
@@ -546,7 +545,7 @@ bool psola::accent_from_phone(diphone dip1, diphone dip2, phone &P, int *f0, int
 	if(f_signal_len >= (int)(f_signal_len) + 0.5)  st_frame_position.signal_len++;
 	int temp = get_min_value(to, number_to);
 	if(temp == 1){
-		delete[] to;
+//		delete[] to;
 		cout << "to nay be qua" << endl;
 		return false;
 	}
@@ -580,14 +579,14 @@ bool psola::accent_from_phone(diphone dip1, diphone dip2, phone &P, int *f0, int
 
 	if(!create_phone(dip1, dip2, P, st_frame_position.position, st_frame_position.number_position)){
 
-		delete[] to;
-		delete[] p_position;
+//		delete[] to;
+//		delete[] p_position;
 		cout << "Error create new phone sau" << endl;
 		return false;
 	}
 	if(true && (tone_type > 0 && tone_type <= 8)) delete[] len;
-	delete[] p_position;
-	delete[] to;
+//	delete[] p_position;
+//	delete[] to;
 	return true;
 }
 
@@ -617,7 +616,7 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 			syl.syllable_len = dip1.dw_diplen + dip2.dw_diplen;
 			P.new_handle_len = syl.syllable_len - dip1.pitch_marks[0] * 2 -
 					(dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);
-			delete[] syl.new_syllable;
+//			delete[] syl.new_syllable;
 			syl.new_syllable = new char[syl.syllable_len];
 		}
 
@@ -647,7 +646,7 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 			syl.syllable_len -= 2 * P.new_handle_len;
 			P.new_handle_len = syl.syllable_len - dip1.dw_diplen - dip2.pitch_marks[0] * 2 -
 					(dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1]);
-			delete[] syl.new_syllable;
+//			delete[] syl.new_syllable;
 			syl.new_syllable = new char[syl.syllable_len];
 		}
 	}
@@ -671,20 +670,18 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 			new_f0[i] = syl.f0[f0_begin + i];
 		}
 
-		delete [] syl.f0;
+//		delete [] syl.f0;
 		syl.number_f0 = new_number_f0;
 		syl.f0 = new int[new_number_f0];
 		memcpy(syl.f0, new_f0, sizeof(int) * new_number_f0);
-		delete [] new_f0;
+//		delete [] new_f0;
 	}
 
 	if(!accent_from_phone(dip1, dip2, P,  syl.f0, syl.number_f0, syl.tone)){
 		cout << "Ngu VKL" << endl;
 	}
-	cout << "doan nay van ok" << endl;
 	WaveFile W;
 	W.init();
-	cout << "doan nay van ok" << endl;
 	vector<short> Vtemp;
 	for(int i = 0; i < P.buffer_max; i += 2){
 		cout << i << " " << (*(short *)(P.buffer + i)) << endl;
@@ -722,7 +719,7 @@ int psola::tone_for_syllable(int tone_type, int F0, int **f0, int **len, int len
 
 	int l_transition_point = (int)(f_transition_point * len_of_syllable);
 	len_of_syllable = len_of_syllable - l_transition_point;
-	delete [] *f0;
+//	delete [] *f0;
 
 	if(tone_type == 1){
 		num_of_control_point = 5;
