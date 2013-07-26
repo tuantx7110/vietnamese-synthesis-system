@@ -15,6 +15,7 @@ void synthesis::read_syllable_diphone(){
 		cout << s1 << " " << s2 << " " << s3 << endl;
 		syllable_map[s1] = syllable(s2, s3, len, tone, energy, number_f0);
 		syllable_map[s1].f0 = new int[number_f0];
+
 		for(int i = 0; i < number_f0; i++){
 			cin >> syllable_map[s1].f0[i];
 		}
@@ -47,10 +48,12 @@ WaveFile synthesis::create_wave_file(string in){
 	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << endl;
 
 	diphone dip1 = get_diphone(syl.left_diphone_name);
+	diphone dip2 = get_diphone(syl.right_diphone_name);
+	cout << dip1.dw_diplen << " " << dip1.num_pitch_marks << " " << dip1.tran_point << endl;
+	cout << dip2.dw_diplen << " " << dip2.num_pitch_marks << " " << dip2.tran_point << endl;
 	for(int i = 0; i < dip1.dw_diplen; i += 2){
 		cout << "dip1 " << i << "  " << (*(short *)(dip1.buffer + i)) << endl;
 	}
-	diphone dip2 = get_diphone(syl.right_diphone_name);
 	psola ss;
 	WaveFile W = ss.create_syllable(syl, dip1, dip2);
 
@@ -135,7 +138,8 @@ void synthesis::read_diphone_binary(){
 		char name[5];
 		fread(name, 1, 4, f);
 		name[4] = '\0';
-		diphone_map[(string)(name)] = run;
+		if(!diphone_map.count((string)(name)))
+			diphone_map[(string)(name)] = run;
 		int pos;
 		fread(&pos, 4, 1, f);
 	}

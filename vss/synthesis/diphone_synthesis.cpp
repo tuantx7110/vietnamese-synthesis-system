@@ -9,7 +9,7 @@ int psola::get_average_to(int *a, int number){
 	return sum / (number - 1);
 }
 
-int psola::get_max_abs_value(int *a, int number){
+int psola::get_max_abs_value(short *a, int number){
 	int res = 0;
 	for(int i = 0; i < number; i++){
 		res = max(res, abs(a[i]));
@@ -205,21 +205,20 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 
 		t1 = (smax_p1 - smax_n1) / 2.0;
 		t2 = (smax_p2 - smax_n2) / 2.0;
-
+		cout << t1 << " t1t2 " << t2 << endl;
 		dstart_coef = volume_amp / t1;
 		dfinish_coef = volume_amp / t2;
 	}
 
 	else{
-		dstart_coef = get_max_abs_value((int *)dip1.buffer, dip1.dw_diplen / 2);
-		dfinish_coef = get_max_abs_value((int *)dip2.buffer, dip2.dw_diplen / 2);
+		dstart_coef = get_max_abs_value((short *)dip1.buffer, dip1.dw_diplen / 2);
+		dfinish_coef = get_max_abs_value((short *)dip2.buffer, dip2.dw_diplen / 2);
 		dstart_coef = volume_amp / dstart_coef;
 		dfinish_coef = volume_amp / dfinish_coef;
 	}
 	int Max1 = 0, Max2 = 0;
 	int number_peaks, max_frame_len;
-	cFrame = new char[max_frame_len];
-	cFrame2 = new char[max_frame_len];
+
 	if(type_cn_flag){
 
 		change_amplitude(dip1.buffer, dip1.dw_diplen, dstart_coef);
@@ -228,7 +227,9 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		Max1 = get_max_to(dip1.pitch_marks, dip1.num_pitch_marks);
 		Max2 = get_max_to(dip2.pitch_marks, dip2.num_pitch_marks);
 		max_frame_len = ((Max1 > Max2 ? Max1 : Max2) * 2 + 1) * 2;
-
+		cout << max_frame_len << endl;
+		cFrame = new char[max_frame_len];
+		cFrame2 = new char[max_frame_len];
 		dip1.num_pitch_marks--; dip2.num_pitch_marks--;
 		number_peaks = dip1.num_pitch_marks + dip2.num_pitch_marks;
 		number_peaks--;
@@ -310,7 +311,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 						tempt = dip2.pitch_marks[nearest_peak_index + 1] - dip2.pitch_marks[nearest_peak_index];
 						frame_len = (tempt * 2 + 1) * 2;
 					}
-					else next_peak_index = 1;
+					else next_peak_index = next_peak_index - dip1.num_pitch_marks + 1;
 
 					if(tempt < dip2.pitch_marks[next_peak_index]){
 						if((dip2.pitch_marks[nearest_peak_index] * 2 + frame_len / 2) < dip2.dw_diplen){
@@ -347,13 +348,13 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 				new_window = false;
 				win_counter = 0;
 			}
-
-			memcpy(P.buffer, dip1.buffer, dip1.pitch_marks[0] * 2);
-			memcpy(P.buffer + frame_position[number_frames - 1], dip2.buffer + dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2,
-					dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);
-			P.phone_len = frame_position[number_frames - 1] + dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2;
-
 		}
+
+		memcpy(P.buffer, dip1.buffer, dip1.pitch_marks[0] * 2);
+		memcpy(P.buffer + frame_position[number_frames - 1], dip2.buffer + dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2,
+				dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);
+		P.phone_len = frame_position[number_frames - 1] + dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2;
+
 	}
 	else{
 		double dcommon_coef = min(dstart_coef, dfinish_coef);
@@ -370,7 +371,8 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		float coef_mapping;
 		new_window = false;
 		win_counter = -1;
-
+		cFrame = new char[max_frame_len];
+		cFrame2 = new char[max_frame_len];
 		for(int i = 0; i < number_frames; i++){
 			float fnearest_peak_index;
 			fnearest_peak_index = (float)(i) / (number_frames - 1) * (number_peaks - 1);
@@ -447,8 +449,8 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		P.phone_len = frame_position[number_frames - 1] + dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2;
 	}
 	cout << "ok" << endl;
-//	delete[] cFrame2;
-//	delete[] cFrame;
+	delete[] cFrame2;
+	delete[] cFrame;
 	return true;
 }
 
@@ -584,7 +586,7 @@ bool psola::accent_from_phone(diphone dip1, diphone dip2, phone &P, int *f0, int
 		cout << "Error create new phone sau" << endl;
 		return false;
 	}
-	if(true && (tone_type > 0 && tone_type <= 8)) delete[] len;
+//	if(true && (tone_type > 0 && tone_type <= 8)) delete[] len;
 //	delete[] p_position;
 //	delete[] to;
 	return true;
@@ -650,11 +652,11 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 			syl.new_syllable = new char[syl.syllable_len];
 		}
 	}
-
 	temp = (char *)calloc(syl.syllable_len + safe_buffer * 2, sizeof(char));
 	memset(temp, 0, syl.syllable_len + safe_buffer * 2);
 	P.buffer = temp + safe_buffer;
 	P.buffer_max = syl.syllable_len;
+
 	if(true){
 		int new_number_f0;
 		int *new_f0;
@@ -666,6 +668,7 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 		if((new_number_f0 + f0_begin)>syl.number_f0) new_number_f0 = syl.number_f0 - f0_begin;
 
 		new_f0 = new int[new_number_f0];
+		cout << f0_begin <<  " " << new_number_f0 << " " << syl.syllable_len << endl;
 		for(int i = 0; i < new_number_f0; i++){
 			new_f0[i] = syl.f0[f0_begin + i];
 		}
@@ -682,14 +685,14 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 	}
 	WaveFile W;
 	W.init();
-	vector<short> Vtemp;
+//	vector<short> Vtemp;
 	for(int i = 0; i < P.buffer_max; i += 2){
 		cout << i << " " << (*(short *)(P.buffer + i)) << endl;
-		Vtemp.push_back(*(short *)(P.buffer + i));
+//		Vtemp.push_back(*(short *)(P.buffer + i));
 	}
 	cout << "add_data ngon";
-	W.add_data(Vtemp);
-	write_wave_file(kOutputWaveFileName, W);
+//	W.add_data(Vtemp);
+//	write_wave_file(kOutputWaveFileName, W);
 //	for(int i = 0; i < P.buffer_max; i += 2){
 //		printf("%d\n", *(short *)(P.buffer + i));
 //	}

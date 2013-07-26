@@ -19,7 +19,7 @@ struct psola{
 	bool create_phone(diphone dip1, diphone dip2, phone &P, int * frame_position, int number_frames);
 	void get_max_positive_value(char * signal, int len, int &smax_p);
 	void get_max_negative_value(char * signal, int len, int &smax_n);
-	int get_max_abs_value(int *a, int number);
+	int get_max_abs_value(short *a, int number);
 	void change_amplitude(char * signal, int len, double dcoef);
 	int get_max_to(int * array, int len);
 	void hanning_window(char * signal, int len);
