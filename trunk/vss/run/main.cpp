@@ -51,11 +51,11 @@ void convert_database() {
 }
 
 int main() {
-    //	convert_database();
-//	test_synthesis_diphone();
-    //	test_wave_file_utils();
-    run_system();
-    //  test_binary_encoding();
-    //	test_binary_database_reader();
+//    convert_database();
+//    test_synthesis_diphone();
+//    test_wave_file_utils();
+//    run_system();
+//    test_binary_database_reader();
+//    test_binary_encoding();
     return 0;
 }

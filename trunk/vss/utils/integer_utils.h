@@ -15,7 +15,7 @@
 using namespace std;
 
 word mask(int number_bits);
-int bit_at(int number, int i);
+int bit_at(word number, int i);
 string binary_reversed(word number, int length = kWordSize);
 
 #endif	/* INTEGER_UTILS_H */
