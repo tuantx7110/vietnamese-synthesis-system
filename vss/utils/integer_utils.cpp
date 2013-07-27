@@ -11,7 +11,7 @@ word mask(int number_bits) {
     return (((word) 1) << number_bits) - 1;
 }
 
-int bit_at(int number, int i) {
+int bit_at(word number, int i) {
     return (number >> i) & 1;
 }
 

@@ -8,7 +8,7 @@
 #ifndef DATA_TYPES_H
 #define	DATA_TYPES_H
 
-typedef unsigned long word;
+typedef unsigned long long word;
 
 #endif	/* DATA_TYPES_H */
 

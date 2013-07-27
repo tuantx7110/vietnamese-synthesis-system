@@ -14,10 +14,10 @@
 using namespace std;
 
 const int kBufferSize = 65536;
-const int kLogWord = 5;
+const int kLogWord = 6;
 const int kWordSize = 1 << kLogWord;
 const int kTotalBits = kWordSize * kBufferSize;
-const word kFullBitMask = (((word) 1) << kWordSize) - 1;
+const word kFullBitMask = 0xFFFFFFFFFFFFFFFF;
 
 const string kDataPath = "data/";
 const string kInputTextFileName = kDataPath + "input_text.txt";
