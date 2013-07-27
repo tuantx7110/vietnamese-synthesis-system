@@ -27,7 +27,7 @@ void test_unary() {
     cout << "Testing unary coding ..." << endl;
     BinaryFileWriter writer;
 
-    if (!writer.open(file_name)) {
+    if (!writer.open(file_name + "_unary")) {
         return;
     }
 
@@ -47,7 +47,7 @@ void test_unary() {
     writer.close();
 
     BinaryFileReader reader;
-    if (!reader.open(file_name)) {
+    if (!reader.open(file_name + "_unary")) {
         return;
     }
 
@@ -69,7 +69,7 @@ void test_gamma() {
     cout << "Testing gamma coding ..." << endl;
     BinaryFileWriter writer;
 
-    if (!writer.open(file_name)) {
+    if (!writer.open(file_name + "_gamma")) {
         return;
     }
 
@@ -89,7 +89,7 @@ void test_gamma() {
     writer.close();
 
     BinaryFileReader reader;
-    if (!reader.open(file_name)) {
+    if (!reader.open(file_name + "_gamma")) {
         return;
     }
 
@@ -111,7 +111,7 @@ void test_delta() {
     cout << "Testing delta coding ..." << endl;
     BinaryFileWriter writer;
 
-    if (!writer.open(file_name)) {
+    if (!writer.open(file_name + "_delta")) {
         return;
     }
 
@@ -131,7 +131,7 @@ void test_delta() {
     writer.close();
 
     BinaryFileReader reader;
-    if (!reader.open(file_name)) {
+    if (!reader.open(file_name + "_delta")) {
         return;
     }
 
@@ -153,7 +153,7 @@ void test_omega() {
     cout << "Testing omega coding ..." << endl;
     BinaryFileWriter writer;
 
-    if (!writer.open(file_name)) {
+    if (!writer.open(file_name + "omega")) {
         return;
     }
 
@@ -173,7 +173,7 @@ void test_omega() {
     writer.close();
 
     BinaryFileReader reader;
-    if (!reader.open(file_name)) {
+    if (!reader.open(file_name + "omega")) {
         return;
     }
 
@@ -195,7 +195,7 @@ void test_string() {
     cout << "Testing encoding string ..." << endl;
     BinaryFileWriter writer;
 
-    if (!writer.open(file_name)) {
+    if (!writer.open(file_name + "_string")) {
         return;
     }
 
@@ -217,7 +217,7 @@ void test_string() {
     writer.close();
 
     BinaryFileReader reader;
-    if (!reader.open(file_name)) {
+    if (!reader.open(file_name + "_string")) {
         return;
     }
 
@@ -249,7 +249,7 @@ void test_all() {
 
     BinaryFileWriter writer;
 
-    if (!writer.open(file_name)) {
+    if (!writer.open(file_name + "_all")) {
         return;
     }
 
@@ -276,7 +276,7 @@ void test_all() {
     writer.close();
 
     BinaryFileReader reader;
-    if (!reader.open(file_name)) {
+    if (!reader.open(file_name + "_all")) {
         return;
     }
 
