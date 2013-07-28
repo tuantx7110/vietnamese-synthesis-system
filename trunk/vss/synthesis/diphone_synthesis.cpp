@@ -12,7 +12,7 @@ int psola::get_average_to(int *a, int number){
 int psola::get_max_abs_value(short *a, int number){
 	int res = 0;
 	for(int i = 0; i < number; i++){
-		res = max(res, abs(a[i]));
+		res = max(res, (int) abs(a[i]));
 	}
 	return res;
 }
