@@ -325,14 +325,14 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 						}
 					}
 					else{
-						memcpy(cFrame2 + (max_frame_len - frame_len) * 2 + (tempt - dip2.pitch_marks[next_peak_index]) * 2,
+						memcpy(cFrame2 + (max_frame_len - frame_len) / 2 + (tempt - dip2.pitch_marks[next_peak_index]) * 2,
 							dip2.buffer, dip2.pitch_marks[next_peak_index] * 2);
-						memcpy(cFrame2 + (max_frame_len - frame_len) * 2 + tempt * 2,
+						memcpy(cFrame2 + (max_frame_len - frame_len) / 2 + tempt * 2,
 							dip2.buffer + dip2.pitch_marks[next_peak_index] * 2, tempt * 2);
 					}
 				}
 
-				hanning_window(cFrame2 + (max_frame_len - frame_len) * 2, frame_len);
+				hanning_window(cFrame2 + (max_frame_len - frame_len) / 2, frame_len);
 				for(int j = 0; j < max_frame_len; j += 2){
 					*(short *)(cFrame + j) = (short)((*(short *)(cFrame + j)) * (1.0 - coef_mapping * win_counter) + (*(short *)(cFrame2 + j)) * coef_mapping * win_counter);
 				}
@@ -593,9 +593,6 @@ bool psola::accent_from_phone(diphone dip1, diphone dip2, phone &P, int *f0, int
 }
 
 WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
-	WaveFile wave;
-	wave.init();
-
 	bool type_cn_flag = true;
 	if(dip1.num_pitch_marks == 0){
 		type_cn_flag = false;
@@ -685,20 +682,20 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 	}
 	WaveFile W;
 	W.init();
-//	vector<short> Vtemp;
+	vector<short> Vtemp;
 	for(int i = 0; i < P.buffer_max; i += 2){
 		cout << i << " " << (*(short *)(P.buffer + i)) << endl;
-//		Vtemp.push_back(*(short *)(P.buffer + i));
+		Vtemp.push_back(*(short *)(P.buffer + i));
 	}
 	cout << "add_data ngon";
-//	W.add_data(Vtemp);
+	W.add_data(Vtemp);
 //	write_wave_file(kOutputWaveFileName, W);
 //	for(int i = 0; i < P.buffer_max; i += 2){
 //		printf("%d\n", *(short *)(P.buffer + i));
 //	}
 
 	cout << "syllable ok" << endl;
-	return wave;
+	return W;
 }
 
 int psola::tone_for_syllable(int tone_type, int F0, int **f0, int **len, int len_of_syllable, float f_transition_point){
