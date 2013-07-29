@@ -17,7 +17,7 @@ const int kBufferSize = 65536;
 const int kLogWord = 6;
 const int kWordSize = 1 << kLogWord;
 const int kTotalBits = kWordSize * kBufferSize;
-const word kFullBitMask = 0xFFFFFFFFFFFFFFFF;
+const word kFullBitMask = 0xFFFFFFFFFFFFFFFFLL;
 
 const string kDataPath = "data/";
 const string kInputTextFileName = kDataPath + "input_text.txt";
