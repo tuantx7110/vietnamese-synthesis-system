@@ -50,6 +50,7 @@ void convert_database() {
     converter.convert_to_binary();
 }
 
+
 int main() {
 //    convert_database();
 //    test_synthesis_diphone();
