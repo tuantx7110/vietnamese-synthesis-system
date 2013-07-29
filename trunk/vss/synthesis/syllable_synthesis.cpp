@@ -23,37 +23,13 @@ void synthesis::read_syllable_diphone(){
 	}
 }
 
-/*
-void synthesis::read_vowel_tone(){
-	freopen("synthesis/diphone_data/vowel_tone_ABC.dic", "r", stdin);
-	char ch1[1005], ch2[1005];
-	wchar_t wch1[1005], wch2[1005];
-	int tone;
-	CharCodec CC;
-	while(scanf("%s %s %d", ch1, ch2, &tone) > 0){
-		CC.UTF8Decode2BytesUnicode(wch1, ch1);
-		CC.UTF8Decode2BytesUnicode(wch2, ch2);
-		tone_map[wch1[0]] = make_pair(wch2[0], tone);
-	}
-}
-*/
-
-//void read()
-
 WaveFile synthesis::create_wave_file(string in){
-	//int tone = cut_tone(in);
-
-	cout << syllable_map.count(in) << endl;
 	syllable syl = syllable_map[in];
 	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << endl;
 
 	diphone dip1 = get_diphone(syl.left_diphone_name);
 	diphone dip2 = get_diphone(syl.right_diphone_name);
-	cout << dip1.dw_diplen << " " << dip1.num_pitch_marks << " " << dip1.tran_point << endl;
-	cout << dip2.dw_diplen << " " << dip2.num_pitch_marks << " " << dip2.tran_point << endl;
-	for(int i = 0; i < dip1.dw_diplen; i += 2){
-		cout << "dip1 " << i << "  " << (*(short *)(dip1.buffer + i)) << endl;
-	}
+
 	psola ss;
 	WaveFile W = ss.create_syllable(syl, dip1, dip2);
 
@@ -83,8 +59,8 @@ diphone synthesis::get_diphone(string in){
 	res.num_pitch_marks = (element_len - 96 - 20 - (*(int *)(temp + 3))) / sizeof(int);
 	res.pitch_marks = new int[res.num_pitch_marks];
 	memcpy(res.pitch_marks,temp + 20 + (*(int *)(temp + 3)),res.num_pitch_marks * sizeof(int));
-//	delete[] header;
-//	delete[] temp;
+	delete[] header;
+	delete[] temp;
 	return res;
 }
 
@@ -105,26 +81,6 @@ void synthesis::add_data(WaveFile &W, int pos){
 	}
 	W.add_data(Vtemp);
 }
-
-/*
-int synthesis::cut_tone(string &in){
-	CharCodec CC;
-	wchar_t wch[1005];
-	char ch[1005];
-	CC.UTF8Decode2BytesUnicode(wch, in.c_str());
-	for(int i = 0; i < (int)wcslen(wch); i++){
-		if(tone_map[wch[i]].second != 0){
-			int ret = tone_map[wch[i]].second;
-			wch[i] = tone_map[wch[i]].first;
-			CC.UTF8Encode2BytesUnicode(ch, wch);
-			in = ch;
-			return ret;
-		}
-	}
-
-	return 1;
-}
-*/
 
 void synthesis::read_diphone_binary(){
 	FILE *f = fopen("synthesis/diphone_data/HALFSYL.DAT", "rb");
