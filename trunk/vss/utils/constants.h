@@ -10,6 +10,7 @@
 
 #include <string>
 #include "data_types.h"
+#include <cmath>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ const int kLogWord = 6;
 const int kWordSize = 1 << kLogWord;
 const int kTotalBits = kWordSize * kBufferSize;
 const word kFullBitMask = 0xFFFFFFFFFFFFFFFFLL;
+const double PI = acos(double(-1));
 
 const string kDataPath = "data/";
 const string kInputTextFileName = kDataPath + "input_text.txt";
