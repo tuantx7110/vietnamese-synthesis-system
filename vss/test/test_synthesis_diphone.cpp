@@ -5,6 +5,6 @@ void test_synthesis_diphone(){
 	Syn.init();
 	WaveFile W = Syn.create_wave_file("hiếu");
 	cout << "finish_move";
-	//write_wave_file(kOutputWaveFileName, W);
+	write_wave_file(kOutputWaveFileName, W);
 	cout << "finish";
 }
