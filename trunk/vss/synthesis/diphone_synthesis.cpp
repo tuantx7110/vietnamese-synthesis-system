@@ -41,7 +41,7 @@ int psola::accent_grave_from_phone(frame_position &st_frame_position, int start_
 	float half_step_to, fstep;
 	int step;
 
-	half_step_to = (float)(finish_to - start_to) * (finish_to - start_to) / (2 * ((st_frame_position.signal_len + st_frame_position.addition) - (finish_to - start_to))) * 2;
+	half_step_to = (float)(finish_to - start_to) * (finish_to + start_to) / (2 * ((st_frame_position.signal_len + st_frame_position.addition) - (finish_to - start_to))) * 2;
 	st_frame_position.number_position = 0;
 
 	while(i + additive < st_frame_position.signal_len + st_frame_position.addition + st_frame_position.start_point + finish_to * 2){
@@ -316,8 +316,8 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 				}
 			}
 
-			delete[] cFrame;
-			cFrame = new char[max_frame_len];
+			//delete[] cFrame;
+			//cFrame = new char[max_frame_len];
 			memset(cFrame, 0, max_frame_len);
 
 			tempt = dip2.pitch_marks[nearest_peak_index + 1] - dip2.pitch_marks[nearest_peak_index];
