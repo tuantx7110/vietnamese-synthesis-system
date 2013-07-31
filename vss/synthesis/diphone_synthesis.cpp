@@ -362,7 +362,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		memcpy(P.buffer, dip1.buffer, dip1.dw_diplen);
 		memcpy(P.buffer + dip1.dw_diplen, dip2.buffer, dip2.pitch_marks[0] * 2);
 		memcpy(P.buffer + frame_position[number_frames - 1], dip2.buffer + dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2,
-				dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);\
+				dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2);
 		P.phone_len = frame_position[number_frames - 1] + dip2.dw_diplen - dip2.pitch_marks[dip2.num_pitch_marks - 1] * 2;
 	}
 	delete[] cFrame2;
