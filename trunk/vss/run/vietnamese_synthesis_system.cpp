@@ -54,6 +54,7 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
             if (!phrases[j].is_found()) {
                 WaveFile wave = syllable_synthesis.create_wave_file(phrases[j].get_phrase_content());
                 wave_file.add_data(wave.get_all_data());
+                continue;
             }
             string path = kRecordedWavePath + phrases[j].get_chose_file_name();
             int start = phrases[j].get_chose_start();
