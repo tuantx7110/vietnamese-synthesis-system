@@ -1,5 +1,9 @@
 #include "diphone_synthesis.h"
 
+#ifndef SYLLABLE_SYNTHESIS_H
+#define	SYLLABLE_SYNTHESIS_H
+
+
 struct synthesis{
 	map<string, syllable> syllable_map;
 	map<string, int> phone_map;
@@ -14,3 +18,4 @@ struct synthesis{
 	diphone get_diphone(string in);
 };
 
+#endif

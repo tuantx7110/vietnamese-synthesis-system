@@ -10,6 +10,9 @@
 
 using namespace std;
 
+#ifndef DIPHONE_STRUCT_H
+#define	DIPHONE_STRUCT_H
+
 struct diphone{
 	char * buffer;
 	int * pitch_marks;
@@ -58,3 +61,5 @@ struct syllable{
 		number_f0 = _number_f0;
 	}
 };
+
+#endif

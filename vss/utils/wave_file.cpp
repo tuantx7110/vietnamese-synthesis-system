@@ -76,3 +76,7 @@ vector<short> WaveFile::get_data(int from, int to) {
     }
     return result;
 }
+
+vector<short> WaveFile::get_all_data() {
+	return data;
+}
