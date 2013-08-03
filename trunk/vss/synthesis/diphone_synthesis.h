@@ -12,6 +12,8 @@
 #include "../utils/wave_file_utils.h"
 #include "../utils/psola_utils.h"
 
+#ifndef DIPHONE_SYNTHESIS_H
+#define	DIPHONE_SYNTHESIS_H
 
 struct psola{
 	bool create_phone(diphone dip1, diphone dip2, phone &P, int * frame_position, int number_frames);
@@ -22,3 +24,5 @@ struct psola{
 	int accent_aigu_from_phone(frame_position &st_frame_position, int start_to, int finish_to);
 	WaveFile create_syllable(syllable syl, diphone dip1, diphone dip2);
 };
+
+#endif

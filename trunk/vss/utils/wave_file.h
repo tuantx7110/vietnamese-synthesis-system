@@ -23,6 +23,7 @@ public:
     void set_data(short data[], int n);
     void add_data(vector<short> more_data);
     vector<short> get_data(int from, int to);
+    vector<short> get_all_data();
 
     char chunk_id[4];
     int chunk_size;

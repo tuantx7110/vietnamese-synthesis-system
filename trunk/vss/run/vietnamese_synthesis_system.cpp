@@ -24,6 +24,9 @@ bool VietnameseSynthesisSystem::init() {
         cerr << "Cannot initialize unit selector" << endl;
         return false;
     }
+
+    syllable_synthesis.init();
+
     return true;
 }
 
@@ -49,7 +52,8 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
         vector<SearchingPhrase>& phrases = selected_result[i].get_searching_phrases();
         for (int j = 0; j < (int) phrases.size(); ++j) {
             if (!phrases[j].is_found()) {
-                continue;
+                WaveFile wave = syllable_synthesis.create_wave_file(phrases[j].get_phrase_content());
+                wave_file.add_data(wave.get_all_data());
             }
             string path = kRecordedWavePath + phrases[j].get_chose_file_name();
             int start = phrases[j].get_chose_start();

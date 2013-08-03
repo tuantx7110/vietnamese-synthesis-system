@@ -16,6 +16,7 @@
 #include "../utils/wave_file_utils.h"
 #include "../utils/wave_file.h"
 #include "../utils/constants.h"
+#include "../synthesis/syllable_synthesis.h"
 
 using namespace std;
 
@@ -32,6 +33,7 @@ public:
 private:
     InputTextReader input_text_reader;
     UnitSelector unit_selector;
+    synthesis syllable_synthesis;
 };
 
 #endif /* VIETNAMESE_SYNTHESIS_SYSTEM_H_ */
