@@ -16,6 +16,7 @@ struct synthesis{
 	void add_data(WaveFile &W, int pos);
 	int cut_tone(string &in);
 	diphone get_diphone(string in);
+	diphone get_diphone_position(int pos);
 };
 
 #endif

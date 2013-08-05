@@ -44,6 +44,7 @@ struct frame_position{
 
 struct syllable{
 	string left_diphone_name, right_diphone_name;
+	int left_diphone_position, right_diphone_position;
 	char * new_syllable;
 	int syllable_len;
 	int tone;
