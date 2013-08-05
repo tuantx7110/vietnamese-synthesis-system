@@ -64,8 +64,13 @@ diphone synthesis::get_diphone_position(int pos){
 	res.dw_diplen = (*(int *)(temp + 3)) - 8;
 	res.buffer = new char[res.dw_diplen];
 	memcpy(res.buffer, temp + 28, res.dw_diplen);
+	int element_len;
+	if(pos == number_diphone - 1){
+		fseek(f, 0L, SEEK_END);
+		element_len = ftell(f) - (*(int *)(header + 8 * pos + 4 + 2));
+	}
+	else element_len = (*(int *)(header + 8 * (pos + 1) + 4 + 2)) - (*(int *)(header + 8 * pos + 4 + 2));
 
-	int element_len = (*(int *)(header + 8 * (pos + 1) + 4 + 2)) - (*(int *)(header + 8 * pos + 4 + 2));
 	res.num_pitch_marks = (element_len - 96 - 20 - (*(int *)(temp + 3))) / sizeof(int);
 	res.pitch_marks = new int[res.num_pitch_marks];
 	memcpy(res.pitch_marks,temp + 20 + (*(int *)(temp + 3)),res.num_pitch_marks * sizeof(int));
@@ -100,11 +105,11 @@ void synthesis::add_data(WaveFile &W, int pos){
 void synthesis::read_diphone_binary(){
 	FILE *f = fopen(kDataHalfsyl.c_str(), "rb");
 
-	short val = 0;
-	fread(&val, 2, 1, f);
-	cout << val << endl;
+	//short val = 0;
+	fread(&number_diphone, 2, 1, f);
+	cout << number_diphone << endl;
 
-	for (int run = 0; run < val; ++run) {
+	for (int run = 0; run < number_diphone; ++run) {
 
 		char name[5];
 		fread(name, 1, 4, f);
