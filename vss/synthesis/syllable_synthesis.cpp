@@ -8,7 +8,7 @@ void synthesis::init(){
 }
 
 void synthesis::read_syllable_diphone(){
-	freopen("synthesis/diphone_data/all_syllables_diphone_position.in", "r", stdin);
+	freopen(kDataDiphonePosition.c_str(), "r", stdin);
 	string s1, s2, s3;
 	int len, tone, energy, number_f0;
 	int lef, rig;
@@ -51,7 +51,7 @@ WaveFile synthesis::create_wave_file(string in){
 
 diphone synthesis::get_diphone_position(int pos){
 	diphone res;
-	FILE *f = fopen("synthesis/diphone_data/HALFSYL.DAT", "rb");
+	FILE *f = fopen(kDataHalfsyl.c_str(), "rb");
 	char *header = new char[20000];
 	char *temp = new char[20000];
 
@@ -80,7 +80,7 @@ diphone synthesis::get_diphone(string in){
 }
 
 void synthesis::add_data(WaveFile &W, int pos){
-	FILE *f = fopen("synthesis/diphone_data/HALFSYL.DAT", "rb");
+	FILE *f = fopen(kDataHalfsyl.c_str(), "rb");
 	char *header = new char[20000];
 	char *temp = new char[20000];
 
@@ -98,7 +98,7 @@ void synthesis::add_data(WaveFile &W, int pos){
 }
 
 void synthesis::read_diphone_binary(){
-	FILE *f = fopen("synthesis/diphone_data/HALFSYL.DAT", "rb");
+	FILE *f = fopen(kDataHalfsyl.c_str(), "rb");
 
 	short val = 0;
 	fread(&val, 2, 1, f);

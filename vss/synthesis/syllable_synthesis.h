@@ -1,5 +1,5 @@
 #include "diphone_synthesis.h"
-
+#include "../utils/constants.h"
 #ifndef SYLLABLE_SYNTHESIS_H
 #define	SYLLABLE_SYNTHESIS_H
 
