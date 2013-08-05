@@ -5,9 +5,13 @@
 
 
 struct synthesis{
+
+	short number_diphone;
+
 	map<string, syllable> syllable_map;
 	map<string, int> phone_map;
 	map<string, int> diphone_map;
+
 	void init();
 	void read_diphone_binary();
 	void read_syllable_diphone();
