@@ -8,27 +8,38 @@ void synthesis::init(){
 }
 
 void synthesis::read_syllable_diphone(){
-	freopen("synthesis/diphone_data/all_syllables_diphone.in", "r", stdin);
+	freopen("synthesis/diphone_data/all_syllables_diphone_position.in", "r", stdin);
 	string s1, s2, s3;
 	int len, tone, energy, number_f0;
+	int lef, rig;
 	while(cin >> s1 >> s2 >> s3 >> len >> tone >> energy >> number_f0){
-		cout << s1 << " " << s2 << " " << s3 << endl;
+
 		syllable_map[s1] = syllable(s2, s3, len, tone, energy, number_f0);
 		syllable_map[s1].f0 = new int[number_f0];
-
 		for(int i = 0; i < number_f0; i++){
 			cin >> syllable_map[s1].f0[i];
 		}
+		cin >> lef >> rig;
+		syllable_map[s1].left_diphone_position = lef;
+		syllable_map[s1].right_diphone_position = rig;
+		cout << s1 << " " << s2 << " " << s3 << " " << lef << " " << rig << endl;
 
 	}
 }
 
 WaveFile synthesis::create_wave_file(string in){
-	syllable syl = syllable_map[in];
-	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << endl;
 
-	diphone dip1 = get_diphone(syl.left_diphone_name);
-	diphone dip2 = get_diphone(syl.right_diphone_name);
+	if(!syllable_map.count(in)){
+		WaveFile W;
+		W.init();
+		return W;
+	}
+
+	syllable syl = syllable_map[in];
+	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << " " << syl.left_diphone_position << " " << syl.right_diphone_position << endl;
+
+	diphone dip1 = get_diphone_position(syl.left_diphone_position);
+	diphone dip2 = get_diphone_position(syl.right_diphone_position);
 
 	psola ss;
 	WaveFile W = ss.create_syllable(syl, dip1, dip2);
@@ -38,8 +49,7 @@ WaveFile synthesis::create_wave_file(string in){
 
 }
 
-diphone synthesis::get_diphone(string in){
-	int pos = diphone_map[in];
+diphone synthesis::get_diphone_position(int pos){
 	diphone res;
 	FILE *f = fopen("synthesis/diphone_data/HALFSYL.DAT", "rb");
 	char *header = new char[20000];
@@ -62,6 +72,11 @@ diphone synthesis::get_diphone(string in){
 	delete[] header;
 	delete[] temp;
 	return res;
+}
+
+diphone synthesis::get_diphone(string in){
+	int pos = diphone_map[in];
+	return get_diphone_position(pos);
 }
 
 void synthesis::add_data(WaveFile &W, int pos){
