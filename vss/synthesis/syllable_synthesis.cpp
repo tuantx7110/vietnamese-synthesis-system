@@ -22,11 +22,11 @@ void synthesis::read_syllable_diphone(){
 			iss >> syllable_map[s1].f0[i];
 		}
 
-		iss >> lef >> rig;
+
 		if(iss >> lef >> rig){
 			syllable_map[s1].left_diphone_position = lef;
 			syllable_map[s1].right_diphone_position = rig;
-			cout << s1 << " " << s2 << " " << s3 << " " << lef << " " << rig << endl;
+
 		}
 		else {
 			syllable_map[s1].left_diphone_position = -1;
