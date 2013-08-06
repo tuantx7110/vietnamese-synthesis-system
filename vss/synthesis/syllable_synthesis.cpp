@@ -12,24 +12,33 @@ void synthesis::read_syllable_diphone(){
 	string s1, s2, s3;
 	int len, tone, energy, number_f0;
 	int lef, rig;
-	while(cin >> s1 >> s2 >> s3 >> len >> tone >> energy >> number_f0){
-
+	char temp[10005];
+	while(gets(temp)){
+		istringstream iss(temp);
+		iss >> s1 >> s2 >> s3 >> len >> tone >> energy >> number_f0;
 		syllable_map[s1] = syllable(s2, s3, len, tone, energy, number_f0);
 		syllable_map[s1].f0 = new int[number_f0];
 		for(int i = 0; i < number_f0; i++){
-			cin >> syllable_map[s1].f0[i];
+			iss >> syllable_map[s1].f0[i];
 		}
-		cin >> lef >> rig;
-		syllable_map[s1].left_diphone_position = lef;
-		syllable_map[s1].right_diphone_position = rig;
-		cout << s1 << " " << s2 << " " << s3 << " " << lef << " " << rig << endl;
 
+		iss >> lef >> rig;
+		if(iss >> lef >> rig){
+			syllable_map[s1].left_diphone_position = lef;
+			syllable_map[s1].right_diphone_position = rig;
+			cout << s1 << " " << s2 << " " << s3 << " " << lef << " " << rig << endl;
+		}
+		else {
+			syllable_map[s1].left_diphone_position = -1;
+			syllable_map[s1].right_diphone_position = -1;
+		}
 	}
 }
 
 WaveFile synthesis::create_wave_file(string in){
 
 	if(!syllable_map.count(in)){
+		cout << "not find word " << in << " in database" << endl;
 		WaveFile W;
 		W.init();
 		return W;
@@ -37,13 +46,27 @@ WaveFile synthesis::create_wave_file(string in){
 
 	syllable syl = syllable_map[in];
 	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << " " << syl.left_diphone_position << " " << syl.right_diphone_position << endl;
+	diphone dip1, dip2;
+	if(syl.left_diphone_position != -1){
+		dip1 = get_diphone_position(syl.left_diphone_position);
+		dip2 = get_diphone_position(syl.right_diphone_position);
+	}
+	else{
+		if(!diphone_map.count(syl.left_diphone_name) || !diphone_map.count(syl.right_diphone_name)){
+			cout << "not find diphone in database" << endl;
+			WaveFile W;
+			W.init();
+			return W;
 
-	diphone dip1 = get_diphone_position(syl.left_diphone_position);
-	diphone dip2 = get_diphone_position(syl.right_diphone_position);
+		}
+		dip1 = get_diphone(syl.left_diphone_name);
+		dip2 = get_diphone(syl.right_diphone_name);
+	}
 
 	psola ss;
 	WaveFile W = ss.create_syllable(syl, dip1, dip2);
-
+//	delete[] dip1.buffer;
+//	delete[] dip2.buffer;
 	cout << "ngon canh" << endl;
 	return W;
 
@@ -81,6 +104,7 @@ diphone synthesis::get_diphone_position(int pos){
 
 diphone synthesis::get_diphone(string in){
 	int pos = diphone_map[in];
+	cout << in << " " << pos << endl;
 	return get_diphone_position(pos);
 }
 

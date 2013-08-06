@@ -150,6 +150,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		max_frame_len = ((Max1 > Max2 ? Max1 : Max2) * 2 + 1) * 2;
 		cFrame = new char[max_frame_len];
 		cFrame2 = new char[max_frame_len];
+		cout << max_frame_len << " " << Max1 << " " << Max2 << endl;
 		dip1.num_pitch_marks--; dip2.num_pitch_marks--;
 		number_peaks = dip1.num_pitch_marks + dip2.num_pitch_marks;
 		number_peaks--;
@@ -350,7 +351,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 			if(new_window && win_counter == 0) win_counter++;
 
 			for(int j = 0; j < max_frame_len; j += 2){
-				*(short *)(P.buffer + frame_position[i] + j + (max_frame_len - frame_len) / 2) = *(short *)(cFrame + j);
+				*(short *)(P.buffer + frame_position[i] + j - (max_frame_len - 2) / 2) = *(short *)(cFrame + j);
 			}
 
 			if(new_window && win_counter == number_of_window){
@@ -592,14 +593,20 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 	if(!accent_from_phone(dip1, dip2, P,  syl.f0, syl.number_f0, syl.tone)){
 		cout << "Ngu VKL" << endl;
 	}
+
+	free(temp);
 	WaveFile W;
 	W.init();
 	vector<short> Vtemp;
 	for(int i = 0; i < P.buffer_max; i += 2){
 		Vtemp.push_back(*(short *)(P.buffer + i));
 	}
-	cout << "add_data ngon";
+	cout << "add_data ngon" << endl;
 	W.add_data(Vtemp);
+//	delete[] dip1.buffer;
+//	delete[] dip2.buffer;
+//	delete[] P.buffer;
+//	delete[] syl.new_syllable;
 	cout << "syllable ok" << endl;
 	return W;
 }
