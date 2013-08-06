@@ -234,7 +234,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 					else next_peak_index = next_peak_index - dip1.num_pitch_marks + 1;
 
 					if(tempt < dip2.pitch_marks[next_peak_index]){
-						if((dip2.pitch_marks[nearest_peak_index] * 2 + frame_len / 2) < dip2.dw_diplen){
+						if((dip2.pitch_marks[next_peak_index] * 2 + frame_len / 2) < dip2.dw_diplen){
 							memcpy(cFrame2 + (max_frame_len - frame_len) / 2,
 								dip2.buffer + dip2.pitch_marks[next_peak_index] * 2 - tempt * 2, frame_len);
 						}
