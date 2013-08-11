@@ -24,7 +24,7 @@ const double PI = acos(double(-1));
 const string kDataPath = "data/";
 const string kInputTextFileName = kDataPath + "input_text.txt";
 const string kOutputWaveFileName = kDataPath + "output_speech.wav";
-const string kDataDiphonePosition = "synthesis/diphone_data/all_syllables_diphone.in";
+const string kDataDiphonePosition = "synthesis/diphone_data/all_syllables_diphone_position.in";
 const string kDataHalfsyl = "synthesis/diphone_data/HALFSYL.DAT";
 
 const string kConfigurePath = "parser/configure/config.ini";
