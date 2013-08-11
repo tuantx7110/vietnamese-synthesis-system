@@ -22,12 +22,12 @@ void synthesis::read_syllable_diphone(){
 			iss >> syllable_map[s1].f0[i];
 		}
 
+		if(iss >> lef >> rig);
+			if(iss >> lef >> rig){
+				syllable_map[s1].left_diphone_position = lef;
+				syllable_map[s1].right_diphone_position = rig;
 
-		if(iss >> lef >> rig){
-			syllable_map[s1].left_diphone_position = lef;
-			syllable_map[s1].right_diphone_position = rig;
-
-		}
+			}
 		else {
 			syllable_map[s1].left_diphone_position = -1;
 			syllable_map[s1].right_diphone_position = -1;
@@ -43,10 +43,16 @@ WaveFile synthesis::create_wave_file(string in){
 		W.init();
 		return W;
 	}
-
-	syllable syl = syllable_map[in];
-	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << " " << syl.left_diphone_position << " " << syl.right_diphone_position << endl;
+	syllable syl = syllable(syllable_map[in].left_diphone_name, syllable_map[in].right_diphone_name,
+			syllable_map[in].syllable_len, syllable_map[in].tone, syllable_map[in].energy, syllable_map[in].number_f0);
+	syl.new_syllable = new char[syl.syllable_len];
+	syl.f0 = new int[syl.number_f0];
+	syl.left_diphone_position = syllable_map[in].left_diphone_position;
+	syl.right_diphone_position = syllable_map[in].right_diphone_position;
+	for(int i = 0; i < syl.number_f0; i++) syl.f0[i] = syllable_map[in].f0[i];
+	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << " " << syl.left_diphone_position << " " << syl.right_diphone_position << " " << syl.tone << endl;
 	diphone dip1, dip2;
+
 	if(syl.left_diphone_position != -1){
 		dip1 = get_diphone_position(syl.left_diphone_position);
 		dip2 = get_diphone_position(syl.right_diphone_position);
@@ -62,6 +68,10 @@ WaveFile synthesis::create_wave_file(string in){
 		dip1 = get_diphone(syl.left_diphone_name);
 		dip2 = get_diphone(syl.right_diphone_name);
 	}
+	cout << syl.number_f0 << endl;
+	for(int i = 0; i < syl.number_f0; i++)
+		cout << syl.f0[i] << " ";
+	puts("");
 
 	psola ss;
 	WaveFile W = ss.create_syllable(syl, dip1, dip2);
