@@ -594,7 +594,6 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 		cout << "Ngu VKL" << endl;
 	}
 
-	free(temp);
 	WaveFile W;
 	W.init();
 	vector<short> Vtemp;
@@ -608,6 +607,8 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 //	delete[] P.buffer;
 //	delete[] syl.new_syllable;
 	cout << "syllable ok" << endl;
+
+	free(temp);
 	return W;
 }
 
