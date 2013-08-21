@@ -41,27 +41,27 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
 
     vector<SearchingSentence>& selected_result = unit_selector.select(input_text_reader.get_all_sentences());
 
+    WaveFile wave_file;
+    wave_file.init();
+
     if (debug_vietnamese_synthesis_system) {
         start_time = clock();
     }
-
-    WaveFile wave_file;
-    wave_file.init();
 
     for (int i = 0; i < (int) selected_result.size(); ++i) {
         vector<SearchingPhrase>& phrases = selected_result[i].get_searching_phrases();
         for (int j = 0; j < (int) phrases.size(); ++j) {
             if (!phrases[j].is_found()) {
-            	string content = phrases[j].get_phrase_content();
-            	if (content == "SIL") {
-            		wave_file.add_silence(4000);
-            	} else if (content == "SILS") {
-            		wave_file.add_silence(6200);
-            	} else {
-            		WaveFile wave = syllable_synthesis.create_wave_file(phrases[j].get_phrase_content());
-            		vector<short> data = wave.get_all_data();
-            		wave_file.add_data(data);
-            	}
+                string content = phrases[j].get_phrase_content();
+                if (content == "SIL") {
+                    wave_file.add_silence(4000);
+                } else if (content == "SILS") {
+                    wave_file.add_silence(6200);
+                } else {
+                    WaveFile wave = syllable_synthesis.create_wave_file(phrases[j].get_phrase_content());
+                    vector<short> data = wave.get_all_data();
+                    wave_file.add_data(data);
+                }
                 continue;
             }
 
@@ -70,20 +70,18 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
             int finish = phrases[j].get_chose_finish();
 
             WaveFile temp;
-            read_wave_file(path, temp);
-
-            vector<short> data = temp.get_data(start, finish);
-            wave_file.add_data(data);
+            read_wave_file(path, start, finish, temp);
+            wave_file.add_data(temp.get_all_data());
         }
     }
 
-    write_wave_file(output_wave_file_name, wave_file);
-
     if (debug_vietnamese_synthesis_system) {
         current_time = clock();
-        cout << "=== WRITE WAVE TIME: " << ((current_time - start_time) * 1000.0 / CLOCKS_PER_SEC) << " ms ===" << endl << endl;
+        cout << "=== DIPHONE AND CONCATENATE TIME: " << ((current_time - start_time) * 1000.0 / CLOCKS_PER_SEC) << " ms ===" << endl << endl;
         start_time = current_time;
     }
+
+    write_wave_file(output_wave_file_name, wave_file);
 
     return true;
 }

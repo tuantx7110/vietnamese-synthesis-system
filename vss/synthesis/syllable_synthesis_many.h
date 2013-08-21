@@ -10,16 +10,16 @@
 
 #include "diphone_synthesis.h"
 
-struct synthesis_many{
-	vector<WaveFile> vW;
-	map<string, syllable> syllable_map;
-	map<string, int> phone_map;
-	map<string, vector<int> > diphone_map;
-	void init();
-	void read_diphone_binary();
-	void read_syllable_diphone();
-	vector<WaveFile> create_wave_file(string in);
-	vector<diphone> get_diphone(string in);
+struct synthesis_many {
+    vector<WaveFile> vW;
+    map<string, syllable> syllable_map;
+    map<string, int> phone_map;
+    map<string, vector<int> > diphone_map;
+    void init();
+    void read_diphone_binary();
+    void read_syllable_diphone();
+    vector<WaveFile> create_wave_file(string in);
+    vector<diphone> get_diphone(string in);
 
 };
 
