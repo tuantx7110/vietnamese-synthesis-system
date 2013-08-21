@@ -150,7 +150,7 @@ bool psola::create_phone(diphone dip1, diphone dip2, phone &P, int * frame_posit
 		max_frame_len = ((Max1 > Max2 ? Max1 : Max2) * 2 + 1) * 2;
 		cFrame = new char[max_frame_len];
 		cFrame2 = new char[max_frame_len];
-		cout << max_frame_len << " " << Max1 << " " << Max2 << endl;
+
 		dip1.num_pitch_marks--; dip2.num_pitch_marks--;
 		number_peaks = dip1.num_pitch_marks + dip2.num_pitch_marks;
 		number_peaks--;
@@ -600,15 +600,12 @@ WaveFile psola::create_syllable(syllable syl, diphone dip1, diphone dip2){
 	for(int i = 0; i < P.buffer_max; i += 2){
 		Vtemp.push_back(*(short *)(P.buffer + i));
 	}
-	cout << "add_data ngon" << endl;
-	W.add_data(Vtemp);
-//	delete[] dip1.buffer;
-//	delete[] dip2.buffer;
-//	delete[] P.buffer;
-//	delete[] syl.new_syllable;
-	cout << "syllable ok" << endl;
 
+	W.add_data(Vtemp);
 	free(temp);
+
+	cout << "Syllable synthesized successfully." << endl << endl;
+
 	return W;
 }
 
@@ -730,7 +727,7 @@ int psola::tone_for_syllable(int tone_type, int F0, int **f0, int **len, int len
 			(*len)[counter] = (*len)[counter + 1];
 		num_of_control_point--;
 	}
-	cout << "num_of_control_point " << num_of_control_point << endl;
+	cout << "Number control point: " << num_of_control_point << endl;
 	return num_of_control_point;
 }
 

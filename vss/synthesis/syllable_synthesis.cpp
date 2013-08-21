@@ -2,9 +2,9 @@
 
 void synthesis::init(){
 	read_syllable_diphone();
-	cout << "read_syllable_diphone done" << endl;
+	cout << "Read syllable diphone done!" << endl;
 	read_diphone_binary();
-	cout << "read_diphone_binary done" << endl;
+	cout << "Read diphone binary done!" << endl;
 }
 
 void synthesis::read_syllable_diphone(){
@@ -22,7 +22,7 @@ void synthesis::read_syllable_diphone(){
 			iss >> syllable_map[s1].f0[i];
 		}
 
-		if(iss >> lef >> rig);
+		if(iss >> lef >> rig)
 			if(iss >> lef >> rig){
 				syllable_map[s1].left_diphone_position = lef;
 				syllable_map[s1].right_diphone_position = rig;
@@ -50,7 +50,7 @@ WaveFile synthesis::create_wave_file(string in){
 	syl.left_diphone_position = syllable_map[in].left_diphone_position;
 	syl.right_diphone_position = syllable_map[in].right_diphone_position;
 	for(int i = 0; i < syl.number_f0; i++) syl.f0[i] = syllable_map[in].f0[i];
-	cout << in << " " << syl.left_diphone_name << " " << syl.right_diphone_name << " " << syl.left_diphone_position << " " << syl.right_diphone_position << " " << syl.tone << endl;
+	cout << "Diphone [" << in << "] => [" << syl.left_diphone_name << "] + [" << syl.right_diphone_name << "] + " << " [tone = " << syl.tone << "]" << endl;
 	diphone dip1, dip2;
 
 	if(syl.left_diphone_position != -1){
@@ -59,7 +59,7 @@ WaveFile synthesis::create_wave_file(string in){
 	}
 	else{
 		if(!diphone_map.count(syl.left_diphone_name) || !diphone_map.count(syl.right_diphone_name)){
-			cout << "not find diphone in database" << endl;
+			cout << "Diphone not found in database" << endl;
 			WaveFile W;
 			W.init();
 			return W;
@@ -68,16 +68,9 @@ WaveFile synthesis::create_wave_file(string in){
 		dip1 = get_diphone(syl.left_diphone_name);
 		dip2 = get_diphone(syl.right_diphone_name);
 	}
-	cout << syl.number_f0 << endl;
-	for(int i = 0; i < syl.number_f0; i++)
-		cout << syl.f0[i] << " ";
-	puts("");
 
 	psola ss;
 	WaveFile W = ss.create_syllable(syl, dip1, dip2);
-//	delete[] dip1.buffer;
-//	delete[] dip2.buffer;
-	cout << "ngon canh" << endl;
 	return W;
 
 }
@@ -139,9 +132,7 @@ void synthesis::add_data(WaveFile &W, int pos){
 void synthesis::read_diphone_binary(){
 	FILE *f = fopen(kDataHalfsyl.c_str(), "rb");
 
-	//short val = 0;
 	fread(&number_diphone, 2, 1, f);
-	cout << number_diphone << endl;
 
 	for (int run = 0; run < number_diphone; ++run) {
 
