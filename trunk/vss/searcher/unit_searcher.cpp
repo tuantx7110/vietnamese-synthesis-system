@@ -68,9 +68,9 @@ SearchingSentence UnitSearcher::search_sentence(vector<SearchingPhrase>& all_sea
 }
 
 void UnitSearcher::search_phrase(SearchingPhrase& searching_phrase, vector<RecordedSentence>& all_recorded_sentences) {
-	if (searching_phrase.get_phrase_content() == "SIL" || searching_phrase.get_phrase_content() == "SILS") {
-		return;
-	}
+    if (searching_phrase.get_phrase_content() == "SIL" || searching_phrase.get_phrase_content() == "SILS") {
+        return;
+    }
     for (int i = 0; i < (int) all_recorded_sentences.size(); ++i) {
         vector<RecordedPhrase>& recorded_phrases = all_recorded_sentences[i].get_all_phrases();
 

@@ -84,11 +84,11 @@ void UnitSelector::calculate_score(SearchingSentence& searching_sentence) {
 }
 
 int UnitSelector::score_between_two_candidate_positions(FoundPosition position1, FoundPosition position2) {
-	if (position1.get_sentence_index() == position2.get_sentence_index() &&
-			position1.get_phrase_index() == position2.get_phrase_index() &&
-			position1.get_finish_syllable_index() + 1 == position2.get_start_syllable_index()) {
-		return 0;
-	}
+    if (position1.get_sentence_index() == position2.get_sentence_index() &&
+            position1.get_phrase_index() == position2.get_phrase_index() &&
+            position1.get_finish_syllable_index() + 1 == position2.get_start_syllable_index()) {
+        return 0;
+    }
     RecordedPhrase phrase1 = binary_database_reader.get_sentence_at(position1.get_sentence_index()).get_phrase_at(position1.get_phrase_index());
     RecordedPhrase phrase2 = binary_database_reader.get_sentence_at(position2.get_sentence_index()).get_phrase_at(position2.get_phrase_index());
 
