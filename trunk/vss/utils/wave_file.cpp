@@ -62,7 +62,15 @@ void WaveFile::add_data(vector<short> more_data) {
     for (int i = 0; i < (int) more_data.size(); ++i) {
         data.push_back(more_data[i]);
     }
+    add_silence(200);
     update_size();
+}
+
+void WaveFile::add_silence(int length) {
+	for (int i = 0; i < length; ++i) {
+		data.push_back(0);
+	}
+	update_size();
 }
 
 vector<short> WaveFile::get_data(int from, int to) {

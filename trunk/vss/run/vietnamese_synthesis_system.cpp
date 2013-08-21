@@ -52,16 +52,28 @@ bool VietnameseSynthesisSystem::run(string input_text_file_name, string output_w
         vector<SearchingPhrase>& phrases = selected_result[i].get_searching_phrases();
         for (int j = 0; j < (int) phrases.size(); ++j) {
             if (!phrases[j].is_found()) {
-                WaveFile wave = syllable_synthesis.create_wave_file(phrases[j].get_phrase_content());
-                wave_file.add_data(wave.get_all_data());
+            	string content = phrases[j].get_phrase_content();
+            	if (content == "SIL") {
+            		wave_file.add_silence(4000);
+            	} else if (content == "SILS") {
+            		wave_file.add_silence(6200);
+            	} else {
+            		WaveFile wave = syllable_synthesis.create_wave_file(phrases[j].get_phrase_content());
+            		vector<short> data = wave.get_all_data();
+            		wave_file.add_data(data);
+            	}
                 continue;
             }
+
             string path = kRecordedWavePath + phrases[j].get_chose_file_name();
             int start = phrases[j].get_chose_start();
             int finish = phrases[j].get_chose_finish();
+
             WaveFile temp;
             read_wave_file(path, temp);
-            wave_file.add_data(temp.get_data(start, finish));
+
+            vector<short> data = temp.get_data(start, finish);
+            wave_file.add_data(data);
         }
     }
 

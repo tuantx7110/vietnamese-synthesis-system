@@ -68,6 +68,9 @@ SearchingSentence UnitSearcher::search_sentence(vector<SearchingPhrase>& all_sea
 }
 
 void UnitSearcher::search_phrase(SearchingPhrase& searching_phrase, vector<RecordedSentence>& all_recorded_sentences) {
+	if (searching_phrase.get_phrase_content() == "SIL" || searching_phrase.get_phrase_content() == "SILS") {
+		return;
+	}
     for (int i = 0; i < (int) all_recorded_sentences.size(); ++i) {
         vector<RecordedPhrase>& recorded_phrases = all_recorded_sentences[i].get_all_phrases();
 
@@ -79,6 +82,8 @@ void UnitSearcher::search_phrase(SearchingPhrase& searching_phrase, vector<Recor
                 for (int k = 0; k < number_syllables; ++k) {
                     if (searching_phrase.get_phrase_content() == recorded_syllables[k].get_syllable_name()) {
                         searching_phrase.set_found(true);
+
+                        if (searching_phrase.number_candidates() >= 15) return;
                         searching_phrase.add_found_position(FoundPosition(i, j, k, k));
 
                         if (debug_unit_searcher) {
