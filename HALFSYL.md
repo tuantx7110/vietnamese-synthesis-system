@@ -1,0 +1,1 @@
+Hiện tại thấy file HALFSYL.dat không có cấu trúc như đã ghi trong document, nhưng thấy có những vị trí lặp 8 byte :)) Nghi ngờ là có nó lưu tên và vị trí thì các vị trí ấy được lưu = 4 byte thì những byte đầu nó sẽ giống nhau nên lặp chỉ cần nghiên cứu được cái này chắc là cũng encode được file binary

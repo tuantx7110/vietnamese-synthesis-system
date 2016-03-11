@@ -1,0 +1,1 @@
+Ghi cấu trúc các struct trong phần ghép từ và các thông tin liên quan
